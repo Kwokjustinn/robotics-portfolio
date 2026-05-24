@@ -1,0 +1,307 @@
+<!DOCTYPE html> <!-- 告訴瀏覽器：呢份文件用 HTML5 標準 -->
+<html lang="en"> <!-- 整個 HTML 網頁開始；lang="en" 代表主要內容係英文 -->
+<head> <!-- head 入面放網頁設定，通常唔會直接顯示喺頁面上 -->
+  <meta charset="UTF-8"> <!-- 設定文字編碼，支援英文、中文同符號 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- 叫舊版 Internet Explorer 用最新模式顯示 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 令手機同電腦都可以正確縮放版面 -->
+  <title>Justin Kwok | Robotics Sales Engineering Portfolio</title> <!-- 瀏覽器分頁顯示嘅標題 -->
+  <meta name="description" content="Robotics field deployment and sales engineering portfolio for AMR, AGV, warehouse automation, troubleshooting, and customer-facing technical work."> <!-- 搜尋引擎會睇到嘅網站描述 -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com"> <!-- 預先連接 icon CDN，令 Font Awesome 載入快少少 -->
+  <link rel="stylesheet" href="style.css"> <!-- 連接自己寫嘅 CSS 檔案，控制畫面樣式 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <!-- 連接 Font Awesome icon library -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script> <!-- 載入 React，方便喺靜態 HTML 入面建立互動 UI component -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script> <!-- 載入 ReactDOM，用嚟將 React component 放入頁面 -->
+</head> <!-- head 結束 -->
+
+<body> <!-- body 入面係用戶真正會見到嘅網頁內容 -->
+  <header id="header" class="hero"> <!-- header 係第一頁 hero 區；id 用嚟俾 nav link 跳返頂部，class 用嚟套 CSS -->
+    <nav class="site-nav" aria-label="Primary navigation"> <!-- nav 係導覽列；aria-label 幫助螢幕閱讀器理解用途 -->
+      <a class="brand" href="#header" aria-label="Justin Kwok home"> <!-- 左上角品牌連結，按落會返到首頁頂部 -->
+        <span class="brand-mark">JK</span> <!-- 小方格 logo 文字 -->
+        <span>Justin Kwok</span> <!-- 品牌名稱文字 -->
+      </a> <!-- brand 連結結束 -->
+
+      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidemenu"> <!-- 手機版 menu 按鈕；桌面版通常隱藏 -->
+        <i class="fa-solid fa-bars" aria-hidden="true"></i> <!-- Font Awesome 三條線 icon；aria-hidden 代表純裝飾 -->
+      </button> <!-- menu 按鈕結束 -->
+
+      <ul id="sidemenu" class="nav-links"> <!-- 導覽連結列表；id 俾 menu button 控制 -->
+        <li><a href="#about">About</a></li> <!-- 跳去 About 區 -->
+        <li><a href="#experience">Experience</a></li> <!-- 跳去 Experience 區；目前頁面未有對應 section，但保留 nav 項目 -->
+        <li><a href="#projects">Projects</a></li> <!-- 跳去 Projects 區 -->
+        <li><a href="#sales-engineering">Sales Engineering</a></li> <!-- 跳去 Sales Engineering 區；目前頁面未有對應 section -->
+        <li><a href="#contact">Contact</a></li> <!-- 跳去 Contact 區；目前頁面未有對應 section -->
+        <li> <!-- 手機 menu 入面嘅關閉按鈕容器 -->
+          <button class="close-button" type="button" aria-label="Close menu"> <!-- 關閉手機 menu 按鈕 -->
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i> <!-- Font Awesome X icon -->
+          </button> <!-- close button 結束 -->
+        </li> <!-- 關閉按鈕項目結束 -->
+      </ul> <!-- nav links 結束 -->
+    </nav> <!-- 導覽列結束 -->
+
+    <div class="hero-grid container"> <!-- hero 主要內容；container 控制最大闊度，hero-grid 控制排版 -->
+      <div class="hero-copy"> <!-- 首頁文字區 -->
+        <p class="eyebrow">Robotics Project Engineer | AMR / AGV Deployment</p> <!-- 小標籤文字，通常放身份/主題 -->
+        <h1>Bridging robotics deployment <span class="headline-nowrap">with customer-focused</span> automation solutions.</h1> <!-- 網頁最重要標題；span 令 with customer-focused 盡量留喺同一行 -->
+        <p class="hero-summary"> <!-- 標題下面嘅簡短介紹 -->
+          I connect field-tested robotics knowledge with clear technical communication for warehouse automation,
+          deployment readiness, and sales engineering conversations.
+        </p> <!-- hero summary 結束 -->
+        <div class="hero-actions"> <!-- 兩個主要行動按鈕嘅容器 -->
+          <a class="btn primary" href="#projects">View Field Work</a> <!-- 主按鈕，跳去 projects -->
+          <a class="btn secondary" href="#contact">Contact Me</a> <!-- 次按鈕，跳去 contact -->
+        </div> <!-- hero actions 結束 -->
+      </div> <!-- hero copy 結束 -->
+
+      <figure class="hero-photo"> <!-- figure 用嚟包圖片同 caption，語意上表示一張有說明嘅圖 -->
+        <img src="images/uw-graduation-profile.jpg" alt="Justin Kwok wearing a University of Washington graduation stole"> <!-- 首頁 profile 相；alt 係圖片無法顯示或螢幕閱讀器會用嘅描述 -->
+        <figcaption>University of Washington graduate with robotics field experience.</figcaption> <!-- 圖片下方說明文字 -->
+      </figure> <!-- hero photo 結束 -->
+
+      <div id="hero-strengths-root" class="hero-panel" aria-label="Robotics deployment strengths"> <!-- React 會將三個 high-tech strength cards 放入呢度；入面 HTML 係 fallback -->
+        <div class="hero-panel-card hero-panel-feature"> <!-- fallback 第一張卡；如果 React 載入唔到，仍然會顯示 -->
+          <img src="images/amr-agv-first-page.jpg" alt="AMR and AGV deployment equipment in a warehouse setting"> <!-- AMR/AGV 圖片 -->
+          <span class="metric">AMR / AGV</span> <!-- 卡片標題；span 係短文字 inline 元素 -->
+          <p>Deployment, setup, validation, and customer-facing support.</p> <!-- 卡片描述 -->
+        </div> <!-- fallback 第一張卡結束 -->
+        <div class="hero-panel-card hero-panel-feature"> <!-- fallback 第二張卡 -->
+          <img src="images/field-ready-3d-slam-mapping.jpg" alt="3D SLAM mapping scan displayed on a robotics field interface"> <!-- 3D SLAM mapping 圖片 -->
+          <span class="metric">Field Ready</span> <!-- 卡片標題 -->
+          <p>Using 3D SLAM to scan the space, build mapping data, and validate robot-ready routes.</p> <!-- 卡片描述 -->
+        </div> <!-- fallback 第二張卡結束 -->
+        <div class="hero-panel-card"> <!-- fallback 第三張卡 -->
+          <span class="metric">Sales Fit</span> <!-- 卡片標題 -->
+          <p>Technical discovery, demos, value framing, and solution confidence.</p> <!-- 卡片描述 -->
+        </div> <!-- fallback 第三張卡結束 -->
+      </div> <!-- hero panel 結束 -->
+
+    </div> <!-- hero-grid container 結束 -->
+  </header> <!-- 首頁 hero/header 結束 -->
+
+  <main> <!-- main 放頁面主要內容；一頁通常只用一次 -->
+    <section id="about" class="section"> <!-- About 區；id 俾 nav href="#about" 跳到呢度 -->
+      <div class="container about-grid"> <!-- about-grid 控制左右欄排版 -->
+        <div class="portrait-card"> <!-- 左邊個人圖卡 -->
+          <div class="media-frame portrait" data-label="Field Engineering"> <!-- 圖片外框；data-label 可俾 CSS/JS 使用 -->
+            <img src="images/justin-kwok-profile.jpg" alt="Justin Kwok robotics field engineering experience"> <!-- About 區 profile/field 圖 -->
+          </div> <!-- media frame 結束 -->
+          <div class="quick-info"> <!-- 快速資料小盒 -->
+            <p><strong>Focus</strong> Robotics deployment, troubleshooting, and solution engineering</p> <!-- strong 令 Focus 加粗 -->
+            <p><strong>Direction</strong> Sales Engineer / Field Application Engineer roles</p> <!-- 第二條快速資料 -->
+          </div> <!-- quick-info 結束 -->
+        </div> <!-- portrait-card 結束 -->
+
+        <div> <!-- About 右邊文字內容 -->
+          <p class="section-kicker">About</p> <!-- section 小標籤 -->
+          <h2 class="section-title">Hands-on robotics work, explained in customer language.</h2> <!-- h2 係 section 標題 -->
+          <p> <!-- 第一段介紹文字 -->
+            I am a robotics and automation project engineer with hands-on experience in AMR / AGV deployment,
+            field testing, system validation, troubleshooting, and customer-facing technical coordination.
+          </p>
+          <p> <!-- 第二段介紹文字 -->
+            Through field work, showroom exposure, and deployment support, I have built experience across robot setup,
+            network checks, map validation, safety testing, and technical communication. I enjoy translating complex
+            robotics systems into practical business value for customers, project managers, operators, and engineering teams.
+          </p>
+
+          <div class="tabs" role="tablist" aria-label="Background details"> <!-- tabs 容器；role 幫助 accessibility -->
+            <button class="tab-link active-link" type="button" role="tab" aria-selected="true" aria-controls="skills" data-tab="skills">Skills</button> <!-- 目前選中嘅 tab -->
+            <button class="tab-link" type="button" role="tab" aria-selected="false" aria-controls="tools" data-tab="tools">Tools</button> <!-- Tools tab 按鈕 -->
+            <button class="tab-link" type="button" role="tab" aria-selected="false" aria-controls="education" data-tab="education">Education</button> <!-- Education tab 按鈕 -->
+          </div> <!-- tabs 結束 -->
+        </div> <!-- About 右邊文字結束 -->
+      </div> <!-- about container 結束 -->
+    </section> <!-- About section 結束 -->
+
+    <section id="projects" class="section project-section"> <!-- Projects 區；project-section 加白色背景 -->
+      <div class="container"> <!-- 控制 Projects 內容最大闊度 -->
+        <p class="section-kicker">Projects</p> <!-- Projects 小標籤 -->
+        <h2 class="section-title">Field robotics projects focused on safety, validation, and deployment readiness.</h2> <!-- Projects 大標題 -->
+
+        <div class="project-list"> <!-- 包住所有 project cards 嘅列表 -->
+          <article class="project-card"> <!-- article 表示一個獨立 project 內容 -->
+            <div class="project-media"> <!-- project 圖片區 -->
+              <img src="images/memo-camera-detection.jpg" alt="Memo camera detection identifying a forklift and warehouse objects"> <!-- project 圖片 -->
+            </div> <!-- project media 結束 -->
+
+            <div class="project-copy"> <!-- project 文字區 -->
+              <span class="project-tag">Computer Vision Safety Integration</span> <!-- project 類別標籤 -->
+              <h3>Memo camera detection linked to RCS robot control.</h3> <!-- project 標題 -->
+              <p> <!-- project 描述 -->
+                Memo is a camera-based detection system used to identify forklifts, AGVs, AMRs, people,
+                and other objects in shared warehouse zones. The system supports motion-accident prevention
+                by monitoring traffic areas and triggering vehicle stop behavior through the RCS robot control system.
+              </p>
+
+              <div class="project-points"> <!-- project 重點列表 -->
+                <p><strong>Detected</strong> Forklifts, AMRs, AGVs, humans, and warehouse items</p> <!-- 重點 1 -->
+                <p><strong>Safety role</strong> Stops connected vehicles when risk is detected</p> <!-- 重點 2 -->
+                <p><strong>Integration</strong> Connected detection events with RCS robot control logic</p> <!-- 重點 3 -->
+              </div> <!-- project-points 結束 -->
+            </div> <!-- project-copy 結束 -->
+          </article> <!-- 第一個 project card 結束 -->
+
+          <article class="project-card"> <!-- 第二個 project card -->
+            <div class="project-media"> <!-- project 圖片區 -->
+              <img src="images/sicksafe-lidar-area-setup.jpg" alt="SICK safety LiDAR area configuration for AGV operation"> <!-- SICK LiDAR 圖片 -->
+            </div> <!-- project media 結束 -->
+
+            <div class="project-copy"> <!-- project 文字區 -->
+              <span class="project-tag">SICK Safety LiDAR Configuration</span> <!-- project 類別標籤 -->
+              <h3>SICK safety LiDAR area setup for AGV operation.</h3> <!-- project 標題 -->
+              <p> <!-- project 描述 -->
+                Configured SICK safety LiDAR field areas and validated scan coverage for AGV movement zones.
+                The setup supported safer vehicle behavior by transferring configuration and log data to the AGV
+                so the robot could adjust its operating area based on the tested safety field.
+              </p>
+
+              <div class="project-points"> <!-- project 重點列表 -->
+                <p><strong>Configured</strong> Warning and protective LiDAR field zones</p> <!-- 重點 1 -->
+                <p><strong>Validated</strong> Scan coverage against the AGV route and work area</p> <!-- 重點 2 -->
+                <p><strong>Transferred</strong> Configuration and log data from the safety tool to the AGV</p> <!-- 重點 3 -->
+              </div> <!-- project-points 結束 -->
+            </div> <!-- project-copy 結束 -->
+          </article> <!-- 第二個 project card 結束 -->
+
+          <article class="project-card"> <!-- 第三個 project card，有 carousel 輪播圖 -->
+            <div class="project-media project-carousel" data-carousel> <!-- data-carousel 俾 JavaScript 搵到呢個輪播 -->
+              <div class="project-carousel-track"> <!-- 所有 slides 疊喺呢個 track 入面 -->
+                <img class="project-slide active" src="images/IMG_1004.JPG" alt="Autonomous mobile robot positioned near a red charging station in a warehouse"> <!-- 第一張 slide；active 代表目前顯示 -->
+                <img class="project-slide" src="images/robotune-terminal-setup.jpg" alt="RCS terminal showing AMR route deployment and network connection status"> <!-- 第二張 slide -->
+              </div> <!-- carousel track 結束 -->
+
+              <button class="carousel-button carousel-button-prev" type="button" aria-label="Show previous AMR photo" data-carousel-prev> <!-- 上一張按鈕；data-carousel-prev 俾 JS 選中 -->
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i> <!-- 左箭嘴 icon -->
+              </button> <!-- previous button 結束 -->
+
+              <button class="carousel-button carousel-button-next" type="button" aria-label="Show next AMR photo" data-carousel-next> <!-- 下一張按鈕；data-carousel-next 俾 JS 選中 -->
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i> <!-- 右箭嘴 icon -->
+              </button> <!-- next button 結束 -->
+
+              <div class="carousel-dots" aria-label="AMR project photos"> <!-- 輪播下方小圓點容器 -->
+                <button class="carousel-dot active" type="button" aria-label="Show AMR docking photo" data-carousel-dot="0"></button> <!-- 第一張圖嘅 dot；0 係 index -->
+                <button class="carousel-dot" type="button" aria-label="Show AMR RCS route photo" data-carousel-dot="1"></button> <!-- 第二張圖嘅 dot；1 係 index -->
+              </div> <!-- carousel dots 結束 -->
+            </div> <!-- carousel 圖片區結束 -->
+
+            <div class="project-copy"> <!-- project 文字區 -->
+              <span class="project-tag">AMR RCS Deployment</span> <!-- project 類別標籤 -->
+              <h3>AMR route setup, docking, and RCS deployment validation.</h3> <!-- project 標題 -->
+              <p> <!-- project 描述 -->
+                Supported AMR deployment work by validating the robot, charging hardware, route behavior, and
+                RCS connection inside a warehouse environment. The project focused on confirming physical setup,
+                route readiness, charger access, network communication, and system status before customer-facing
+                operation.
+              </p>
+
+              <div class="project-points"> <!-- project 重點列表 -->
+                <p><strong>Created</strong> AMR route setup through the RCS / Robotune interface</p> <!-- 重點 1 -->
+                <p><strong>Validated</strong> Robot positioning, charger alignment, and docking access</p> <!-- 重點 2 -->
+                <p><strong>Checked</strong> Network connection, route readiness, and deployment status</p> <!-- 重點 3 -->
+              </div> <!-- project-points 結束 -->
+            </div> <!-- project-copy 結束 -->
+          </article> <!-- 第三個 project card 結束 -->
+        </div> <!-- project-list 結束 -->
+      </div> <!-- projects container 結束 -->
+    </section> <!-- Projects section 結束 -->
+  </main> <!-- main 結束 -->
+
+  <script>
+    // React 區：建立首頁 high-tech strength list
+    if (window.React && window.ReactDOM) { // 檢查 React CDN 有冇成功載入
+      const reactElement = React.createElement; // 簡短寫法，之後唔使成日打 React.createElement
+
+      const strengths = [ // 三個首頁能力項目，React 會用呢個 array 畫出 UI
+        {
+          title: "AMR / AGV",
+          label: "Deployment Layer",
+          src: "images/amr-agv-first-page.jpg",
+          alt: "AMR and AGV deployment equipment in a warehouse setting",
+          text: "Deployment, setup, validation, and customer-facing support."
+        },
+        {
+          title: "Field Ready",
+          label: "3D SLAM Scan",
+          src: "images/field-ready-3d-slam-mapping.jpg",
+          alt: "3D SLAM mapping scan displayed on a robotics field interface",
+          text: "Using 3D SLAM to scan the space, build mapping data, and validate robot-ready routes."
+        },
+        {
+          title: "Sales Fit",
+          label: "Banking Sales",
+          src: "images/sales-fit-banking-team.jpg",
+          alt: "Justin Kwok with Hang Seng Bank HSBC Group colleagues",
+          text: "General Banking Manager experience at Hang Seng Bank, HSBC Group, focused on client engagement, cross-selling, and compliant branch sales growth.",
+          featured: true,
+          points: [
+            "Achieved 196% of overall KPI target across key retail banking products.",
+            "Ranked Top 3 in Q1 2026 for Prestige account acquisition in Hong Kong Main Area.",
+            "Attained 216% of credit card sales target through proactive client engagement and cross-selling.",
+            "Collaborated with Senior Prestige Relationship Managers and Senior Bankers to cross-sell insurance and support growth in accounts, credit cards, loans, and mortgages.",
+            "Recommended suitable banking and insurance solutions based on customer financial needs.",
+            "Maintained service quality and compliance while driving branch sales performance."
+          ]
+        }
+      ];
+
+      function HeroStrengths() { // 定義 React component，負責畫出三張 high-tech cards
+        return strengths.map((item, index) => reactElement(
+          "article", // 每張 card 都係一個獨立 article
+          { className: `hero-panel-card tech-strength-card${item.featured ? " tech-strength-featured" : ""}`, key: item.title },
+          reactElement("span", { className: "tech-strength-index" }, `0${index + 1}`), // 左上角編號
+          reactElement("span", { className: "tech-popout-scan", "aria-hidden": "true" }), // 掃描線效果
+          reactElement("span", { className: "tech-popout-corner corner-top-left", "aria-hidden": "true" }), // 左上角科技邊框
+          reactElement("span", { className: "tech-popout-corner corner-bottom-right", "aria-hidden": "true" }), // 右下角科技邊框
+          reactElement("img", { src: item.src, alt: item.alt }), // card 圖片
+          reactElement(
+            "div",
+            { className: "tech-strength-copy" },
+            reactElement("span", { className: "tech-strength-label" }, item.label), // 小標籤
+            reactElement("strong", { className: "metric" }, item.title), // card 標題
+            reactElement("p", null, item.text), // card 描述
+            item.points && reactElement(
+              "ul",
+              { className: "tech-strength-points" },
+              item.points.map((point) => reactElement("li", { key: point }, point))
+            ) // 如果有 points，就畫成清楚 list
+          )
+        ));
+      }
+
+      const heroStrengthsRoot = document.getElementById("hero-strengths-root"); // 搵到首頁 strength panel
+      if (heroStrengthsRoot) { // 如果頁面有呢個 root 先 render
+        heroStrengthsRoot.classList.add("hero-panel-react"); // 加 class，令 React 版本可以用更靚嘅 CSS
+        ReactDOM.createRoot(heroStrengthsRoot).render(reactElement(HeroStrengths)); // 將 React cards 放入 hero panel
+      }
+    }
+
+    // JavaScript 區：控制 project carousel 輪播
+    document.querySelectorAll("[data-carousel]").forEach((carousel) => { // 搵晒頁面上所有有 data-carousel 嘅輪播，逐個設定
+      const slides = Array.from(carousel.querySelectorAll(".project-slide")); // 搵呢個 carousel 入面所有 slide 圖，轉成 array 方便處理
+      const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]")); // 搵所有 dot 按鈕，轉成 array
+      const previousButton = carousel.querySelector("[data-carousel-prev]"); // 搵上一張按鈕
+      const nextButton = carousel.querySelector("[data-carousel-next]"); // 搵下一張按鈕
+      let currentSlide = 0; // 記住目前顯示第幾張，0 代表第一張
+
+      const showSlide = (index) => { // 定義一個 function：傳入想顯示嘅 slide index
+        currentSlide = (index + slides.length) % slides.length; // 用取餘數令 index 可以循環，例如最後一張再下一張會返第一張
+
+        slides.forEach((slide, slideIndex) => { // 逐張 slide 檢查
+          slide.classList.toggle("active", slideIndex === currentSlide); // 只有目前 slide 先加 active class，其他移除
+        });
+
+        dots.forEach((dot, dotIndex) => { // 逐個 dot 檢查
+          dot.classList.toggle("active", dotIndex === currentSlide); // 目前 slide 對應嘅 dot 加 active class
+        });
+      };
+
+      previousButton.addEventListener("click", () => showSlide(currentSlide - 1)); // 按上一張，就顯示前一張
+      nextButton.addEventListener("click", () => showSlide(currentSlide + 1)); // 按下一張，就顯示下一張
+
+      dots.forEach((dot) => { // 逐個 dot 加 click event
+        dot.addEventListener("click", () => showSlide(Number(dot.dataset.carouselDot))); // 按 dot 時，讀 data-carousel-dot 數字去顯示對應 slide
+      });
+    });
+  </script> <!-- JavaScript 結束 -->
+</body> <!-- body 結束 -->
+</html> <!-- HTML 文件結束 -->

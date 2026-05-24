@@ -1,0 +1,788 @@
+:root { /* 全站共用變數：之後用 var(--名字) 就可以重用顏色、尺寸等設定 */
+  --bg: #f7f8f5; /* 網站主背景色 */
+  --bg-strong: #10221e; /* 深色背景，適合 hero/nav */
+  --surface: #ffffff; /* 卡片白色底 */
+  --surface-muted: #eef3ef; /* 較淡嘅卡片/資訊底色 */
+  --text: #18211f; /* 主要文字顏色 */
+  --muted: #66736f; /* 次要文字顏色，例如 paragraph */
+  --line: #dfe6e1; /* 邊框線顏色 */
+  --accent: #1f8a70; /* 主色，例如 primary button */
+  --accent-strong: #11614f; /* 深一點嘅主色 */
+  --signal: #d7942f; /* 橙色 highlight，用喺 eyebrow/kicker */
+  --shadow: 0 24px 70px rgba(17, 33, 30, 0.14); /* 共用陰影效果 */
+  --radius: 8px; /* 共用圓角大小 */
+  --container: 1120px; /* 內容最大寬度 */
+}
+
+* { /* 星號代表所有元素 */
+  box-sizing: border-box; /* 寬高會包含 padding/border，排版比較容易控制 */
+}
+
+html { /* 整個 HTML 文件 */
+  scroll-behavior: smooth; /* 點 anchor link 時平滑捲動 */
+}
+
+body { /* 整個網頁可見內容 */
+  margin: 0; /* 清走瀏覽器預設外距 */
+  background: var(--bg); /* 用全站背景色 */
+  color: var(--text); /* 預設文字顏色 */
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; /* 字體清單；前面冇就用後面 */
+  line-height: 1.65; /* 行距，令文字易讀 */
+}
+
+body.menu-open { /* 當手機 menu 打開時 body 會加呢個 class */
+  overflow: hidden; /* 禁止背景頁面捲動 */
+}
+
+img { /* 所有圖片 */
+  max-width: 100%; /* 圖片唔會超出父元素寬度 */
+}
+
+a { /* 所有連結 */
+  color: inherit; /* 連結沿用父元素文字顏色 */
+  text-decoration: none; /* 移除預設底線 */
+}
+
+p,
+h1,
+h2,
+h3 { /* paragraph 同標題共用設定 */
+  margin-top: 0; /* 清走上方預設 margin */
+}
+
+p { /* 所有 paragraph */
+  color: var(--muted); /* paragraph 用較淡顏色 */
+}
+
+.container { /* 共用內容容器 */
+  width: min(100% - 40px, var(--container)); /* 手機留 20px 邊距，桌面最多 1120px */
+  margin-inline: auto; /* 左右 auto 令容器置中 */
+}
+
+.hero { /* 第一頁 hero 區 */
+  position: relative; /* 俾 React pop-out 圖像可以用 absolute 定位喺 hero 入面 */
+  min-height: 100svh; /* 最少等於一個螢幕高度；svh 對手機瀏覽器較穩定 */
+  overflow: hidden; /* 隱藏 pop-out 動畫開始時超出 hero 嘅部分 */
+  color: #fff; /* hero 入面文字預設白色 */
+  background: /* 背景由深色遮罩加圖片組成 */
+    linear-gradient(110deg, rgba(7, 20, 18, 0.92), rgba(7, 20, 18, 0.68) 48%, rgba(7, 20, 18, 0.82)), /* 深色漸層遮罩，令文字容易睇 */
+    url("images/warehouse-deployment-site.jpg"); /* hero 背景圖片 */
+  background-size: cover; /* 背景圖填滿整個 hero */
+  background-position: center; /* 背景圖置中裁切 */
+}
+
+.site-nav { /* 頂部導覽列 */
+  position: fixed; /* 固定喺視窗頂部，捲頁都留喺度 */
+  top: 0; /* 貼住頂部 */
+  left: 0; /* 貼住左邊 */
+  z-index: 20; /* 疊層較高，避免被內容蓋住 */
+  width: 100%; /* 導覽列全寬 */
+  display: flex; /* 用 flex 排品牌同 nav links */
+  align-items: center; /* 垂直置中 */
+  justify-content: space-between; /* 左右兩邊分開 */
+  padding: 18px max(20px, calc((100vw - var(--container)) / 2)); /* 左右 padding 配合 container 寬度 */
+  background: rgba(10, 26, 23, 0.78); /* 半透明深色背景 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 底部幼線 */
+  backdrop-filter: blur(16px); /* 背後內容模糊，玻璃效果 */
+}
+
+.brand,
+.nav-links,
+.hero-actions,
+.contact-list a,
+.social-icons { /* 幾個需要橫向排列嘅元素共用 flex 設定 */
+  display: flex; /* 開啟 flex 排版 */
+  align-items: center; /* 垂直置中 */
+}
+
+.brand { /* 左上角 Justin Kwok 品牌區 */
+  gap: 10px; /* logo 同文字之間距離 */
+  font-size: 18px; /* 品牌文字大小 */
+  font-weight: 800; /* 品牌文字加粗 */
+  letter-spacing: 0; /* 字距保持正常 */
+}
+
+.brand-mark { /* JK 小方格 */
+  display: inline-grid; /* 用 grid 方便內容置中 */
+  place-items: center; /* 水平同垂直置中 */
+  width: 38px; /* 方格寬度 */
+  height: 38px; /* 方格高度 */
+  border: 1px solid rgba(255, 255, 255, 0.28); /* 半透明白色邊框 */
+  background: rgba(255, 255, 255, 0.1); /* 半透明白底 */
+  border-radius: var(--radius); /* 用共用圓角 */
+  color: #fff; /* JK 文字白色 */
+  font-size: 14px; /* JK 文字大小 */
+}
+
+.nav-links { /* 導覽連結列表 */
+  gap: 22px; /* 每個 nav item 之間距離 */
+  margin: 0; /* 清走 ul 預設 margin */
+  padding: 0; /* 清走 ul 預設 padding */
+  list-style: none; /* 移除 li 前面圓點 */
+  font-size: 14px; /* nav 文字大小 */
+  font-weight: 700; /* nav 文字加粗 */
+}
+
+.nav-links a { /* nav 入面嘅連結 */
+  color: rgba(255, 255, 255, 0.84); /* 未 hover 時白色但少少透明 */
+}
+
+.nav-links a:hover { /* 滑鼠移上 nav link 時 */
+  color: #fff; /* hover 時變純白 */
+}
+
+.menu-button,
+.close-button { /* 手機 menu 開關按鈕 */
+  display: none; /* 桌面版預設隱藏 */
+}
+
+.hero-grid { /* hero 內容排版 */
+  position: relative; /* 令 hero 內容可以疊喺 pop-out 上面 */
+  z-index: 1; /* 比背景高，確保文字同卡片清楚 */
+  min-height: 100svh; /* hero 內容最少一個螢幕高 */
+  display: grid; /* 用 CSS Grid 做二維排版 */
+  grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr); /* 左欄 profile，右欄 cards */
+  grid-template-areas: /* 用名字定義 grid 區域，讀起嚟更清楚 */
+    "copy copy" /* 第一行文字橫跨兩欄 */
+    "photo panel"; /* 第二行左邊相，右邊 panel */
+  align-content: center; /* 整個 grid 垂直置中 */
+  align-items: start; /* 每個 grid item 從頂部開始對齊 */
+  gap: 22px 28px; /* row gap 22px，column gap 28px */
+  padding-top: 84px; /* 頂部留空，避開 fixed nav */
+  padding-bottom: 30px; /* 底部留少少空間 */
+}
+
+.hero-copy { /* hero 主文字區 */
+  grid-area: copy; /* 放入 grid-template-areas 入面嘅 copy 區域 */
+  justify-self: start; /* 將 hero 文字區推去最左邊 */
+  max-width: 900px; /* 限制文字區最大闊度，避免太長一行 */
+  text-align: left; /* 文字靠左排列 */
+}
+
+.eyebrow,
+.section-kicker { /* hero 小標籤同 section 小標籤共用樣式 */
+  margin-bottom: 14px; /* 下方距離 */
+  color: var(--signal); /* 用橙色 highlight */
+  font-size: 13px; /* 小標籤字體較細 */
+  font-weight: 800; /* 加粗 */
+  letter-spacing: 0.08em; /* 字距拉開，像標籤 */
+  text-transform: uppercase; /* 全部轉大楷 */
+}
+
+h1 { /* 首頁最大標題 */
+  max-width: 980px; /* 放寬標題闊度，令 with customer-focused 可以留喺第一行 */
+  margin-right: 0; /* 取消右邊 auto，配合靠左排版 */
+  margin-bottom: 10px; /* 標題下面距離收細，令下面圖片更容易出現 */
+  margin-left: 0; /* 取消左邊 auto，令標題靠左 */
+  color: #fff; /* 白色文字 */
+  font-size: clamp(26px, 2.7vw, 32px); /* responsive 字體再收細，避免 customer-focused 跌落下一行 */
+  line-height: 1.06; /* 標題行距較緊湊 */
+  letter-spacing: 0; /* 保持正常字距 */
+}
+
+.headline-nowrap { /* H1 入面用嚟包住 with customer-focused */
+  white-space: nowrap; /* 呢幾個字盡量唔分開換行 */
+}
+
+.hero-summary { /* hero 標題下面嘅摘要文字 */
+  max-width: 900px; /* 摘要可以橫向長啲，減少換行高度 */
+  margin-right: 0; /* 取消置中 */
+  margin-left: 0; /* 摘要靠左 */
+  color: rgba(255, 255, 255, 0.78); /* 白色但透明少少，層級低過 h1 */
+  font-size: 13px; /* 摘要文字收細，第一頁可以睇到更多圖片 */
+  line-height: 1.35; /* 行距收緊，減少佔用高度 */
+}
+
+.hero-actions { /* hero 兩個按鈕容器 */
+  justify-content: flex-start; /* 按鈕跟住文字靠左 */
+  flex-wrap: wrap; /* 空間唔夠時可以換行 */
+  gap: 12px; /* 按鈕之間距離 */
+  margin-top: 14px; /* 同摘要文字分隔，收細高度 */
+}
+
+.btn { /* 所有 button-style link 共用樣式 */
+  display: inline-flex; /* 用 flex 令文字置中 */
+  align-items: center; /* 垂直置中 */
+  justify-content: center; /* 水平置中 */
+  min-height: 44px; /* 按鈕最小高度 */
+  padding: 0 18px; /* 左右內距 */
+  border-radius: var(--radius); /* 圓角 */
+  font-weight: 800; /* 按鈕文字加粗 */
+}
+
+.btn.primary { /* 主要按鈕 */
+  background: var(--accent); /* 綠色背景 */
+  color: #fff; /* 白色文字 */
+}
+
+.btn.secondary { /* 次要按鈕 */
+  border: 1px solid rgba(255, 255, 255, 0.32); /* 白色半透明邊框 */
+  color: #fff; /* 白色文字 */
+}
+
+.hero-photo { /* hero profile 相外框 */
+  position: relative; /* 保留定位基準，之後如果要加小元素會方便 */
+  grid-area: photo; /* 放入 photo grid 區域 */
+  justify-self: center; /* 自己置中 */
+  width: min(100%, 300px); /* 最大 300px，但細 screen 可縮到 100% */
+  margin: 0; /* 清走 figure 預設 margin */
+  padding: 10px; /* 相片外框內距 */
+  background: rgba(255, 255, 255, 0.12); /* 半透明白底 */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* 半透明邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  box-shadow: var(--shadow); /* 共用陰影 */
+  backdrop-filter: blur(14px); /* 玻璃模糊效果 */
+  overflow: hidden; /* 圓角外面嘅內容隱藏，令畢業相保持乾淨 */
+}
+
+.hero-photo img { /* hero profile 圖片本身 */
+  display: block; /* 移除圖片底部 inline 空隙 */
+  width: 100%; /* 填滿外框闊度 */
+  aspect-ratio: 4 / 5; /* 固定直身比例 */
+  object-fit: cover; /* 圖片填滿比例，多出部分裁走 */
+  object-position: 45% center; /* 調整裁切焦點，令人物位置更好 */
+  border-radius: calc(var(--radius) - 2px); /* 圖片圓角比外框細少少 */
+}
+
+.hero-photo figcaption { /* hero 相片下方說明 */
+  margin-top: 10px; /* 同圖片分隔 */
+  color: rgba(255, 255, 255, 0.8); /* 白色但少少透明 */
+  font-size: 12px; /* caption 較細 */
+  font-weight: 700; /* caption 加粗 */
+  line-height: 1.4; /* caption 行距 */
+}
+
+.hero-panel { /* 右邊三張 hero cards 容器 */
+  grid-area: panel; /* 放入 panel grid 區域 */
+  display: grid; /* 用 grid 排 cards */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 三欄平均寬度 */
+  gap: 12px; /* card 之間距離 */
+}
+
+.hero-panel-card,
+.portrait-card,
+.quick-info { /* 幾個卡片元素共用基本外觀 */
+  border: 1px solid var(--line); /* 邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: var(--surface); /* 白色底 */
+}
+
+.hero-panel-card { /* hero 入面嘅單張 strength card */
+  padding: 14px; /* 內距 */
+  border-color: rgba(255, 255, 255, 0.18); /* hero card 用半透明白邊 */
+  background: rgba(255, 255, 255, 0.11); /* hero card 用半透明白底 */
+  backdrop-filter: blur(14px); /* 玻璃模糊效果 */
+}
+
+.hero-panel-feature img { /* hero card 入面嘅圖片 */
+  display: block; /* 移除圖片底部空隙 */
+  width: 100%; /* 圖片填滿 card 闊度 */
+  aspect-ratio: 16 / 10; /* 固定橫向圖片比例 */
+  margin-bottom: 10px; /* 圖片同文字分隔 */
+  object-fit: cover; /* 填滿比例並裁切 */
+  object-position: center; /* 圖片裁切焦點置中 */
+  border-radius: calc(var(--radius) - 2px); /* 圖片圓角 */
+}
+
+.hero-panel p { /* hero card 入面嘅 paragraph */
+  margin-bottom: 0; /* 清走底部 margin，卡片高度更可控 */
+  color: rgba(255, 255, 255, 0.72); /* 淡白色文字 */
+  font-size: 14px; /* card 描述文字大小 */
+  line-height: 1.45; /* 描述文字行距 */
+}
+
+.metric { /* hero card 標題，例如 AMR / AGV */
+  display: block; /* span 變成 block，獨佔一行 */
+  margin-bottom: 4px; /* 標題同描述之間距離 */
+  color: #fff; /* 白色文字 */
+  font-size: 18px; /* 標題大小 */
+  font-weight: 850; /* 比一般 bold 更重 */
+}
+
+.hero-panel-react { /* React 版本嘅 first-page strength list */
+  align-items: stretch; /* 三張 card 高度一致 */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* React 版上排兩張卡，Sales Fit 會橫跨下面 */
+}
+
+.tech-strength-card { /* React 產生嘅 high-tech strength card */
+  position: relative; /* 俾掃描線、角位同編號定位 */
+  display: grid; /* 圖片同文字上下排列 */
+  grid-template-rows: auto 1fr; /* 上面圖片，下面文字自動填滿 */
+  gap: 10px; /* 圖片同文字距離 */
+  min-height: 214px; /* 固定最小高度，三張卡整齊 */
+  overflow: hidden; /* 隱藏掃描線超出部分 */
+  border-color: rgba(84, 220, 255, 0.38); /* 藍色科技感邊框 */
+  background: linear-gradient(145deg, rgba(5, 22, 28, 0.88), rgba(31, 138, 112, 0.2)); /* 深色科技底 */
+  box-shadow: 0 18px 48px rgba(0, 200, 255, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.06) inset; /* 外發光加內線 */
+  transform: translateY(14px); /* 動畫開始向下少少 */
+  opacity: 0; /* 動畫開始透明 */
+  animation: techCardIn 620ms ease-out forwards; /* 入場動畫 */
+}
+
+.tech-strength-featured { /* Sales Fit 大卡：用嚟清楚列出 banking achievements */
+  grid-column: 1 / -1; /* 橫跨整個 hero panel 寬度 */
+  grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1fr); /* 左圖右文字 */
+  grid-template-rows: auto; /* 橫向排版時唔需要上下兩行 */
+  align-items: stretch; /* 左圖右文同高 */
+  min-height: 246px; /* 俾 bullet list 足夠空間 */
+}
+
+.tech-strength-card:nth-child(2) { /* 第二張 card 遲少少入場 */
+  animation-delay: 90ms; /* 延遲 90ms */
+}
+
+.tech-strength-card:nth-child(3) { /* 第三張 card 再遲少少入場 */
+  animation-delay: 180ms; /* 延遲 180ms */
+}
+
+.tech-strength-card::before { /* card 左邊發光線 */
+  position: absolute; /* 絕對定位喺 card 入面 */
+  top: 12px; /* 距離頂部 */
+  bottom: 12px; /* 距離底部 */
+  left: 10px; /* 距離左邊 */
+  width: 2px; /* 線寬 */
+  content: ""; /* pseudo-element 必須有 content */
+  background: linear-gradient(#54dcff, transparent); /* 藍色向下淡出 */
+  box-shadow: 0 0 16px rgba(84, 220, 255, 0.8); /* 發光效果 */
+}
+
+.tech-strength-card > img { /* React card 入面嘅圖片 */
+  display: block; /* 移除圖片底部空隙 */
+  width: 100%; /* 填滿 card 寬度 */
+  aspect-ratio: 16 / 9; /* 固定橫向圖片比例 */
+  object-fit: cover; /* 填滿並裁切 */
+  border-radius: calc(var(--radius) - 3px); /* 圖片圓角 */
+  filter: saturate(1.12) contrast(1.05); /* 圖片鮮明少少 */
+}
+
+.tech-strength-featured > img { /* Sales Fit 大卡入面嘅銀行團隊相 */
+  height: 100%; /* 圖片填滿卡片高度 */
+  min-height: 226px; /* 保持圖片有足夠高度 */
+  aspect-ratio: auto; /* 橫向大卡用高度控制，唔用固定比例 */
+  object-position: center; /* 圖片裁切焦點置中 */
+}
+
+.tech-strength-index { /* card 左上角編號 */
+  position: absolute; /* 放喺 card 左上角 */
+  top: 14px; /* 距離頂部 */
+  left: 18px; /* 距離左邊 */
+  z-index: 3; /* 放喺圖片上面 */
+  color: #9befff; /* 淺藍色 */
+  font-size: 11px; /* 小字 */
+  font-weight: 900; /* 粗體 */
+  letter-spacing: 0.12em; /* 字距 */
+  text-shadow: 0 0 12px rgba(84, 220, 255, 0.8); /* 發光字 */
+}
+
+.tech-popout-scan { /* card 圖片上面移動嘅掃描線 */
+  position: absolute; /* 絕對定位 */
+  inset: 0; /* 覆蓋整張 card */
+  z-index: 1; /* 放喺圖片上面 */
+  background: linear-gradient(180deg, transparent 18%, rgba(84, 220, 255, 0.2) 50%, transparent 82%); /* 掃描光帶 */
+  transform: translateY(-100%); /* 開始喺上方 */
+  animation: scanSweep 2.6s linear infinite; /* 不斷向下掃 */
+}
+
+.tech-popout-corner { /* 科技外框角位 */
+  position: absolute; /* 絕對定位 */
+  z-index: 2; /* 放喺圖片同掃描線上面 */
+  width: 26px; /* 角位寬 */
+  height: 26px; /* 角位高 */
+  border-color: #54dcff; /* 角位藍色 */
+  filter: drop-shadow(0 0 8px rgba(84, 220, 255, 0.8)); /* 角位發光 */
+}
+
+.corner-top-left { /* 左上角線條 */
+  top: 8px; /* 距離頂部 */
+  left: 8px; /* 距離左邊 */
+  border-top: 2px solid; /* 上邊線 */
+  border-left: 2px solid; /* 左邊線 */
+}
+
+.corner-bottom-right { /* 右下角線條 */
+  right: 8px; /* 距離右邊 */
+  bottom: 8px; /* 距離底部 */
+  border-right: 2px solid; /* 右邊線 */
+  border-bottom: 2px solid; /* 下邊線 */
+}
+
+.tech-strength-copy { /* card 下面嘅文字區 */
+  position: relative; /* 確保文字喺掃描線上面 */
+  z-index: 2; /* 文字層級高過掃描線 */
+  display: grid; /* 小標籤、標題、描述垂直排列 */
+  gap: 4px; /* 每行文字距離 */
+  align-content: start; /* 由上開始排 */
+}
+
+.tech-strength-featured .tech-strength-copy { /* Sales Fit 大卡右邊文字區 */
+  align-content: center; /* 文字垂直置中 */
+  gap: 6px; /* Sales Fit 內容比較多，行距控制細啲 */
+}
+
+.tech-strength-label { /* card 入面嘅小標籤 */
+  width: fit-content; /* 寬度剛好包文字 */
+  padding: 4px 7px; /* 標籤內距 */
+  border: 1px solid rgba(84, 220, 255, 0.22); /* 淡藍色邊框 */
+  border-radius: 999px; /* pill 形狀 */
+  color: #9befff; /* 淺藍文字 */
+  font-size: 10px; /* 小字 */
+  font-weight: 900; /* 粗體 */
+  letter-spacing: 0.08em; /* 字距 */
+  text-transform: uppercase; /* 全部大楷 */
+}
+
+.tech-strength-points { /* Sales Fit achievement bullet list */
+  display: grid; /* 用 grid 排 bullet */
+  gap: 5px; /* 每條 bullet 距離 */
+  margin: 4px 0 0; /* 上方少少距離，其他清零 */
+  padding-left: 17px; /* bullet 縮入 */
+  color: rgba(255, 255, 255, 0.78); /* bullet 文字淡白色 */
+  font-size: 11.5px; /* bullet 字體細啲，第一頁仍然清楚 */
+  line-height: 1.28; /* bullet 行距收緊 */
+}
+
+.tech-strength-points li::marker { /* bullet 小圓點 */
+  color: #9befff; /* 小圓點用科技藍 */
+}
+
+@keyframes techCardIn { /* high-tech cards 入場動畫 */
+  to {
+    opacity: 1; /* 最後變可見 */
+    transform: translateY(0); /* 回到正常位置 */
+  }
+}
+
+@keyframes scanSweep { /* 掃描線動畫 */
+  to {
+    transform: translateY(100%); /* 由上掃到下 */
+  }
+}
+
+.section { /* 一般 section 共用上下 spacing */
+  padding: 88px 0; /* 上下 88px，左右 0 */
+}
+
+.about-grid { /* About 區兩欄排版 */
+  display: grid; /* 用 grid 排左右欄 */
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.4fr); /* 左欄較窄，右欄較闊 */
+  gap: 48px; /* 左右欄距離 */
+  align-items: start; /* 兩欄由頂部對齊 */
+}
+
+.portrait-card { /* About 左邊圖片卡 */
+  overflow: hidden; /* 超出卡片圓角嘅內容隱藏 */
+  box-shadow: 0 16px 48px rgba(17, 33, 30, 0.1); /* 較柔和陰影 */
+}
+
+.media-frame img { /* About 圖片 */
+  display: block; /* 移除圖片底部空隙 */
+  width: 100%; /* 填滿父元素 */
+  aspect-ratio: 4 / 5; /* 固定直身比例 */
+  object-fit: cover; /* 填滿並裁切 */
+  object-position: 45% center; /* 調整圖片焦點 */
+}
+
+.quick-info { /* About 圖下方快速資訊盒 */
+  display: grid; /* 用 grid 排每一行資料 */
+  gap: 12px; /* 每行距離 */
+  margin: 14px; /* 同卡片邊緣距離 */
+  padding: 18px; /* 內距 */
+  background: var(--surface-muted); /* 淡綠灰底 */
+}
+
+.quick-info p { /* quick info 內文字 */
+  margin-bottom: 0; /* 清走底部 margin */
+}
+
+.section-title { /* section 大標題 */
+  max-width: 720px; /* 限制標題闊度 */
+  margin-bottom: 20px; /* 同下面內容分隔 */
+  color: var(--text); /* 深色文字 */
+  font-size: clamp(30px, 4vw, 48px); /* responsive 標題大小 */
+  line-height: 1.06; /* 標題行距 */
+}
+
+.tabs { /* About 入面 Skills/Tools/Education 按鈕容器 */
+  display: flex; /* 橫向排列 */
+  flex-wrap: wrap; /* 空間唔夠可以換行 */
+  gap: 10px; /* 按鈕之間距離 */
+  margin-top: 28px; /* 同上面文字分隔 */
+}
+
+.tab-link { /* 每個 tab 按鈕 */
+  min-height: 42px; /* 最小高度 */
+  padding: 0 14px; /* 左右內距 */
+  border: 1px solid var(--line); /* 邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: var(--surface); /* 白底 */
+  color: var(--text); /* 深色文字 */
+  font: inherit; /* 沿用 body 字體設定 */
+  font-weight: 800; /* 加粗 */
+  cursor: pointer; /* 滑鼠變手指，表示可點 */
+}
+
+.tab-link.active-link { /* 當前選中嘅 tab */
+  background: var(--accent); /* 主色背景 */
+  border-color: var(--accent); /* 邊框同背景同色 */
+  color: #fff; /* 白色文字 */
+}
+
+.project-section { /* Projects section */
+  background: #fff; /* 白色背景，令 Projects 同前面分開 */
+}
+
+.project-list { /* 所有 project cards 嘅容器 */
+  display: grid; /* 用 grid 垂直排 cards */
+  gap: 28px; /* 每張 card 之間距離 */
+}
+
+.project-card { /* 單個 project card */
+  display: grid; /* 左圖右文排版 */
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr); /* 圖片欄稍闊，文字欄稍窄 */
+  gap: 32px; /* 圖文距離 */
+  align-items: stretch; /* 兩欄高度拉齊 */
+  overflow: hidden; /* 圖片超出圓角時隱藏 */
+  border: 1px solid var(--line); /* 卡片邊框 */
+  border-radius: var(--radius); /* 卡片圓角 */
+  background: var(--surface); /* 卡片白底 */
+  box-shadow: 0 18px 56px rgba(17, 33, 30, 0.1); /* 卡片陰影 */
+}
+
+.project-media { /* project 圖片欄 */
+  min-height: 380px; /* 最小高度，保持 card 有份量 */
+  background: var(--surface-muted); /* 圖片載入前嘅底色 */
+}
+
+.project-media img { /* project 圖片 */
+  display: block; /* 移除圖片底部空隙 */
+  width: 100%; /* 圖片全寬 */
+  height: 100%; /* 圖片全高 */
+  object-fit: cover; /* 填滿並裁切 */
+}
+
+.project-carousel { /* 有輪播功能嘅圖片欄 */
+  position: relative; /* 俾入面嘅 absolute buttons/dots 參考定位 */
+  overflow: hidden; /* 隱藏超出範圍嘅 slides */
+}
+
+.project-slide { /* 每張輪播圖共用尺寸 */
+  width: 100%; /* 全寬 */
+  height: 100%; /* 全高 */
+}
+
+.project-carousel-track { /* slides 疊放容器 */
+  position: absolute; /* 覆蓋整個 project-media */
+  inset: 0; /* top/right/bottom/left 全部 0 */
+}
+
+.project-slide { /* slide 疊放同淡入淡出設定 */
+  position: absolute; /* 每張 slide 疊喺同一位置 */
+  inset: 0; /* 填滿 track */
+  opacity: 0; /* 預設隱藏 */
+  transition: opacity 220ms ease; /* opacity 改變時有淡入淡出動畫 */
+}
+
+.project-slide.active { /* 目前顯示嘅 slide */
+  opacity: 1; /* 顯示出嚟 */
+}
+
+.carousel-button,
+.carousel-dot { /* 輪播按鈕同小圓點共用 */
+  border: 0; /* 清走 button 預設邊框 */
+  cursor: pointer; /* 滑鼠變手指 */
+}
+
+.carousel-button { /* 左右箭嘴按鈕 */
+  position: absolute; /* 放喺輪播圖上面 */
+  top: 50%; /* 垂直方向先放到中間 */
+  z-index: 2; /* 放喺圖片上層 */
+  display: grid; /* 用 grid 令 icon 置中 */
+  place-items: center; /* icon 水平垂直置中 */
+  width: 42px; /* 圓形按鈕寬度 */
+  height: 42px; /* 圓形按鈕高度 */
+  border-radius: 999px; /* 變成圓形 */
+  background: rgba(16, 34, 30, 0.74); /* 深色半透明背景 */
+  color: #fff; /* icon 白色 */
+  transform: translateY(-50%); /* 修正 top:50%，真正垂直置中 */
+  box-shadow: 0 12px 28px rgba(17, 33, 30, 0.18); /* 按鈕陰影 */
+}
+
+.carousel-button:hover { /* hover 左右箭嘴時 */
+  background: rgba(16, 34, 30, 0.9); /* 背景加深 */
+}
+
+.carousel-button-prev { /* 左箭嘴 */
+  left: 16px; /* 距離左邊 16px */
+}
+
+.carousel-button-next { /* 右箭嘴 */
+  right: 16px; /* 距離右邊 16px */
+}
+
+.carousel-dots { /* 輪播小圓點容器 */
+  position: absolute; /* 放喺輪播圖上面 */
+  left: 50%; /* 水平方向先放到中間 */
+  bottom: 16px; /* 距離底部 16px */
+  z-index: 2; /* 放喺圖片上層 */
+  display: flex; /* 圓點橫排 */
+  gap: 8px; /* 圓點之間距離 */
+  padding: 8px 10px; /* 容器內距 */
+  border-radius: 999px; /* pill 形狀 */
+  background: rgba(16, 34, 30, 0.58); /* 深色半透明底 */
+  transform: translateX(-50%); /* 修正 left:50%，真正水平置中 */
+}
+
+.carousel-dot { /* 單粒小圓點 */
+  width: 9px; /* 圓點寬度 */
+  height: 9px; /* 圓點高度 */
+  padding: 0; /* 清走 button 內距 */
+  border-radius: 999px; /* 變圓形 */
+  background: rgba(255, 255, 255, 0.52); /* 半透明白色 */
+}
+
+.carousel-dot.active { /* 目前 slide 對應嘅 dot */
+  width: 22px; /* active dot 拉長，容易分辨 */
+  background: #fff; /* active dot 純白 */
+}
+
+.project-copy { /* project 文字欄 */
+  display: flex; /* 用 flex 控制垂直排列 */
+  flex-direction: column; /* 子元素由上至下排 */
+  justify-content: center; /* 文字內容垂直置中 */
+  padding: 34px 34px 34px 0; /* 上右下左內距 */
+}
+
+.project-tag { /* project 類別標籤 */
+  width: fit-content; /* 寬度剛好包住文字 */
+  margin-bottom: 14px; /* 同標題分隔 */
+  padding: 6px 10px; /* 標籤內距 */
+  border: 1px solid rgba(31, 138, 112, 0.22); /* 淡綠色邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: rgba(31, 138, 112, 0.08); /* 淡綠底 */
+  color: var(--accent-strong); /* 深綠文字 */
+  font-size: 12px; /* 標籤文字細 */
+  font-weight: 850; /* 標籤文字加粗 */
+  text-transform: uppercase; /* 全部大楷 */
+}
+
+.project-copy h3 { /* project card 入面嘅 h3 標題 */
+  margin-bottom: 14px; /* 同段落分隔 */
+  color: var(--text); /* 深色文字 */
+  font-size: 28px; /* project 標題大小 */
+  line-height: 1.14; /* 標題行距 */
+}
+
+.project-points { /* project 重點列表容器 */
+  display: grid; /* 垂直排每個重點 */
+  gap: 10px; /* 重點之間距離 */
+  margin-top: 18px; /* 同 project 描述分隔 */
+}
+
+.project-points p { /* 每一條 project 重點 */
+  margin-bottom: 0; /* 清走 paragraph 底部 margin */
+  padding: 12px 14px; /* 重點盒內距 */
+  border: 1px solid var(--line); /* 邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: var(--surface-muted); /* 淡底色 */
+}
+
+@media (max-width: 980px) { /* 當螢幕闊度 980px 或以下，例如 tablet */
+  .hero-grid,
+  .about-grid,
+  .project-card { /* 呢幾個 grid 喺 tablet 改成單欄 */
+    grid-template-columns: 1fr; /* 只用一欄 */
+  }
+
+  .hero-grid { /* tablet hero 排版 */
+    grid-template-areas: /* 改成由上至下排 */
+      "copy" /* 文字先出現 */
+      "photo" /* 然後 profile 相 */
+      "panel"; /* 最後 strength cards */
+    align-content: start; /* 由頂部開始排 */
+    gap: 22px; /* 每個區塊距離 */
+    padding-top: 96px; /* 避開 fixed nav */
+  }
+
+  .hero-photo { /* tablet profile 相 */
+    justify-self: center; /* 置中 */
+    max-width: 380px; /* 最大寬度 380px */
+  }
+
+  .hero-panel { /* tablet strength cards */
+    grid-template-columns: repeat(3, 1fr); /* 仍然三欄，如果空間足夠 */
+  }
+
+  .hero-panel-react { /* tablet React strength cards */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* React 版保持兩欄加一張橫跨大卡 */
+  }
+
+  .project-copy { /* tablet project 文字欄 */
+    padding: 0 24px 28px; /* 圖文上下排列時，重新設定內距 */
+  }
+}
+
+@media (max-width: 720px) { /* 當螢幕闊度 720px 或以下，例如手機 */
+  .container { /* 手機容器 */
+    width: min(100% - 28px, var(--container)); /* 手機左右留 14px 邊距 */
+  }
+
+  .site-nav { /* 手機導覽列 */
+    padding: 14px; /* 手機 nav 內距少啲 */
+  }
+
+  .nav-links { /* 手機版隱藏桌面 nav links */
+    display: none; /* 暫時唔顯示 menu list */
+  }
+
+  .menu-button { /* 手機 menu button */
+    display: inline-grid; /* 顯示按鈕，用 grid 置中 icon */
+    place-items: center; /* icon 置中 */
+    width: 42px; /* 按鈕寬 */
+    height: 42px; /* 按鈕高 */
+    border: 1px solid rgba(255, 255, 255, 0.28); /* 半透明白色邊框 */
+    border-radius: var(--radius); /* 圓角 */
+    background: rgba(255, 255, 255, 0.1); /* 半透明白底 */
+    color: #fff; /* icon 白色 */
+  }
+
+  h1 { /* 手機 hero 標題 */
+    font-size: 30px; /* 手機固定細啲，避免爆版 */
+  }
+
+  .hero-summary { /* 手機 hero 摘要 */
+    font-size: 13px; /* 手機摘要都保持細，避免第一屏太高 */
+    line-height: 1.35; /* 手機行距收緊 */
+  }
+
+  .hero-actions { /* 手機 hero 按鈕區 */
+    margin-top: 14px; /* 上方距離減少 */
+  }
+
+  .hero-panel { /* 手機 strength cards */
+    grid-template-columns: 1fr; /* 改成單欄，避免太擠 */
+  }
+
+  .hero-panel-react { /* 手機 React strength cards */
+    grid-template-columns: 1fr; /* 全部改成單欄 */
+  }
+
+  .tech-strength-featured { /* 手機 Sales Fit 大卡 */
+    grid-template-columns: 1fr; /* 圖片同 bullet list 上下排 */
+  }
+
+  .tech-strength-featured > img { /* 手機 Sales Fit 圖片 */
+    min-height: 190px; /* 手機圖片高度減少 */
+  }
+
+  .hero-photo { /* 手機 profile 相 */
+    max-width: none; /* 取消 tablet 最大寬度限制，跟父容器走 */
+  }
+
+  .project-media { /* 手機 project 圖片區 */
+    min-height: 280px; /* 手機圖片高度減少 */
+  }
+
+  .project-copy h3 { /* 手機 project 標題 */
+    font-size: 24px; /* project 標題細啲 */
+  }
+}
