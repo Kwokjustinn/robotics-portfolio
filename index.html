@@ -28,10 +28,10 @@
 
       <ul id="sidemenu" class="nav-links"> <!-- 導覽連結列表；id 俾 menu button 控制 -->
         <li><a href="#about">About</a></li> <!-- 跳去 About 區 -->
-        <li><a href="#experience">Experience</a></li> <!-- 跳去 Experience 區；目前頁面未有對應 section，但保留 nav 項目 -->
+        <li><a href="#experience">Experience</a></li> <!-- 跳去 Experience 區；呢個係第三頁，會用 Robotune / mapping 圖做背景 -->
         <li><a href="#projects">Projects</a></li> <!-- 跳去 Projects 區 -->
-        <li><a href="#sales-engineering">Sales Engineering</a></li> <!-- 跳去 Sales Engineering 區；目前頁面未有對應 section -->
-        <li><a href="#contact">Contact</a></li> <!-- 跳去 Contact 區；目前頁面未有對應 section -->
+        <li><a href="#sales-engineering">Sales Engineering</a></li> <!-- 跳去 Sales Engineering 區 -->
+        <li><a href="#contact">Contact</a></li> <!-- 跳去 Contact 區 -->
         <li> <!-- 手機 menu 入面嘅關閉按鈕容器 -->
           <button class="close-button" type="button" aria-label="Close menu"> <!-- 關閉手機 menu 按鈕 -->
             <i class="fa-solid fa-xmark" aria-hidden="true"></i> <!-- Font Awesome X icon -->
@@ -116,7 +116,7 @@
       </div> <!-- about container 結束 -->
     </section> <!-- About section 結束 -->
 
-    <section id="experience" class="section experience-section"> <!-- Experience 區；補返 nav 入面 #experience 對應內容 -->
+    <section id="experience" class="section experience-section"> <!-- Experience 區；第三頁，用 Robotune / 3D SLAM mapping 相做背景 -->
       <div class="container"> <!-- 控制 Experience 內容最大闊度 -->
         <p class="section-kicker">Experience</p> <!-- section 小標籤 -->
         <h2 class="section-title">Field robotics experience with customer-facing solution delivery.</h2> <!-- Experience 大標題 -->
@@ -329,33 +329,37 @@
   </main> <!-- main 結束 -->
 
   <script>
-    // React 區：建立首頁 high-tech strength list
-    if (window.React && window.ReactDOM) { // 檢查 React CDN 有冇成功載入
-      const reactElement = React.createElement; // 簡短寫法，之後唔使成日打 React.createElement
+    // React 初學者區：建立首頁 high-tech strength cards
+    // 想像 React 係一盒 Lego：
+    // 1. strengths array = 你準備好嘅 Lego 零件清單
+    // 2. HeroStrengths component = 教你點樣砌 Lego 嘅說明書
+    // 3. ReactDOM.createRoot(...).render(...) = 將砌好嘅 Lego 放上網頁俾人睇
+    if (window.React && window.ReactDOM) { // 如果 React 同 ReactDOM 兩個工具都成功載入，先開始砌 cards
+      const reactElement = React.createElement; // 因為呢個網頁無用 JSX，所以用 createElement 去「用 JavaScript 寫 HTML」
 
-      const strengths = [ // 三個首頁能力項目，React 會用呢個 array 畫出 UI
+      const strengths = [ // 呢個 array 係資料清單：每一個 object 代表一張 card
         {
-          title: "AMR / AGV",
-          label: "Deployment Layer",
-          src: "amr-agv-first-page.jpg",
-          alt: "AMR and AGV deployment equipment in a warehouse setting",
-          text: "AMR / AGV setup, validation, and customer support."
+          title: "AMR / AGV", // card 大標題
+          label: "Deployment Layer", // card 上面嘅細標籤
+          src: "amr-agv-first-page.jpg", // 圖片路徑；GitHub Pages 會喺 root folder 搵呢張相
+          alt: "AMR and AGV deployment equipment in a warehouse setting", // 圖片描述，俾螢幕閱讀器同 SEO 用
+          text: "AMR / AGV setup, validation, and customer support." // card 簡短描述
         },
         {
-          title: "Field Ready",
-          label: "3D SLAM Scan",
-          src: "field-ready-3d-slam-mapping.jpg",
-          alt: "3D SLAM mapping scan displayed on a robotics field interface",
-          text: "3D SLAM mapping for route readiness and site validation."
+          title: "Field Ready", // 第二張 card 標題
+          label: "3D SLAM Scan", // 代表 mapping / scan 類型能力
+          src: "field-ready-3d-slam-mapping.jpg", // 第二張 card 圖片
+          alt: "3D SLAM mapping scan displayed on a robotics field interface", // 圖片描述
+          text: "3D SLAM mapping for route readiness and site validation." // 第二張 card 描述
         },
         {
-          title: "Sales Fit",
-          label: "Tech Sales Bridge",
-          src: "sales-fit-banking-team.jpg",
-          alt: "Justin Kwok with Hang Seng Bank HSBC Group colleagues",
-          text: "Discovery + demos.",
-          featured: true,
-          points: [
+          title: "Sales Fit", // 第三張 card 標題
+          label: "Tech Sales Bridge", // 講你可以連接 technical 同 sales
+          src: "sales-fit-banking-team.jpg", // 第三張 card 圖片
+          alt: "Justin Kwok with Hang Seng Bank HSBC Group colleagues", // 圖片描述
+          text: "Discovery + demos.", // 簡短描述
+          featured: true, // true 代表呢張 card 要變大張啲，CSS 會睇呢個值
+          points: [ // 多過一點內容時，用 list 會清楚過一大段文字
             "Pain-point discovery for warehouse automation buyers.",
             "ROI, safety, and workflow value framing.",
             "Demo support, objection handling, and follow-up."
@@ -363,34 +367,34 @@
         }
       ];
 
-      function HeroStrengths() { // 定義 React component，負責畫出三張 high-tech cards
-        return strengths.map((item, index) => reactElement(
-          "article", // 每張 card 都係一個獨立 article
-          { className: `hero-panel-card tech-strength-card${item.featured ? " tech-strength-featured" : ""}`, key: item.title },
-          reactElement("span", { className: "tech-strength-index" }, `0${index + 1}`), // 左上角編號
-          reactElement("span", { className: "tech-popout-scan", "aria-hidden": "true" }), // 掃描線效果
+      function HeroStrengths() { // React component：好似一個「小機器」，負責將資料清單變成三張 card
+        return strengths.map((item, index) => reactElement( // map 會逐個 item 處理：一個 item 變一張 card
+          "article", // createElement 第一個參數：想建立咩 HTML tag，呢度係 <article>
+          { className: `hero-panel-card tech-strength-card${item.featured ? " tech-strength-featured" : ""}`, key: item.title }, // 第二個參數：className、key 呢類設定；key 幫 React 分辨每張 card
+          reactElement("span", { className: "tech-strength-index" }, `0${index + 1}`), // 第三個參數之後：放入 article 入面嘅內容；呢行係左上角編號
+          reactElement("span", { className: "tech-popout-scan", "aria-hidden": "true" }), // 掃描線效果，只係裝飾，所以 aria-hidden
           reactElement("span", { className: "tech-popout-corner corner-top-left", "aria-hidden": "true" }), // 左上角科技邊框
           reactElement("span", { className: "tech-popout-corner corner-bottom-right", "aria-hidden": "true" }), // 右下角科技邊框
-          reactElement("img", { src: item.src, alt: item.alt }), // card 圖片
+          reactElement("img", { src: item.src, alt: item.alt }), // 用 item.src 同 item.alt 產生 card 圖片
           reactElement(
-            "div",
-            { className: "tech-strength-copy" },
-            reactElement("span", { className: "tech-strength-label" }, item.label), // 小標籤
-            reactElement("strong", { className: "metric" }, item.title), // card 標題
-            reactElement("p", null, item.text), // card 描述
+            "div", // 建立 <div>
+            { className: "tech-strength-copy" }, // 俾 CSS 用嘅 class
+            reactElement("span", { className: "tech-strength-label" }, item.label), // 用資料入面嘅 label 產生小標籤
+            reactElement("strong", { className: "metric" }, item.title), // 用資料入面嘅 title 產生 card 標題
+            reactElement("p", null, item.text), // null 代表呢個 <p> 無特別設定，只放文字
             item.points && reactElement(
-              "ul",
-              { className: "tech-strength-points" },
-              item.points.map((point) => reactElement("li", { key: point }, point))
-            ) // 如果有 points，就畫成清楚 list
+              "ul", // 如果 item 有 points，先建立 <ul>
+              { className: "tech-strength-points" }, // list 嘅 CSS class
+              item.points.map((point) => reactElement("li", { key: point }, point)) // 每一句 point 變成一個 <li>
+            ) // item.points && 意思係：如果有 points 就畫 list，冇 points 就唔畫
           )
         ));
       }
 
-      const heroStrengthsRoot = document.getElementById("hero-strengths-root"); // 搵到首頁 strength panel
-      if (heroStrengthsRoot) { // 如果頁面有呢個 root 先 render
-        heroStrengthsRoot.classList.add("hero-panel-react"); // 加 class，令 React 版本可以用更靚嘅 CSS
-        ReactDOM.createRoot(heroStrengthsRoot).render(reactElement(HeroStrengths)); // 將 React cards 放入 hero panel
+      const heroStrengthsRoot = document.getElementById("hero-strengths-root"); // 搵到 HTML 入面個空位，React 會將 cards 放入呢度
+      if (heroStrengthsRoot) { // 如果真係搵到呢個空位，先做 render，避免報錯
+        heroStrengthsRoot.classList.add("hero-panel-react"); // 加 class，通知 CSS：「而家係 React 版本，可以用 React card 樣式」
+        ReactDOM.createRoot(heroStrengthsRoot).render(reactElement(HeroStrengths)); // render 即係「把 HeroStrengths 畫到畫面上」
       }
     }
 

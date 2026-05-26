@@ -751,8 +751,50 @@ h1 { /* 首頁最大標題 */
   line-height: 1.58; /* 行距保持舒適 */
 }
 
-.experience-section { /* Experience section */
-  background: #f3f6f2; /* 淡綠灰背景，令 About 同 Projects 中間有層次 */
+.experience-section { /* Experience section：第三頁，用 Robotune / mapping 相做背景 */
+  position: relative; /* 俾背景同內容可以穩定疊放 */
+  min-height: 100svh; /* 第三頁至少一個螢幕高，感覺似完整一頁 */
+  display: flex; /* 用 flex 令內容可以垂直置中 */
+  align-items: center; /* 將 Experience 內容放近第三頁中間 */
+  color: #fff; /* 背景較深，主要文字用白色 */
+  background: /* 先放深色遮罩，再放你嘅 Robotune / 3D SLAM mapping 圖 */
+    linear-gradient(115deg, rgba(4, 14, 14, 0.9), rgba(4, 14, 14, 0.56) 48%, rgba(4, 14, 14, 0.88)),
+    url("robotune-map-background.jpg"); /* 第三頁背景圖：Robotune route / 3D SLAM mapping screen */
+  background-size: cover; /* 背景圖填滿整個 section */
+  background-position: center; /* 背景圖置中裁切 */
+}
+
+.experience-section .container { /* Experience 內容容器 */
+  position: relative; /* 令內容清楚疊喺背景上面 */
+  z-index: 1; /* 提高層級，避免被背景遮罩影響 */
+}
+
+.experience-section .section-title { /* 第三頁標題 */
+  color: #fff; /* 深色背景上用白色標題 */
+}
+
+.experience-section .section-lead { /* 第三頁簡介 */
+  color: rgba(255, 255, 255, 0.78); /* 淡白色，易讀但唔搶標題 */
+}
+
+.experience-section .info-card { /* 第三頁三張 Experience cards */
+  border-color: rgba(84, 220, 255, 0.22); /* 科技藍邊框，配合背景圖 */
+  background: rgba(7, 20, 18, 0.72); /* 玻璃感深色底，文字唔會俾背景干擾 */
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24); /* 深色背景上用較明顯陰影 */
+  backdrop-filter: blur(12px); /* 背景模糊少少，card 更清楚 */
+}
+
+.experience-section .info-card h3 { /* 第三頁 card 標題 */
+  color: #fff; /* card 標題用白色 */
+}
+
+.experience-section .info-card p { /* 第三頁 card 內文 */
+  color: rgba(255, 255, 255, 0.76); /* card paragraph 用淡白色 */
+}
+
+.experience-section .card-icon { /* 第三頁 icon 外框 */
+  background: rgba(84, 220, 255, 0.12); /* 淡藍背景 */
+  color: #9befff; /* icon 用科技藍 */
 }
 
 .sales-engineering-section { /* Sales Engineering section */
