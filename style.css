@@ -55,7 +55,8 @@ p { /* 所有 paragraph */
 }
 
 .container { /* 共用內容容器 */
-  width: min(100% - 40px, var(--container)); /* 手機留 20px 邊距，桌面最多 1120px */
+  width: calc(100% - 40px); /* 左右各留 20px 邊距 */
+  max-width: var(--container); /* 桌面最多 1120px */
   margin-inline: auto; /* 左右 auto 令容器置中 */
 }
 
@@ -184,6 +185,10 @@ h1 { /* 首頁最大標題 */
   white-space: nowrap; /* 呢幾個字盡量唔分開換行 */
 }
 
+.mobile-headline-line { /* H1 入面嘅分行控制，桌面版保持 inline */
+  display: inline; /* 桌面版自然排成一句 */
+}
+
 .hero-summary { /* hero 標題下面嘅摘要文字 */
   max-width: 900px; /* 摘要可以橫向長啲，減少換行高度 */
   margin-right: 0; /* 取消置中 */
@@ -257,6 +262,7 @@ h1 { /* 首頁最大標題 */
   display: grid; /* 用 grid 排 cards */
   grid-template-columns: repeat(3, minmax(0, 1fr)); /* 三欄平均寬度 */
   gap: 12px; /* card 之間距離 */
+  min-width: 0; /* 防止卡片內容令 grid 超出手機寬度 */
 }
 
 .hero-panel-card,
@@ -310,6 +316,7 @@ h1 { /* 首頁最大標題 */
   grid-template-rows: auto 1fr; /* 上面圖片，下面文字自動填滿 */
   gap: 10px; /* 圖片同文字距離 */
   min-height: 214px; /* 固定最小高度，三張卡整齊 */
+  min-width: 0; /* 防止長字令 card 撐爆 grid */
   overflow: hidden; /* 隱藏掃描線超出部分 */
   border-color: rgba(84, 220, 255, 0.38); /* 藍色科技感邊框 */
   background: linear-gradient(145deg, rgba(5, 22, 28, 0.88), rgba(31, 138, 112, 0.2)); /* 深色科技底 */
@@ -319,7 +326,7 @@ h1 { /* 首頁最大標題 */
   animation: techCardIn 620ms ease-out forwards; /* 入場動畫 */
 }
 
-.tech-strength-featured { /* Sales Fit 大卡：用嚟清楚列出 banking achievements */
+.tech-strength-featured { /* Sales Fit 大卡：用嚟清楚展示 tech sales engineer 定位 */
   grid-column: 1 / -1; /* 橫跨整個 hero panel 寬度 */
   grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1fr); /* 左圖右文字 */
   grid-template-rows: auto; /* 橫向排版時唔需要上下兩行 */
@@ -355,7 +362,7 @@ h1 { /* 首頁最大標題 */
   filter: saturate(1.12) contrast(1.05); /* 圖片鮮明少少 */
 }
 
-.tech-strength-featured > img { /* Sales Fit 大卡入面嘅銀行團隊相 */
+.tech-strength-featured > img { /* Sales Fit 大卡入面嘅客戶銷售經驗相 */
   height: 100%; /* 圖片填滿卡片高度 */
   min-height: 226px; /* 保持圖片有足夠高度 */
   aspect-ratio: auto; /* 橫向大卡用高度控制，唔用固定比例 */
@@ -412,6 +419,7 @@ h1 { /* 首頁最大標題 */
   display: grid; /* 小標籤、標題、描述垂直排列 */
   gap: 4px; /* 每行文字距離 */
   align-content: start; /* 由上開始排 */
+  min-width: 0; /* 令文字可以喺窄卡片內正常換行 */
 }
 
 .tech-strength-featured .tech-strength-copy { /* Sales Fit 大卡右邊文字區 */
@@ -431,7 +439,7 @@ h1 { /* 首頁最大標題 */
   text-transform: uppercase; /* 全部大楷 */
 }
 
-.tech-strength-points { /* Sales Fit achievement bullet list */
+.tech-strength-points { /* Sales Fit tech sales engineer 重點列表 */
   display: grid; /* 用 grid 排 bullet */
   gap: 5px; /* 每條 bullet 距離 */
   margin: 4px 0 0; /* 上方少少距離，其他清零 */
@@ -723,7 +731,8 @@ h1 { /* 首頁最大標題 */
 
 @media (max-width: 720px) { /* 當螢幕闊度 720px 或以下，例如手機 */
   .container { /* 手機容器 */
-    width: min(100% - 28px, var(--container)); /* 手機左右留 14px 邊距 */
+    width: calc(100% - 28px); /* 手機左右留 14px 邊距，寫法比 min(100% - 28px) 更穩定 */
+    max-width: var(--container); /* 保留桌面最大寬度設定 */
   }
 
   .site-nav { /* 手機導覽列 */
@@ -745,37 +754,148 @@ h1 { /* 首頁最大標題 */
     color: #fff; /* icon 白色 */
   }
 
+  .hero-grid { /* 手機 hero：保留桌面「左相右卡」感覺 */
+    grid-template-columns: minmax(104px, 0.36fr) minmax(0, 0.64fr); /* 左邊 profile 相縮細少少，右邊 cards 有更多閱讀空間 */
+    grid-template-areas: /* 手機第一行文字橫跨全寬，第二行相片同卡片並排 */
+      "copy copy"
+      "photo panel";
+    align-content: center; /* 內容放喺第一屏中間附近 */
+    align-items: start; /* 相片同卡片由頂部對齊 */
+    gap: 10px; /* 手機間距收細，避免第一頁太長 */
+    min-height: 100svh; /* 手機仍然以第一個 viewport 做主視覺 */
+    padding-top: 76px; /* 避開 fixed nav，同時比之前短啲 */
+    padding-bottom: 18px; /* 底部保留少量空間 */
+  }
+
+  .hero-copy { /* 手機 hero 文字區 */
+    max-width: 100%; /* 用盡手機可用闊度 */
+  }
+
+  .eyebrow { /* 手機 hero 小標籤 */
+    margin-bottom: 8px; /* 減少小標籤下面空間 */
+    font-size: 10.5px; /* 小啲，令第一屏放得落更多內容 */
+    line-height: 1.2; /* 小標籤行距收緊 */
+  }
+
   h1 { /* 手機 hero 標題 */
-    font-size: 30px; /* 手機固定細啲，避免爆版 */
+    width: 100%; /* 手機標題跟住容器寬度 */
+    max-width: 100%; /* 防止沿用桌面 max-width 造成橫向爆版 */
+    margin-bottom: 7px; /* 標題下方距離收細 */
+    overflow-wrap: break-word; /* 如果某一行太長，可以安全換行 */
+    text-wrap: balance; /* 令手機標題平均換行，避免第一行過長 */
+    font-size: clamp(20px, 5.8vw, 22px); /* 手機標題縮細，避免迫走下面相片 */
+    line-height: 1.04; /* 標題行距更緊湊 */
+  }
+
+  .headline-nowrap { /* 手機唔強迫同一行，避免 customer-focused 造成橫向爆版 */
+    white-space: normal; /* 俾手機自然換行 */
+  }
+
+  .mobile-headline-line { /* 手機 headline 分成短行，避免右邊被截 */
+    display: block; /* 每段 headline 獨立一行 */
   }
 
   .hero-summary { /* 手機 hero 摘要 */
-    font-size: 13px; /* 手機摘要都保持細，避免第一屏太高 */
-    line-height: 1.35; /* 手機行距收緊 */
+    font-size: 12px; /* 摘要再細少少，令下面圖片可以喺第一頁出現 */
+    line-height: 1.3; /* 手機行距收緊 */
   }
 
   .hero-actions { /* 手機 hero 按鈕區 */
-    margin-top: 14px; /* 上方距離減少 */
+    gap: 8px; /* 兩個按鈕距離收細 */
+    margin-top: 10px; /* 上方距離減少 */
+  }
+
+  .btn { /* 手機按鈕 */
+    min-height: 36px; /* 手機按鈕高度減少 */
+    padding: 0 12px; /* 左右內距減少 */
+    font-size: 12px; /* 按鈕文字細啲 */
   }
 
   .hero-panel { /* 手機 strength cards */
     grid-template-columns: 1fr; /* 改成單欄，避免太擠 */
+    gap: 8px; /* cards 之間距離收細 */
   }
 
   .hero-panel-react { /* 手機 React strength cards */
     grid-template-columns: 1fr; /* 全部改成單欄 */
   }
 
-  .tech-strength-featured { /* 手機 Sales Fit 大卡 */
-    grid-template-columns: 1fr; /* 圖片同 bullet list 上下排 */
+  .tech-strength-card { /* 手機 high-tech card：改成細橫卡，保持同桌面一樣嘅科技 UI */
+    grid-template-columns: 52px minmax(0, 1fr); /* 左邊細圖，右邊文字 */
+    grid-template-rows: auto; /* 手機唔再上下排，減少高度 */
+    align-items: center; /* 圖文垂直置中 */
+    gap: 8px; /* 圖文距離 */
+    min-height: 76px; /* 固定細卡高度，第一屏放得落 */
+    padding: 9px 10px 9px 14px; /* 手機 card 內距 */
   }
 
-  .tech-strength-featured > img { /* 手機 Sales Fit 圖片 */
-    min-height: 190px; /* 手機圖片高度減少 */
+  .tech-strength-featured { /* 手機 Sales Fit 大卡 */
+    grid-template-columns: 52px minmax(0, 1fr); /* Sales Fit 都同其他卡一樣橫向，保持一致 UI */
+    min-height: 76px; /* 手機版 Sales Fit 變返短卡，避免太似履歷表 */
+  }
+
+  .tech-strength-card > img,
+  .tech-strength-featured > img { /* 手機所有 high-tech card 圖片 */
+    width: 52px; /* 固定細圖寬度 */
+    height: 52px; /* 固定細圖高度 */
+    min-height: 52px; /* 覆蓋桌面 Sales Fit 圖片高度 */
+    aspect-ratio: 1 / 1; /* 手機卡片用正方形縮圖 */
+    object-fit: cover; /* 圖片填滿縮圖 */
+  }
+
+  .tech-strength-featured .tech-strength-copy { /* 手機 Sales Fit 文字區 */
+    align-content: start; /* 由上排，bullet 更整齊 */
+    gap: 3px; /* 文字間距收細 */
+  }
+
+  .tech-strength-label { /* 手機 card 小標籤 */
+    padding: 2px 5px; /* pill 內距減少 */
+    font-size: 7.5px; /* 小標籤變細 */
+    line-height: 1.1; /* 小標籤行距 */
+  }
+
+  .metric { /* 手機 card 標題 */
+    margin-bottom: 0; /* 減少標題下面空間 */
+    font-size: 13px; /* card 標題縮細 */
+    line-height: 1.1; /* 標題行距 */
+  }
+
+  .hero-panel p { /* 手機 card 描述 */
+    overflow-wrap: break-word; /* 長句喺窄卡片內正常換行 */
+    font-size: 9.5px; /* 描述收細，避免 card 撐高 */
+    line-height: 1.22; /* 描述行距收緊 */
+  }
+
+  .tech-strength-points { /* 手機 Sales Fit bullet list */
+    display: none; /* 手機隱藏完整 bullet list；桌面版保留，手機先保持乾淨 */
+  }
+
+  .tech-strength-card::before { /* 手機 card 左邊發光線 */
+    top: 8px; /* 發光線頂部距離 */
+    bottom: 8px; /* 發光線底部距離 */
+    left: 7px; /* 發光線貼近左邊 */
+  }
+
+  .tech-strength-index { /* 手機 card 編號 */
+    top: 7px; /* 編號位置收近 */
+    left: 10px; /* 編號位置收近 */
+    font-size: 8px; /* 編號縮細 */
+  }
+
+  .tech-popout-corner { /* 手機科技角位 */
+    width: 16px; /* 角位縮細 */
+    height: 16px; /* 角位縮細 */
   }
 
   .hero-photo { /* 手機 profile 相 */
+    justify-self: stretch; /* 跟住左欄闊度 */
+    width: 100%; /* 填滿左欄 */
     max-width: none; /* 取消 tablet 最大寬度限制，跟父容器走 */
+    padding: 7px; /* 手機相框內距收細 */
+  }
+
+  .hero-photo figcaption { /* 手機隱藏相片 caption，避免第一屏太擠 */
+    display: none; /* caption 桌面顯示，手機省位 */
   }
 
   .project-media { /* 手機 project 圖片區 */

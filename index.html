@@ -42,7 +42,7 @@
     <div class="hero-grid container"> <!-- hero 主要內容；container 控制最大闊度，hero-grid 控制排版 -->
       <div class="hero-copy"> <!-- 首頁文字區 -->
         <p class="eyebrow">Robotics Project Engineer | AMR / AGV Deployment</p> <!-- 小標籤文字，通常放身份/主題 -->
-        <h1>Bridging robotics deployment <span class="headline-nowrap">with customer-focused</span> automation solutions.</h1> <!-- 網頁最重要標題；span 令 with customer-focused 盡量留喺同一行 -->
+        <h1><span class="mobile-headline-line">Bridging robotics deployment</span> <span class="mobile-headline-line"><span class="headline-nowrap">with customer-focused</span></span> <span class="mobile-headline-line">automation solutions.</span></h1> <!-- 網頁最重要標題；mobile-headline-line 令手機版可以清楚分行，headline-nowrap 令 with customer-focused 盡量留喺同一行 -->
         <p class="hero-summary"> <!-- 標題下面嘅簡短介紹 -->
           I connect field-tested robotics knowledge with clear technical communication for warehouse automation,
           deployment readiness, and sales engineering conversations.
@@ -69,9 +69,10 @@
           <span class="metric">Field Ready</span> <!-- 卡片標題 -->
           <p>Using 3D SLAM to scan the space, build mapping data, and validate robot-ready routes.</p> <!-- 卡片描述 -->
         </div> <!-- fallback 第二張卡結束 -->
-        <div class="hero-panel-card"> <!-- fallback 第三張卡 -->
+        <div class="hero-panel-card hero-panel-feature"> <!-- fallback 第三張卡；React 載入失敗時都會顯示 Sales Fit 圖文 -->
+          <img src="images/sales-fit-banking-team.jpg" alt="Justin Kwok with Hang Seng Bank HSBC Group colleagues"> <!-- Sales Fit 圖片，用銀行工作相代表客戶溝通經驗 -->
           <span class="metric">Sales Fit</span> <!-- 卡片標題 -->
-          <p>Technical discovery, demos, value framing, and solution confidence.</p> <!-- 卡片描述 -->
+          <p>Discovery + demos.</p> <!-- 卡片描述 -->
         </div> <!-- fallback 第三張卡結束 -->
       </div> <!-- hero panel 結束 -->
 
@@ -217,29 +218,26 @@
           label: "Deployment Layer",
           src: "images/amr-agv-first-page.jpg",
           alt: "AMR and AGV deployment equipment in a warehouse setting",
-          text: "Deployment, setup, validation, and customer-facing support."
+          text: "AMR / AGV setup, validation, and customer support."
         },
         {
           title: "Field Ready",
           label: "3D SLAM Scan",
           src: "images/field-ready-3d-slam-mapping.jpg",
           alt: "3D SLAM mapping scan displayed on a robotics field interface",
-          text: "Using 3D SLAM to scan the space, build mapping data, and validate robot-ready routes."
+          text: "3D SLAM mapping for route readiness and site validation."
         },
         {
           title: "Sales Fit",
-          label: "Banking Sales",
+          label: "Tech Sales Bridge",
           src: "images/sales-fit-banking-team.jpg",
           alt: "Justin Kwok with Hang Seng Bank HSBC Group colleagues",
-          text: "General Banking Manager experience at Hang Seng Bank, HSBC Group, focused on client engagement, cross-selling, and compliant branch sales growth.",
+          text: "Discovery + demos.",
           featured: true,
           points: [
-            "Achieved 196% of overall KPI target across key retail banking products.",
-            "Ranked Top 3 in Q1 2026 for Prestige account acquisition in Hong Kong Main Area.",
-            "Attained 216% of credit card sales target through proactive client engagement and cross-selling.",
-            "Collaborated with Senior Prestige Relationship Managers and Senior Bankers to cross-sell insurance and support growth in accounts, credit cards, loans, and mortgages.",
-            "Recommended suitable banking and insurance solutions based on customer financial needs.",
-            "Maintained service quality and compliance while driving branch sales performance."
+            "Pain-point discovery for warehouse automation buyers.",
+            "ROI, safety, and workflow value framing.",
+            "Demo support, objection handling, and follow-up."
           ]
         }
       ];
