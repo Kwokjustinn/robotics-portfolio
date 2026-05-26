@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 令手機同電腦都可以正確縮放版面 -->
   <title>Justin Kwok | Robotics Sales Engineering Portfolio</title> <!-- 瀏覽器分頁顯示嘅標題 -->
   <meta name="description" content="Robotics field deployment and sales engineering portfolio for AMR, AGV, warehouse automation, troubleshooting, and customer-facing technical work."> <!-- 搜尋引擎會睇到嘅網站描述 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2310221e'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='22' font-weight='700' fill='white'%3EJK%3C/text%3E%3C/svg%3E"> <!-- inline favicon，避免瀏覽器自動 request favicon.ico 造成 404 -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com"> <!-- 預先連接 icon CDN，令 Font Awesome 載入快少少 -->
   <link rel="stylesheet" href="style.css"> <!-- 連接自己寫嘅 CSS 檔案，控制畫面樣式 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <!-- 連接 Font Awesome icon library -->
@@ -41,11 +42,11 @@
 
     <div class="hero-grid container"> <!-- hero 主要內容；container 控制最大闊度，hero-grid 控制排版 -->
       <div class="hero-copy"> <!-- 首頁文字區 -->
-        <p class="eyebrow">Robotics Project Engineer | AMR / AGV Deployment</p> <!-- 小標籤文字，通常放身份/主題 -->
-        <h1><span class="mobile-headline-line">Bridging robotics deployment</span> <span class="mobile-headline-line"><span class="headline-nowrap">with customer-focused</span></span> <span class="mobile-headline-line">automation solutions.</span></h1> <!-- 網頁最重要標題；mobile-headline-line 令手機版可以清楚分行，headline-nowrap 令 with customer-focused 盡量留喺同一行 -->
+        <p class="eyebrow">Robotics Deployment + Pre-Sales Engineering Portfolio</p> <!-- 小標籤文字，直接講清楚 portfolio 定位 -->
+        <h1><span class="mobile-headline-line">Turning AMR / AGV deployment</span> <span class="mobile-headline-line"><span class="headline-nowrap">into customer-ready</span></span> <span class="mobile-headline-line">warehouse automation.</span></h1> <!-- 網頁最重要標題；mobile-headline-line 令手機版可以清楚分行，headline-nowrap 令 customer-ready 盡量留喺同一行 -->
         <p class="hero-summary"> <!-- 標題下面嘅簡短介紹 -->
-          I connect field-tested robotics knowledge with clear technical communication for warehouse automation,
-          deployment readiness, and sales engineering conversations.
+          I connect field troubleshooting, RCS / Robotune validation, 3D SLAM mapping, safety demos,
+          and customer-facing solution engineering with clear business value communication.
         </p> <!-- hero summary 結束 -->
         <div class="hero-actions"> <!-- 兩個主要行動按鈕嘅容器 -->
           <a class="btn primary" href="#projects">View Field Work</a> <!-- 主按鈕，跳去 projects -->
@@ -54,23 +55,23 @@
       </div> <!-- hero copy 結束 -->
 
       <figure class="hero-photo"> <!-- figure 用嚟包圖片同 caption，語意上表示一張有說明嘅圖 -->
-        <img src="images/uw-graduation-profile.jpg" alt="Justin Kwok wearing a University of Washington graduation stole"> <!-- 首頁 profile 相；alt 係圖片無法顯示或螢幕閱讀器會用嘅描述 -->
+        <img src="uw-graduation-profile.jpg" alt="Justin Kwok wearing a University of Washington graduation stole"> <!-- 首頁 profile 相；alt 係圖片無法顯示或螢幕閱讀器會用嘅描述 -->
         <figcaption>University of Washington graduate with robotics field experience.</figcaption> <!-- 圖片下方說明文字 -->
       </figure> <!-- hero photo 結束 -->
 
       <div id="hero-strengths-root" class="hero-panel" aria-label="Robotics deployment strengths"> <!-- React 會將三個 high-tech strength cards 放入呢度；入面 HTML 係 fallback -->
         <div class="hero-panel-card hero-panel-feature"> <!-- fallback 第一張卡；如果 React 載入唔到，仍然會顯示 -->
-          <img src="images/amr-agv-first-page.jpg" alt="AMR and AGV deployment equipment in a warehouse setting"> <!-- AMR/AGV 圖片 -->
+          <img src="amr-agv-first-page.jpg" alt="AMR and AGV deployment equipment in a warehouse setting"> <!-- AMR/AGV 圖片 -->
           <span class="metric">AMR / AGV</span> <!-- 卡片標題；span 係短文字 inline 元素 -->
           <p>Deployment, setup, validation, and customer-facing support.</p> <!-- 卡片描述 -->
         </div> <!-- fallback 第一張卡結束 -->
         <div class="hero-panel-card hero-panel-feature"> <!-- fallback 第二張卡 -->
-          <img src="images/field-ready-3d-slam-mapping.jpg" alt="3D SLAM mapping scan displayed on a robotics field interface"> <!-- 3D SLAM mapping 圖片 -->
+          <img src="field-ready-3d-slam-mapping.jpg" alt="3D SLAM mapping scan displayed on a robotics field interface"> <!-- 3D SLAM mapping 圖片 -->
           <span class="metric">Field Ready</span> <!-- 卡片標題 -->
           <p>Using 3D SLAM to scan the space, build mapping data, and validate robot-ready routes.</p> <!-- 卡片描述 -->
         </div> <!-- fallback 第二張卡結束 -->
         <div class="hero-panel-card hero-panel-feature"> <!-- fallback 第三張卡；React 載入失敗時都會顯示 Sales Fit 圖文 -->
-          <img src="images/sales-fit-banking-team.jpg" alt="Justin Kwok with Hang Seng Bank HSBC Group colleagues"> <!-- Sales Fit 圖片，用銀行工作相代表客戶溝通經驗 -->
+          <img src="sales-fit-banking-team.jpg" alt="Justin Kwok with Hang Seng Bank HSBC Group colleagues"> <!-- Sales Fit 圖片，用銀行工作相代表客戶溝通經驗 -->
           <span class="metric">Sales Fit</span> <!-- 卡片標題 -->
           <p>Discovery + demos.</p> <!-- 卡片描述 -->
         </div> <!-- fallback 第三張卡結束 -->
@@ -84,7 +85,7 @@
       <div class="container about-grid"> <!-- about-grid 控制左右欄排版 -->
         <div class="portrait-card"> <!-- 左邊個人圖卡 -->
           <div class="media-frame portrait" data-label="Field Engineering"> <!-- 圖片外框；data-label 可俾 CSS/JS 使用 -->
-            <img src="images/justin-kwok-profile.jpg" alt="Justin Kwok robotics field engineering experience"> <!-- About 區 profile/field 圖 -->
+            <img src="justin-kwok-profile.jpg" alt="Justin Kwok robotics field engineering experience"> <!-- About 區 profile/field 圖 -->
           </div> <!-- media frame 結束 -->
           <div class="quick-info"> <!-- 快速資料小盒 -->
             <p><strong>Focus</strong> Robotics deployment, troubleshooting, and solution engineering</p> <!-- strong 令 Focus 加粗 -->
@@ -115,6 +116,37 @@
       </div> <!-- about container 結束 -->
     </section> <!-- About section 結束 -->
 
+    <section id="experience" class="section experience-section"> <!-- Experience 區；補返 nav 入面 #experience 對應內容 -->
+      <div class="container"> <!-- 控制 Experience 內容最大闊度 -->
+        <p class="section-kicker">Experience</p> <!-- section 小標籤 -->
+        <h2 class="section-title">Field robotics experience with customer-facing solution delivery.</h2> <!-- Experience 大標題 -->
+        <p class="section-lead"> <!-- Experience 簡介 -->
+          Robotics Project Engineer / Solution Engineer experience focused on field deployment, troubleshooting,
+          route validation, and technical support that bridges robotics work with customer communication.
+        </p>
+
+        <div class="card-grid three-column"> <!-- 三張 experience card 容器 -->
+          <article class="info-card"> <!-- Experience card 1 -->
+            <span class="card-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></span> <!-- robot icon -->
+            <h3>Robotics Deployment</h3> <!-- card 標題 -->
+            <p>AMR / AGV setup, site testing, robot readiness, and deployment validation for warehouse automation environments.</p> <!-- card 描述 -->
+          </article> <!-- Experience card 1 結束 -->
+
+          <article class="info-card"> <!-- Experience card 2 -->
+            <span class="card-icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></span> <!-- troubleshooting icon -->
+            <h3>Field Troubleshooting</h3> <!-- card 標題 -->
+            <p>Network checks, route behavior, charging / docking validation, map issues, and customer-site problem solving.</p> <!-- card 描述 -->
+          </article> <!-- Experience card 2 結束 -->
+
+          <article class="info-card"> <!-- Experience card 3 -->
+            <span class="card-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></span> <!-- communication icon -->
+            <h3>Customer Communication</h3> <!-- card 標題 -->
+            <p>Explaining technical issues clearly to project managers, operators, customers, and engineering teams.</p> <!-- card 描述 -->
+          </article> <!-- Experience card 3 結束 -->
+        </div> <!-- 三張 experience card 結束 -->
+      </div> <!-- Experience container 結束 -->
+    </section> <!-- Experience section 結束 -->
+
     <section id="projects" class="section project-section"> <!-- Projects 區；project-section 加白色背景 -->
       <div class="container"> <!-- 控制 Projects 內容最大闊度 -->
         <p class="section-kicker">Projects</p> <!-- Projects 小標籤 -->
@@ -123,44 +155,34 @@
         <div class="project-list"> <!-- 包住所有 project cards 嘅列表 -->
           <article class="project-card"> <!-- article 表示一個獨立 project 內容 -->
             <div class="project-media"> <!-- project 圖片區 -->
-              <img src="images/memo-camera-detection.jpg" alt="Memo camera detection identifying a forklift and warehouse objects"> <!-- project 圖片 -->
+              <img src="memo-camera-detection.jpg" alt="Memo camera detection identifying a forklift and warehouse objects"> <!-- project 圖片 -->
             </div> <!-- project media 結束 -->
 
             <div class="project-copy"> <!-- project 文字區 -->
-              <span class="project-tag">Computer Vision Safety Integration</span> <!-- project 類別標籤 -->
-              <h3>Memo camera detection linked to RCS robot control.</h3> <!-- project 標題 -->
-              <p> <!-- project 描述 -->
-                Memo is a camera-based detection system used to identify forklifts, AGVs, AMRs, people,
-                and other objects in shared warehouse zones. The system supports motion-accident prevention
-                by monitoring traffic areas and triggering vehicle stop behavior through the RCS robot control system.
-              </p>
+              <span class="project-tag">Camera Detection Safety Integration</span> <!-- project 類別標籤 -->
+              <h3>Camera detection safety integration for shared warehouse zones.</h3> <!-- project 標題 -->
 
               <div class="project-points"> <!-- project 重點列表 -->
-                <p><strong>Detected</strong> Forklifts, AMRs, AGVs, humans, and warehouse items</p> <!-- 重點 1 -->
-                <p><strong>Safety role</strong> Stops connected vehicles when risk is detected</p> <!-- 重點 2 -->
-                <p><strong>Integration</strong> Connected detection events with RCS robot control logic</p> <!-- 重點 3 -->
+                <p><strong>Problem</strong> Warehouse environments include people, forklifts, AGVs, AMRs, and objects moving in shared zones.</p> <!-- 問題 -->
+                <p><strong>Technical Work</strong> Camera-based detection identifies forklifts, AMRs, AGVs, people, and warehouse items. Detection events connect to RCS robot control logic.</p> <!-- 技術工作 -->
+                <p><strong>Result / Business Value</strong> Supports safer robot movement and gives customers more confidence in automation safety.</p> <!-- 商業價值 -->
               </div> <!-- project-points 結束 -->
             </div> <!-- project-copy 結束 -->
           </article> <!-- 第一個 project card 結束 -->
 
           <article class="project-card"> <!-- 第二個 project card -->
             <div class="project-media"> <!-- project 圖片區 -->
-              <img src="images/sicksafe-lidar-area-setup.jpg" alt="SICK safety LiDAR area configuration for AGV operation"> <!-- SICK LiDAR 圖片 -->
+              <img src="sicksafe-lidar-area-setup.jpg" alt="SICK safety LiDAR area configuration for AGV operation"> <!-- SICK LiDAR 圖片 -->
             </div> <!-- project media 結束 -->
 
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">SICK Safety LiDAR Configuration</span> <!-- project 類別標籤 -->
-              <h3>SICK safety LiDAR area setup for AGV operation.</h3> <!-- project 標題 -->
-              <p> <!-- project 描述 -->
-                Configured SICK safety LiDAR field areas and validated scan coverage for AGV movement zones.
-                The setup supported safer vehicle behavior by transferring configuration and log data to the AGV
-                so the robot could adjust its operating area based on the tested safety field.
-              </p>
+              <h3>SICK safety LiDAR configuration for AGV field readiness.</h3> <!-- project 標題 -->
 
               <div class="project-points"> <!-- project 重點列表 -->
-                <p><strong>Configured</strong> Warning and protective LiDAR field zones</p> <!-- 重點 1 -->
-                <p><strong>Validated</strong> Scan coverage against the AGV route and work area</p> <!-- 重點 2 -->
-                <p><strong>Transferred</strong> Configuration and log data from the safety tool to the AGV</p> <!-- 重點 3 -->
+                <p><strong>Problem</strong> AGVs need validated warning and protective safety zones before customer operation.</p> <!-- 問題 -->
+                <p><strong>Technical Work</strong> Configured SICK LiDAR field areas, validated scan coverage, and transferred configuration / log data to the AGV.</p> <!-- 技術工作 -->
+                <p><strong>Result / Business Value</strong> Improves route safety, reduces deployment risk, and supports field readiness.</p> <!-- 商業價值 -->
               </div> <!-- project-points 結束 -->
             </div> <!-- project-copy 結束 -->
           </article> <!-- 第二個 project card 結束 -->
@@ -168,8 +190,8 @@
           <article class="project-card"> <!-- 第三個 project card，有 carousel 輪播圖 -->
             <div class="project-media project-carousel" data-carousel> <!-- data-carousel 俾 JavaScript 搵到呢個輪播 -->
               <div class="project-carousel-track"> <!-- 所有 slides 疊喺呢個 track 入面 -->
-                <img class="project-slide active" src="images/IMG_1004.JPG" alt="Autonomous mobile robot positioned near a red charging station in a warehouse"> <!-- 第一張 slide；active 代表目前顯示 -->
-                <img class="project-slide" src="images/robotune-terminal-setup.jpg" alt="RCS terminal showing AMR route deployment and network connection status"> <!-- 第二張 slide -->
+                <img class="project-slide active" src="IMG_1004.JPG" alt="Autonomous mobile robot positioned near a red charging station in a warehouse"> <!-- 第一張 slide；active 代表目前顯示 -->
+                <img class="project-slide" src="robotune-terminal-setup.jpg" alt="RCS terminal showing AMR route deployment and network connection status"> <!-- 第二張 slide -->
               </div> <!-- carousel track 結束 -->
 
               <button class="carousel-button carousel-button-prev" type="button" aria-label="Show previous AMR photo" data-carousel-prev> <!-- 上一張按鈕；data-carousel-prev 俾 JS 選中 -->
@@ -188,24 +210,122 @@
 
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">AMR RCS Deployment</span> <!-- project 類別標籤 -->
-              <h3>AMR route setup, docking, and RCS deployment validation.</h3> <!-- project 標題 -->
-              <p> <!-- project 描述 -->
-                Supported AMR deployment work by validating the robot, charging hardware, route behavior, and
-                RCS connection inside a warehouse environment. The project focused on confirming physical setup,
-                route readiness, charger access, network communication, and system status before customer-facing
-                operation.
-              </p>
+              <h3>AMR RCS deployment validation before customer-facing operation.</h3> <!-- project 標題 -->
 
               <div class="project-points"> <!-- project 重點列表 -->
-                <p><strong>Created</strong> AMR route setup through the RCS / Robotune interface</p> <!-- 重點 1 -->
-                <p><strong>Validated</strong> Robot positioning, charger alignment, and docking access</p> <!-- 重點 2 -->
-                <p><strong>Checked</strong> Network connection, route readiness, and deployment status</p> <!-- 重點 3 -->
+                <p><strong>Problem</strong> AMR systems need route, docking, charging, and network validation before customer-facing operation.</p> <!-- 問題 -->
+                <p><strong>Technical Work</strong> Checked robot positioning, route readiness, charger alignment, docking access, and RCS / Robotune connection.</p> <!-- 技術工作 -->
+                <p><strong>Result / Business Value</strong> Helps confirm deployment readiness and reduces downtime during customer demos or handover.</p> <!-- 商業價值 -->
               </div> <!-- project-points 結束 -->
             </div> <!-- project-copy 結束 -->
           </article> <!-- 第三個 project card 結束 -->
         </div> <!-- project-list 結束 -->
       </div> <!-- projects container 結束 -->
     </section> <!-- Projects section 結束 -->
+
+    <section id="sales-engineering" class="section sales-engineering-section"> <!-- Sales Engineering 區；補返 nav 入面 #sales-engineering 對應內容 -->
+      <div class="container"> <!-- 控制 Sales Engineering 內容最大闊度 -->
+        <p class="section-kicker">Sales Engineering</p> <!-- section 小標籤 -->
+        <h2 class="section-title">Technical skills for pre-sales robotics conversations.</h2> <!-- Sales Engineering 大標題 -->
+        <p class="section-lead"> <!-- Sales Engineering 簡介 -->
+          This section frames field robotics work as pre-sales value: customer discovery, demo readiness,
+          technical explanation, solution presentation, and simple ROI discussion.
+        </p>
+
+        <div class="skills-grid"> <!-- technical skills card grid -->
+          <article class="skill-card"><h3>Robotics / AMR / AGV Deployment</h3><p>Robot setup, site testing, readiness checks, and deployment validation.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>RCS / Robotune Route Validation</h3><p>Route behavior checks, RCS status review, docking access, and network readiness.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>3D SLAM Mapping Workflow</h3><p>Mapping scans, route-ready data, and site validation for robot navigation.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>SICK LiDAR Safety Field Setup</h3><p>Warning fields, protective zones, scan coverage, and safety configuration transfer.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>Camera-Based Detection Demo</h3><p>Detection demos for forklifts, AMRs, AGVs, people, and warehouse objects.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>Customer Discovery</h3><p>Listening for workflow pain points, safety concerns, visibility gaps, and demo goals.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>Proposal / Solution Presentation</h3><p>Turning technical features into implementation steps and customer business value.</p></article> <!-- skill card -->
+          <article class="skill-card"><h3>HTML / CSS / JavaScript / GitHub Pages</h3><p>Building and deploying clear technical portfolio pages for customer-facing communication.</p></article> <!-- skill card -->
+        </div> <!-- skills-grid 結束 -->
+
+        <div class="solution-demo"> <!-- Pre-sales demo 案例區 -->
+          <div class="solution-demo-header"> <!-- demo section header -->
+            <p class="section-kicker">Pre-Sales Solution Demo</p> <!-- 小標籤 -->
+            <h3>From warehouse pain points to automation value.</h3> <!-- demo 標題 -->
+          </div> <!-- demo header 結束 -->
+
+          <div class="demo-columns"> <!-- 三欄：pain points / technical solution / business value -->
+            <article class="demo-column"> <!-- Customer Pain Points -->
+              <h4>Customer Pain Points</h4> <!-- 欄標題 -->
+              <ul>
+                <li>Warehouse traffic risk</li>
+                <li>Labor cost pressure</li>
+                <li>Safety concerns</li>
+                <li>Low visibility in operations</li>
+                <li>Manual workflow inefficiency</li>
+              </ul>
+            </article> <!-- Customer Pain Points 結束 -->
+
+            <article class="demo-column"> <!-- Technical Solution -->
+              <h4>Technical Solution</h4> <!-- 欄標題 -->
+              <ul>
+                <li>AMR / AGV deployment</li>
+                <li>RCS route validation</li>
+                <li>Camera-based detection</li>
+                <li>SICK LiDAR safety zones</li>
+                <li>3D SLAM mapping</li>
+                <li>Field testing and deployment readiness</li>
+              </ul>
+            </article> <!-- Technical Solution 結束 -->
+
+            <article class="demo-column"> <!-- Business Value -->
+              <h4>Business Value</h4> <!-- 欄標題 -->
+              <ul>
+                <li>Safer automation adoption</li>
+                <li>Reduced downtime</li>
+                <li>Better workflow visibility</li>
+                <li>Improved warehouse efficiency</li>
+                <li>Clearer customer confidence during demos</li>
+              </ul>
+            </article> <!-- Business Value 結束 -->
+          </div> <!-- demo-columns 結束 -->
+        </div> <!-- solution-demo 結束 -->
+
+        <div class="roi-calculator" aria-labelledby="roi-title"> <!-- ROI calculator 區 -->
+          <div class="roi-copy"> <!-- calculator 左邊說明 -->
+            <p class="section-kicker">ROI Calculator</p> <!-- 小標籤 -->
+            <h3 id="roi-title">Simple automation payback estimate.</h3> <!-- calculator 標題 -->
+            <p>This lightweight calculator helps start a customer-friendly pre-sales conversation around labor saving and payback period.</p> <!-- calculator 說明 -->
+            <p class="roi-note">This is a simple pre-sales estimate, not a final financial proposal.</p> <!-- disclaimer -->
+          </div> <!-- roi-copy 結束 -->
+
+          <form class="roi-form" id="roi-form"> <!-- ROI calculator form -->
+            <label>Workers supported or replaced<input id="roi-workers" type="number" min="0" step="1" value="2"></label> <!-- workers input -->
+            <label>Hourly wage<input id="roi-wage" type="number" min="0" step="1" value="22"></label> <!-- wage input -->
+            <label>Hours per day<input id="roi-hours" type="number" min="0" step="0.5" value="8"></label> <!-- hours input -->
+            <label>Days per month<input id="roi-days" type="number" min="0" step="1" value="22"></label> <!-- days input -->
+            <label>Estimated project cost<input id="roi-cost" type="number" min="0" step="1000" value="120000"></label> <!-- project cost input -->
+
+            <div class="roi-results" aria-live="polite"> <!-- 計算結果顯示區 -->
+              <p><span>Estimated monthly saving</span><strong id="roi-saving">$0</strong></p> <!-- monthly saving result -->
+              <p><span>Estimated payback period</span><strong id="roi-payback">0 months</strong></p> <!-- payback result -->
+            </div> <!-- roi-results 結束 -->
+          </form> <!-- ROI calculator form 結束 -->
+        </div> <!-- ROI calculator 結束 -->
+      </div> <!-- Sales Engineering container 結束 -->
+    </section> <!-- Sales Engineering section 結束 -->
+
+    <section id="contact" class="section contact-section"> <!-- Contact 區；補返 nav 入面 #contact 對應內容 -->
+      <div class="container contact-grid"> <!-- contact grid -->
+        <div> <!-- contact 左邊主文案 -->
+          <p class="section-kicker">Contact</p> <!-- section 小標籤 -->
+          <h2 class="section-title">Let’s talk robotics deployment, pre-sales engineering, and warehouse automation.</h2> <!-- contact 標題 -->
+        </div> <!-- contact 左邊結束 -->
+
+        <div class="contact-card"> <!-- contact 資料卡 -->
+          <p><strong>Name</strong> Justin Kwok</p> <!-- name -->
+          <p><strong>Focus</strong> Robotics Deployment / Pre-Sales Engineering / Warehouse Automation</p> <!-- focus -->
+          <p><strong>Portfolio</strong> https://kwokjustinn.github.io/robotics-portfolio/</p> <!-- GitHub Pages link -->
+          <p><strong>LinkedIn</strong> Add LinkedIn URL here</p> <!-- LinkedIn placeholder -->
+          <p><strong>Email</strong> Add email address here</p> <!-- email placeholder -->
+        </div> <!-- contact-card 結束 -->
+      </div> <!-- contact container 結束 -->
+    </section> <!-- Contact section 結束 -->
   </main> <!-- main 結束 -->
 
   <script>
@@ -217,21 +337,21 @@
         {
           title: "AMR / AGV",
           label: "Deployment Layer",
-          src: "images/amr-agv-first-page.jpg",
+          src: "amr-agv-first-page.jpg",
           alt: "AMR and AGV deployment equipment in a warehouse setting",
           text: "AMR / AGV setup, validation, and customer support."
         },
         {
           title: "Field Ready",
           label: "3D SLAM Scan",
-          src: "images/field-ready-3d-slam-mapping.jpg",
+          src: "field-ready-3d-slam-mapping.jpg",
           alt: "3D SLAM mapping scan displayed on a robotics field interface",
           text: "3D SLAM mapping for route readiness and site validation."
         },
         {
           title: "Sales Fit",
           label: "Tech Sales Bridge",
-          src: "images/sales-fit-banking-team.jpg",
+          src: "sales-fit-banking-team.jpg",
           alt: "Justin Kwok with Hang Seng Bank HSBC Group colleagues",
           text: "Discovery + demos.",
           featured: true,
@@ -301,6 +421,51 @@
         dot.addEventListener("click", () => showSlide(Number(dot.dataset.carouselDot))); // 按 dot 時，讀 data-carousel-dot 數字去顯示對應 slide
       });
     });
+
+    // JavaScript 區：控制手機 menu 開關
+    const menuButton = document.querySelector(".menu-button"); // 搵手機 menu button
+    const navLinks = document.getElementById("sidemenu"); // 搵 nav links menu
+    const closeButton = document.querySelector(".close-button"); // 搵 close button
+    const closeMenu = () => { // 關閉手機 menu function
+      navLinks?.classList.remove("is-open"); // 移除打開狀態
+      document.body.classList.remove("menu-open"); // 解除 body scroll lock
+      menuButton?.setAttribute("aria-expanded", "false"); // 更新 accessibility 狀態
+    };
+    menuButton?.addEventListener("click", () => { // 按 menu button 時
+      navLinks?.classList.add("is-open"); // 顯示手機 menu
+      document.body.classList.add("menu-open"); // 防止背景捲動
+      menuButton.setAttribute("aria-expanded", "true"); // 更新 accessibility 狀態
+    });
+    closeButton?.addEventListener("click", closeMenu); // 按 X 關閉 menu
+    navLinks?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu)); // 按任何 nav link 後自動收 menu
+
+    // JavaScript 區：ROI calculator，用 vanilla JS 做簡單 pre-sales 估算
+    const roiForm = document.getElementById("roi-form"); // 搵 ROI calculator form
+    if (roiForm) { // 如果頁面有 ROI form 先執行，避免其他頁面報錯
+      const moneyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }); // 美金格式
+      const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }); // 月數格式
+      const roiFields = {
+        workers: document.getElementById("roi-workers"), // workers input
+        wage: document.getElementById("roi-wage"), // hourly wage input
+        hours: document.getElementById("roi-hours"), // hours per day input
+        days: document.getElementById("roi-days"), // days per month input
+        cost: document.getElementById("roi-cost") // project cost input
+      };
+      const savingOutput = document.getElementById("roi-saving"); // monthly saving 顯示位置
+      const paybackOutput = document.getElementById("roi-payback"); // payback 顯示位置
+
+      const readValue = (field) => Number(field.value) || 0; // 將 input 文字轉數字，空白就當 0
+      const updateRoi = () => { // 計算同更新 ROI 結果
+        const monthlySaving = readValue(roiFields.workers) * readValue(roiFields.wage) * readValue(roiFields.hours) * readValue(roiFields.days); // labor saving 公式
+        const paybackMonths = monthlySaving > 0 ? readValue(roiFields.cost) / monthlySaving : 0; // 避免除以 0
+        savingOutput.textContent = moneyFormatter.format(monthlySaving); // 顯示 estimated monthly saving
+        paybackOutput.textContent = monthlySaving > 0 ? `${numberFormatter.format(paybackMonths)} months` : "Add saving inputs"; // 顯示 payback period
+      };
+
+      Object.values(roiFields).forEach((field) => field.addEventListener("input", updateRoi)); // 每次輸入改變就即時計算
+      roiForm.addEventListener("submit", (event) => event.preventDefault()); // 防止 form submit 令頁面 reload
+      updateRoi(); // 頁面載入時先計算一次預設值
+    }
   </script> <!-- JavaScript 結束 -->
 </body> <!-- body 結束 -->
 </html> <!-- HTML 文件結束 -->

@@ -67,7 +67,7 @@ p { /* 所有 paragraph */
   color: #fff; /* hero 入面文字預設白色 */
   background: /* 背景由深色遮罩加圖片組成 */
     linear-gradient(110deg, rgba(7, 20, 18, 0.92), rgba(7, 20, 18, 0.68) 48%, rgba(7, 20, 18, 0.82)), /* 深色漸層遮罩，令文字容易睇 */
-    url("images/warehouse-deployment-site.jpg"); /* hero 背景圖片 */
+    url("warehouse-deployment-site.jpg"); /* hero 背景圖片 */
   background-size: cover; /* 背景圖填滿整個 hero */
   background-position: center; /* 背景圖置中裁切 */
 }
@@ -478,7 +478,7 @@ h1 { /* 首頁最大標題 */
   color: #fff; /* About 背景變深後，主要文字用白色 */
   background: /* 用深色遮罩壓低相片亮度，避免文字睇唔清 */
     linear-gradient(110deg, rgba(6, 16, 15, 0.88), rgba(6, 16, 15, 0.58) 48%, rgba(6, 16, 15, 0.84)),
-    url("images/onsite-gm-ohio.jpg"); /* General Motors Ohio onsite 背景相 */
+    url("onsite-gm-ohio.jpg"); /* General Motors Ohio onsite 背景相 */
   background-size: cover; /* 背景相填滿整個 section */
   background-position: center; /* 背景相置中裁切 */
 }
@@ -743,11 +743,286 @@ h1 { /* 首頁最大標題 */
   background: var(--surface-muted); /* 淡底色 */
 }
 
+.section-lead { /* section 大標題下面嘅簡介文字 */
+  max-width: 780px; /* 限制文字闊度，保持易讀 */
+  margin-bottom: 28px; /* 同下面 card grid 分隔 */
+  color: var(--muted); /* 用次要文字色 */
+  font-size: 17px; /* 比普通段落大少少 */
+  line-height: 1.58; /* 行距保持舒適 */
+}
+
+.experience-section { /* Experience section */
+  background: #f3f6f2; /* 淡綠灰背景，令 About 同 Projects 中間有層次 */
+}
+
+.sales-engineering-section { /* Sales Engineering section */
+  background: #0d1f1c; /* 深色 robotics / pre-sales 區 */
+  color: #fff; /* 深色背景上文字用白色 */
+}
+
+.sales-engineering-section .section-title,
+.contact-section .section-title { /* 深色 section 標題 */
+  color: #fff; /* 標題白色 */
+}
+
+.sales-engineering-section .section-lead { /* 深色 section 簡介 */
+  color: rgba(255, 255, 255, 0.74); /* 淡白色 */
+}
+
+.card-grid,
+.skills-grid,
+.demo-columns,
+.contact-grid { /* 多個新 section 共用 grid 基礎 */
+  display: grid; /* 用 grid 排版 */
+  gap: 18px; /* card 之間距離 */
+}
+
+.three-column { /* 三欄 card grid */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* desktop 三欄 */
+}
+
+.info-card,
+.skill-card,
+.demo-column,
+.contact-card,
+.roi-calculator { /* 新增卡片共用外觀 */
+  border: 1px solid var(--line); /* 淡邊框 */
+  border-radius: var(--radius); /* 保持 8px 圓角 */
+  background: var(--surface); /* 白底 */
+  box-shadow: 0 18px 56px rgba(17, 33, 30, 0.08); /* 柔和陰影 */
+}
+
+.info-card { /* Experience card */
+  padding: 24px; /* card 內距 */
+}
+
+.card-icon { /* Experience card icon 外框 */
+  display: inline-grid; /* 方便 icon 置中 */
+  place-items: center; /* icon 水平垂直置中 */
+  width: 42px; /* icon box 寬 */
+  height: 42px; /* icon box 高 */
+  margin-bottom: 16px; /* icon 同標題距離 */
+  border-radius: var(--radius); /* 方角但有少少圓角 */
+  background: rgba(31, 138, 112, 0.12); /* 淡綠背景 */
+  color: var(--accent-strong); /* icon 深綠色 */
+}
+
+.info-card h3,
+.skill-card h3,
+.roi-copy h3,
+.solution-demo h3 { /* 新 section card 標題 */
+  margin-bottom: 10px; /* 同內文分隔 */
+  color: var(--text); /* 預設深色標題 */
+  font-size: 22px; /* card 標題大小 */
+  line-height: 1.18; /* 標題行距 */
+}
+
+.info-card p,
+.skill-card p,
+.demo-column li,
+.contact-card p,
+.roi-copy p { /* 新 section 內文 */
+  margin-bottom: 0; /* 清走多餘 margin */
+}
+
+.skills-grid { /* Technical skills grid */
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* desktop 四欄，掃描感更強 */
+  margin-top: 30px; /* 同 section lead 分隔 */
+}
+
+.skill-card { /* Technical skill card */
+  padding: 18px; /* card 內距 */
+  border-color: rgba(84, 220, 255, 0.22); /* 科技藍邊框 */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(31, 138, 112, 0.12)); /* 深色透明科技底 */
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18); /* 深色區陰影 */
+}
+
+.skill-card h3 { /* skill card 標題 */
+  color: #fff; /* 深色區標題白色 */
+  font-size: 17px; /* skill card 標題略細 */
+}
+
+.skill-card p { /* skill card 文字 */
+  color: rgba(255, 255, 255, 0.72); /* 淡白文字 */
+  font-size: 14px; /* skill 描述細啲 */
+  line-height: 1.5; /* 描述行距 */
+}
+
+.solution-demo { /* Pre-sales solution demo 區 */
+  margin-top: 34px; /* 同 skills grid 分隔 */
+  padding: 26px; /* demo 外框內距 */
+  border: 1px solid rgba(255, 255, 255, 0.12); /* 深色區淡邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: rgba(255, 255, 255, 0.06); /* 半透明底 */
+}
+
+.solution-demo-header { /* demo header */
+  max-width: 760px; /* 限制 header 闊度 */
+  margin-bottom: 22px; /* 同三欄分隔 */
+}
+
+.solution-demo h3 { /* demo 大標題 */
+  color: #fff; /* 深色區標題白色 */
+  font-size: 30px; /* demo 標題稍大 */
+}
+
+.demo-columns { /* pre-sales demo 三欄 */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* desktop 三欄 */
+}
+
+.demo-column { /* demo 單欄 */
+  padding: 20px; /* 內距 */
+  border-color: rgba(84, 220, 255, 0.2); /* 淡科技藍邊框 */
+  background: rgba(7, 20, 18, 0.72); /* 深色卡片底 */
+}
+
+.demo-column h4 { /* demo 欄標題 */
+  margin: 0 0 12px; /* 清上方 margin，下方分隔 */
+  color: #9befff; /* 科技藍文字 */
+  font-size: 15px; /* 欄標題大小 */
+  text-transform: uppercase; /* 全部大楷 */
+}
+
+.demo-column ul { /* demo list */
+  display: grid; /* 垂直 list */
+  gap: 8px; /* 每項距離 */
+  margin: 0; /* 清 margin */
+  padding-left: 18px; /* bullet 縮入 */
+  color: rgba(255, 255, 255, 0.76); /* 淡白文字 */
+}
+
+.demo-column li::marker { /* demo bullet */
+  color: #9befff; /* bullet 藍色 */
+}
+
+.roi-calculator { /* ROI calculator 外框 */
+  display: grid; /* 左文右 form */
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr); /* form 稍闊 */
+  gap: 28px; /* 左右距離 */
+  align-items: start; /* 頂部對齊 */
+  margin-top: 34px; /* 同 demo 區分隔 */
+  padding: 26px; /* 內距 */
+  border-color: rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(31, 138, 112, 0.16)); /* 深色透明底 */
+}
+
+.roi-copy h3 { /* ROI 標題 */
+  color: #fff; /* 深色背景白色標題 */
+}
+
+.roi-note { /* ROI disclaimer */
+  margin-top: 14px; /* 同上面文字分隔 */
+  padding: 12px 14px; /* note 內距 */
+  border: 1px solid rgba(255, 255, 255, 0.14); /* 淡邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: rgba(7, 20, 18, 0.58); /* 深色 note 底 */
+  color: rgba(255, 255, 255, 0.82); /* note 文字 */
+  font-size: 13px; /* note 文字較細 */
+  font-weight: 800; /* 加粗 */
+}
+
+.roi-form { /* ROI form */
+  display: grid; /* form 內部 grid */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* desktop 兩欄 input */
+  gap: 12px; /* input 之間距離 */
+}
+
+.roi-form label { /* ROI input label */
+  display: grid; /* label 同 input 垂直排列 */
+  gap: 6px; /* 文字同 input 距離 */
+  color: rgba(255, 255, 255, 0.76); /* label 淡白色 */
+  font-size: 13px; /* label 字體 */
+  font-weight: 800; /* label 加粗 */
+}
+
+.roi-form input { /* ROI input */
+  width: 100%; /* input 填滿欄寬 */
+  min-height: 42px; /* input 高度 */
+  padding: 0 12px; /* 左右內距 */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* 淡邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: rgba(7, 20, 18, 0.68); /* 深色 input 底 */
+  color: #fff; /* input 文字白色 */
+  font: inherit; /* 沿用全站字體 */
+}
+
+.roi-results { /* ROI 結果區 */
+  grid-column: 1 / -1; /* 橫跨兩欄 */
+  display: grid; /* 結果上下排 */
+  gap: 10px; /* 結果距離 */
+  margin-top: 4px; /* 同 input 分隔 */
+}
+
+.roi-results p { /* 每一條 ROI 結果 */
+  display: flex; /* 左 label 右數字 */
+  align-items: center; /* 垂直置中 */
+  justify-content: space-between; /* 左右分開 */
+  gap: 16px; /* 中間距離 */
+  margin: 0; /* 清 margin */
+  padding: 14px; /* 內距 */
+  border: 1px solid rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
+  border-radius: var(--radius); /* 圓角 */
+  background: rgba(84, 220, 255, 0.08); /* 淡藍透明底 */
+}
+
+.roi-results span { /* ROI result label */
+  color: rgba(255, 255, 255, 0.72); /* 淡白 */
+  font-size: 13px; /* 細字 */
+  font-weight: 800; /* 加粗 */
+}
+
+.roi-results strong { /* ROI result 數字 */
+  color: #fff; /* 白色 */
+  font-size: 22px; /* 數字大啲 */
+}
+
+.contact-section { /* Contact section */
+  background: var(--bg-strong); /* 深色結尾 */
+  color: #fff; /* 白字 */
+}
+
+.contact-grid { /* Contact 兩欄 */
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr); /* 左文右 card */
+  align-items: start; /* 頂部對齊 */
+}
+
+.contact-card { /* Contact 資料卡 */
+  padding: 24px; /* 內距 */
+  border-color: rgba(255, 255, 255, 0.16); /* 深色區淡邊框 */
+  background: rgba(255, 255, 255, 0.08); /* 半透明白底 */
+}
+
+.contact-card p { /* Contact 每行 */
+  color: rgba(255, 255, 255, 0.8); /* 淡白 */
+}
+
+.contact-card p + p { /* Contact 第二行之後 */
+  margin-top: 12px; /* 每行分隔 */
+}
+
+.contact-card strong { /* Contact label */
+  display: block; /* label 獨佔一行 */
+  margin-bottom: 2px; /* label 同內容距離 */
+  color: #fff; /* label 白色 */
+}
+
 @media (max-width: 980px) { /* 當螢幕闊度 980px 或以下，例如 tablet */
   .hero-grid,
   .about-grid,
-  .project-card { /* 呢幾個 grid 喺 tablet 改成單欄 */
+  .project-card,
+  .three-column,
+  .demo-columns,
+  .roi-calculator,
+  .contact-grid { /* 呢幾個 grid 喺 tablet 改成單欄 */
     grid-template-columns: 1fr; /* 只用一欄 */
+  }
+
+  .skills-grid { /* tablet technical skills */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* tablet 用兩欄，唔會太密 */
+  }
+
+  .portrait-card { /* tablet About profile card */
+    justify-self: center; /* 單欄時置中 */
   }
 
   .hero-grid { /* tablet hero 排版 */
@@ -776,6 +1051,10 @@ h1 { /* 首頁最大標題 */
   .project-copy { /* tablet project 文字欄 */
     padding: 0 24px 28px; /* 圖文上下排列時，重新設定內距 */
   }
+
+  .roi-calculator { /* tablet ROI calculator */
+    gap: 20px; /* 單欄時距離收細 */
+  }
 }
 
 @media (max-width: 720px) { /* 當螢幕闊度 720px 或以下，例如手機 */
@@ -788,8 +1067,39 @@ h1 { /* 首頁最大標題 */
     padding: 14px; /* 手機 nav 內距少啲 */
   }
 
-  .nav-links { /* 手機版隱藏桌面 nav links */
-    display: none; /* 暫時唔顯示 menu list */
+  .nav-links { /* 手機版 nav links 變成側邊 menu */
+    position: fixed; /* 固定喺右邊 */
+    top: 0; /* 貼頂 */
+    right: 0; /* 貼右 */
+    z-index: 40; /* 比 nav 更高 */
+    display: flex; /* 打開 flex，方便排 menu item */
+    flex-direction: column; /* 垂直排列 */
+    align-items: flex-start; /* 文字靠左 */
+    justify-content: flex-start; /* 由上開始 */
+    width: min(78vw, 280px); /* 手機 menu 闊度 */
+    height: 100svh; /* 全高 */
+    gap: 18px; /* link 距離 */
+    padding: 76px 24px 24px; /* 頂部避開 nav */
+    background: rgba(7, 20, 18, 0.96); /* 深色 menu 底 */
+    border-left: 1px solid rgba(255, 255, 255, 0.12); /* 左邊淡線 */
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.24); /* 側邊陰影 */
+    transform: translateX(100%); /* 預設收埋右邊 */
+    transition: transform 220ms ease; /* 打開時滑入 */
+    backdrop-filter: blur(18px); /* 玻璃效果 */
+  }
+
+  .nav-links.is-open { /* 手機 menu 打開狀態 */
+    transform: translateX(0); /* 滑入畫面 */
+  }
+
+  .nav-links li { /* 手機 menu 每一項 */
+    width: 100%; /* link 填滿 menu 闊度 */
+  }
+
+  .nav-links a { /* 手機 menu link */
+    display: block; /* 整行可點 */
+    width: 100%; /* 填滿一行 */
+    padding: 8px 0; /* 上下 click area */
   }
 
   .menu-button { /* 手機 menu button */
@@ -800,6 +1110,20 @@ h1 { /* 首頁最大標題 */
     border: 1px solid rgba(255, 255, 255, 0.28); /* 半透明白色邊框 */
     border-radius: var(--radius); /* 圓角 */
     background: rgba(255, 255, 255, 0.1); /* 半透明白底 */
+    color: #fff; /* icon 白色 */
+  }
+
+  .close-button { /* 手機 menu 關閉按鈕 */
+    position: absolute; /* 放喺 menu 右上角 */
+    top: 14px; /* 距離頂部 */
+    right: 14px; /* 距離右邊 */
+    display: inline-grid; /* 顯示 close button */
+    place-items: center; /* icon 置中 */
+    width: 42px; /* 按鈕寬 */
+    height: 42px; /* 按鈕高 */
+    border: 1px solid rgba(255, 255, 255, 0.28); /* 淡邊框 */
+    border-radius: var(--radius); /* 圓角 */
+    background: rgba(255, 255, 255, 0.1); /* 半透明底 */
     color: #fff; /* icon 白色 */
   }
 
@@ -953,5 +1277,40 @@ h1 { /* 首頁最大標題 */
 
   .project-copy h3 { /* 手機 project 標題 */
     font-size: 24px; /* project 標題細啲 */
+  }
+
+  .section { /* 手機 section spacing */
+    padding: 68px 0; /* 手機上下 spacing 收細 */
+  }
+
+  .section-lead { /* 手機 section lead */
+    font-size: 15px; /* 簡介文字細啲 */
+  }
+
+  .skills-grid { /* 手機 technical skills */
+    grid-template-columns: 1fr; /* 手機單欄 */
+  }
+
+  .solution-demo,
+  .roi-calculator { /* 手機 demo / calculator 外框 */
+    padding: 18px; /* 手機內距收細 */
+  }
+
+  .solution-demo h3 { /* 手機 demo 標題 */
+    font-size: 24px; /* 標題縮細 */
+  }
+
+  .roi-form { /* 手機 ROI form */
+    grid-template-columns: 1fr; /* input 單欄 */
+  }
+
+  .roi-results p { /* 手機 ROI result */
+    align-items: flex-start; /* 數字同 label 頂部對齊 */
+    flex-direction: column; /* label 同數字上下排，避免擠 */
+    gap: 4px; /* 距離收細 */
+  }
+
+  .contact-grid { /* 手機 contact */
+    gap: 20px; /* contact 左右變上下時距離 */
   }
 }
