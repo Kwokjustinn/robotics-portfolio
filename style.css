@@ -209,6 +209,7 @@ h1 { /* 首頁最大標題 */
   display: inline-flex; /* 用 flex 令文字置中 */
   align-items: center; /* 垂直置中 */
   justify-content: center; /* 水平置中 */
+  gap: 8px; /* 文字同 icon 之間留空位，例如箭嘴 */
   min-height: 44px; /* 按鈕最小高度 */
   padding: 0 18px; /* 左右內距 */
   border-radius: var(--radius); /* 圓角 */
@@ -223,6 +224,63 @@ h1 { /* 首頁最大標題 */
 .btn.secondary { /* 次要按鈕 */
   border: 1px solid rgba(255, 255, 255, 0.32); /* 白色半透明邊框 */
   color: #fff; /* 白色文字 */
+}
+
+.hero-project-launch { /* 首頁 project 快速入口區 */
+  display: flex; /* 箭嘴按鈕同 tags 橫向排列 */
+  flex-wrap: wrap; /* 空間唔夠時可以換行 */
+  align-items: center; /* 垂直置中 */
+  gap: 10px; /* 按鈕同 tags 之間距離 */
+  max-width: 900px; /* 跟 hero 文字闊度一致 */
+  margin-top: 12px; /* 同上面 action buttons 分開少少 */
+}
+
+.project-arrow-button { /* 首頁帶箭嘴嘅 Open Projects button */
+  display: inline-flex; /* 用 flex 放文字同 icon */
+  align-items: center; /* 垂直置中 */
+  gap: 8px; /* 文字同箭嘴之間距離 */
+  min-height: 38px; /* 比主按鈕細少少，唔搶主 CTA */
+  padding: 0 12px; /* 左右內距 */
+  border: 1px solid rgba(84, 220, 255, 0.32); /* 科技藍邊框 */
+  border-radius: var(--radius); /* 跟全站圓角一致 */
+  background: rgba(7, 20, 18, 0.5); /* 半透明深色底 */
+  color: #fff; /* 白字 */
+  font-size: 12px; /* 細一點，保持首頁乾淨 */
+  font-weight: 900; /* 加粗，像 filter launcher */
+  backdrop-filter: blur(12px); /* 玻璃感 */
+}
+
+.project-arrow-button i { /* 箭嘴 icon */
+  color: #9befff; /* 用科技藍突出方向 */
+}
+
+.hero-project-tags,
+.project-filter-actions { /* 首頁 tags 同 Projects filter buttons 共用排列 */
+  display: flex; /* 橫向排列 */
+  flex-wrap: wrap; /* 窄螢幕可換行 */
+  gap: 8px; /* 每粒 tag 距離 */
+}
+
+.hero-project-tags button,
+.project-filter { /* project tag / filter button 共用樣式 */
+  min-height: 34px; /* 易按但唔太高 */
+  padding: 0 10px; /* 左右內距 */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* 淡邊框 */
+  border-radius: 999px; /* tag pill 形狀 */
+  background: rgba(255, 255, 255, 0.08); /* 半透明底 */
+  color: rgba(255, 255, 255, 0.84); /* 淡白文字 */
+  font: inherit; /* 沿用全站字體 */
+  font-size: 11px; /* tag 字細一點 */
+  font-weight: 900; /* tag 加粗 */
+  cursor: pointer; /* 滑鼠變手指，表示可點 */
+}
+
+.hero-project-tags button:hover,
+.project-filter:hover,
+.project-filter.active { /* hover 或 active filter 狀態 */
+  border-color: rgba(84, 220, 255, 0.5); /* 邊框變科技藍 */
+  background: rgba(84, 220, 255, 0.14); /* 淡藍底 */
+  color: #fff; /* 白字 */
 }
 
 .hero-photo { /* hero profile 相外框 */
@@ -588,9 +646,39 @@ h1 { /* 首頁最大標題 */
   background: #fff; /* 白色背景，令 Projects 同前面分開 */
 }
 
+.project-filter-panel { /* Projects 區入面嘅 filter 控制面板 */
+  display: grid; /* 左邊說明，右邊 buttons */
+  grid-template-columns: minmax(0, 1fr) auto; /* 說明佔多啲，button 跟內容寬度 */
+  gap: 20px; /* 左右距離 */
+  align-items: center; /* 垂直置中 */
+  margin-bottom: 28px; /* 同 project cards 分隔 */
+  padding: 22px; /* 面板內距 */
+  border: 1px solid rgba(31, 138, 112, 0.18); /* 淡綠邊框 */
+  border-radius: var(--radius); /* 8px 圓角 */
+  background: linear-gradient(145deg, rgba(16, 34, 30, 0.96), rgba(31, 138, 112, 0.78)); /* 深綠科技感背景 */
+  box-shadow: 0 18px 56px rgba(17, 33, 30, 0.12); /* 柔和陰影 */
+}
+
+.project-filter-panel h3 { /* filter panel 標題 */
+  margin-bottom: 4px; /* 同下面文字靠近 */
+  color: #fff; /* 深色底白字 */
+  font-size: 22px; /* 標題大小 */
+  line-height: 1.18; /* 標題行距 */
+}
+
+.project-filter-panel p { /* filter panel 說明 */
+  margin-bottom: 0; /* 清走 paragraph 底部 margin */
+  color: rgba(255, 255, 255, 0.78); /* 淡白文字 */
+  font-size: 14px; /* 說明文字大小 */
+}
+
 .project-list { /* 所有 project cards 嘅容器 */
   display: grid; /* 用 grid 垂直排 cards */
   gap: 28px; /* 每張 card 之間距離 */
+}
+
+.project-list.is-collapsed { /* Projects 預設收起狀態 */
+  display: none; /* 未按 filter 前，唔顯示所有 project cards */
 }
 
 .project-card { /* 單個 project card */
@@ -603,6 +691,11 @@ h1 { /* 首頁最大標題 */
   border-radius: var(--radius); /* 卡片圓角 */
   background: var(--surface); /* 卡片白底 */
   box-shadow: 0 18px 56px rgba(17, 33, 30, 0.1); /* 卡片陰影 */
+}
+
+.project-card.project-card-focus { /* 當用戶按某個 tag 時，目標 project 會有 highlight */
+  border-color: rgba(31, 138, 112, 0.58); /* 邊框加深，提示呢張係被選中 */
+  box-shadow: 0 22px 70px rgba(31, 138, 112, 0.22); /* 綠色陰影，令 project 更突出 */
 }
 
 .project-media { /* project 圖片欄 */
@@ -1094,6 +1187,11 @@ h1 { /* 首頁最大標題 */
     padding: 0 24px 28px; /* 圖文上下排列時，重新設定內距 */
   }
 
+  .project-filter-panel { /* tablet Projects filter panel */
+    grid-template-columns: 1fr; /* filter 說明同 buttons 改成上下排 */
+    align-items: start; /* 內容靠左上，易掃描 */
+  }
+
   .roi-calculator { /* tablet ROI calculator */
     gap: 20px; /* 單欄時距離收細 */
   }
@@ -1220,6 +1318,25 @@ h1 { /* 首頁最大標題 */
     margin-top: 10px; /* 上方距離減少 */
   }
 
+  .hero-project-launch { /* 手機 project 快速入口 */
+    align-items: flex-start; /* tags 靠左排，避免拉闊 */
+    gap: 8px; /* 手機間距收細 */
+    margin-top: 8px; /* 減少第一頁高度 */
+  }
+
+  .project-arrow-button { /* 手機 project arrow button */
+    min-height: 32px; /* 手機高度收細 */
+    padding: 0 10px; /* 手機內距收細 */
+    font-size: 10.5px; /* 手機字細少少 */
+  }
+
+  .hero-project-tags button,
+  .project-filter { /* 手機 tags / filters */
+    min-height: 30px; /* 手機 tag 高度 */
+    padding: 0 9px; /* 手機 tag 內距 */
+    font-size: 10px; /* 手機 tag 字體 */
+  }
+
   .btn { /* 手機按鈕 */
     min-height: 36px; /* 手機按鈕高度減少 */
     padding: 0 12px; /* 左右內距減少 */
@@ -1319,6 +1436,14 @@ h1 { /* 首頁最大標題 */
 
   .project-copy h3 { /* 手機 project 標題 */
     font-size: 24px; /* project 標題細啲 */
+  }
+
+  .project-filter-panel { /* 手機 project filter panel */
+    padding: 18px; /* 手機內距收細 */
+  }
+
+  .project-filter-actions { /* 手機 filter buttons */
+    width: 100%; /* 用盡 panel 闊度 */
   }
 
   .section { /* 手機 section spacing */
