@@ -470,16 +470,40 @@ h1 { /* 首頁最大標題 */
   padding: 88px 0; /* 上下 88px，左右 0 */
 }
 
+.about-section { /* 第二頁 About 區背景 */
+  position: relative; /* 俾背景遮罩同內容可以正常疊放 */
+  min-height: 100svh; /* 令第二頁至少有一個螢幕高度，背景相更似獨立 page */
+  display: flex; /* 方便內容垂直置中 */
+  align-items: center; /* About 內容放近第二頁中間 */
+  color: #fff; /* About 背景變深後，主要文字用白色 */
+  background: /* 用深色遮罩壓低相片亮度，避免文字睇唔清 */
+    linear-gradient(110deg, rgba(6, 16, 15, 0.88), rgba(6, 16, 15, 0.58) 48%, rgba(6, 16, 15, 0.84)),
+    url("images/onsite-gm-ohio.jpg"); /* General Motors Ohio onsite 背景相 */
+  background-size: cover; /* 背景相填滿整個 section */
+  background-position: center; /* 背景相置中裁切 */
+}
+
 .about-grid { /* About 區兩欄排版 */
+  position: relative; /* 確保內容喺背景上面 */
+  z-index: 1; /* 內容層級高過背景 */
   display: grid; /* 用 grid 排左右欄 */
-  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.4fr); /* 左欄較窄，右欄較闊 */
+  grid-template-columns: minmax(220px, 0.64fr) minmax(0, 1.4fr); /* 左欄縮窄，令 selfie/profile card 細啲 */
   gap: 48px; /* 左右欄距離 */
-  align-items: start; /* 兩欄由頂部對齊 */
+  align-items: center; /* 背景頁入面圖文垂直對齊更穩 */
 }
 
 .portrait-card { /* About 左邊圖片卡 */
+  width: min(100%, 250px); /* 將第二頁 selfie/profile card 再縮細，令背景更突出 */
+  justify-self: start; /* 令細卡靠左，而唔係拉滿成欄 */
   overflow: hidden; /* 超出卡片圓角嘅內容隱藏 */
   box-shadow: 0 16px 48px rgba(17, 33, 30, 0.1); /* 較柔和陰影 */
+}
+
+.about-section .portrait-card { /* 第二頁背景上嘅 profile card */
+  border-color: rgba(255, 255, 255, 0.2); /* 深色背景上用半透明白邊 */
+  background: rgba(255, 255, 255, 0.12); /* 半透明卡片底 */
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28); /* 背景相上加深陰影 */
+  backdrop-filter: blur(12px); /* 玻璃效果，令相片卡更高級 */
 }
 
 .media-frame img { /* About 圖片 */
@@ -498,8 +522,33 @@ h1 { /* 首頁最大標題 */
   background: var(--surface-muted); /* 淡綠灰底 */
 }
 
+.about-section .quick-info { /* 第二頁 quick info 盒 */
+  border-color: rgba(255, 255, 255, 0.18); /* 深色背景上用淺邊框 */
+  background: rgba(7, 20, 18, 0.72); /* 半透明深色底，文字會清楚 */
+}
+
 .quick-info p { /* quick info 內文字 */
   margin-bottom: 0; /* 清走底部 margin */
+}
+
+.about-section p { /* 第二頁段落文字 */
+  color: rgba(255, 255, 255, 0.82); /* 背景圖上用淡白色，保持易讀 */
+}
+
+.about-section .section-title { /* 第二頁標題 */
+  color: #fff; /* 深色背景上用白色標題 */
+}
+
+.onsite-quote { /* 第二頁小 quote */
+  width: fit-content; /* quote 盒闊度跟文字 */
+  margin-bottom: 14px; /* 同下面 h2 分隔 */
+  padding: 7px 10px; /* quote 內距 */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* 淡邊框 */
+  border-radius: var(--radius); /* 跟全站圓角一致 */
+  background: rgba(7, 20, 18, 0.62); /* 半透明深色底 */
+  color: rgba(255, 255, 255, 0.9); /* quote 文字白色 */
+  font-size: 13px; /* 小 quote 字體 */
+  font-weight: 800; /* 加粗，令 quote 清楚 */
 }
 
 .section-title { /* section 大標題 */
