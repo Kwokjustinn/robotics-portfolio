@@ -27,10 +27,10 @@
       </button> <!-- menu 按鈕結束 -->
 
       <ul id="sidemenu" class="nav-links"> <!-- 導覽連結列表；id 俾 menu button 控制 -->
-        <li><a href="#about">About</a></li> <!-- 跳去 About 區 -->
-        <li><a href="#experience">Experience</a></li> <!-- 跳去 Experience 區；呢個係第三頁，會用 Robotune / mapping 圖做背景 -->
+        <li><button class="nav-panel-button" type="button" aria-expanded="false" data-panel-target="about">About <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button></li> <!-- About popup button -->
+        <li><button class="nav-panel-button" type="button" aria-expanded="false" data-panel-target="experience">Experience <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button></li> <!-- Experience popup button -->
         <li class="nav-project-item"> <!-- Project dropdown：桌面同手機都用同一組選項 -->
-          <button class="nav-project-button" type="button" aria-expanded="false" aria-controls="project-dropdown" data-project-dropdown-button>
+          <button class="nav-panel-button nav-project-button" type="button" aria-expanded="false" aria-controls="project-dropdown" data-project-dropdown-button>
             Project <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div id="project-dropdown" class="project-dropdown" hidden>
@@ -39,8 +39,8 @@
             <button type="button" data-project-filter="amr">AMR RCS Deployment Validation</button>
           </div>
         </li>
-        <li><a href="#sales-engineering">Sales Engineering</a></li> <!-- 跳去 Sales Engineering 區 -->
-        <li><a href="#contact">Contact</a></li> <!-- 跳去 Contact 區 -->
+        <li><button class="nav-panel-button" type="button" aria-expanded="false" data-panel-target="sales-engineering">Sales Engineering <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button></li> <!-- Sales Engineering popup button -->
+        <li><button class="nav-panel-button" type="button" aria-expanded="false" data-panel-target="contact">Contact <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button></li> <!-- Contact popup button -->
         <li> <!-- 手機 menu 入面嘅關閉按鈕容器 -->
           <button class="close-button" type="button" aria-label="Close menu"> <!-- 關閉手機 menu 按鈕 -->
             <i class="fa-solid fa-xmark" aria-hidden="true"></i> <!-- Font Awesome X icon -->
@@ -86,7 +86,7 @@
   </header> <!-- 首頁 hero/header 結束 -->
 
   <main> <!-- main 放頁面主要內容；一頁通常只用一次 -->
-    <section id="about" class="section about-section"> <!-- About 區；id 俾 nav href="#about" 跳到呢度，about-section 用嚟加第二頁背景圖 -->
+    <section id="about" class="section about-section" hidden data-panel-source="about"> <!-- About 原始內容保留，預設由 nav popup 顯示 -->
       <div class="container about-grid"> <!-- about-grid 控制左右欄排版 -->
         <div class="portrait-card"> <!-- 左邊個人圖卡 -->
           <div class="media-frame portrait" data-label="Field Engineering"> <!-- 圖片外框；data-label 可俾 CSS/JS 使用 -->
@@ -121,7 +121,7 @@
       </div> <!-- about container 結束 -->
     </section> <!-- About section 結束 -->
 
-    <section id="experience" class="section experience-section"> <!-- Experience 區；第三頁，用 Robotune / 3D SLAM mapping 相做背景 -->
+    <section id="experience" class="section experience-section" hidden data-panel-source="experience"> <!-- Experience 原始內容保留，預設由 nav popup 顯示 -->
       <div class="container"> <!-- 控制 Experience 內容最大闊度 -->
         <p class="section-kicker">Experience</p> <!-- section 小標籤 -->
         <h2 class="section-title">Field robotics experience with customer-facing solution delivery.</h2> <!-- Experience 大標題 -->
@@ -133,6 +133,9 @@
         <div class="card-grid three-column"> <!-- 三張 experience card 容器 -->
           <article class="info-card"> <!-- Experience card 1 -->
             <span class="card-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></span> <!-- robot icon -->
+            <figure class="info-card-media"> <!-- Robotics deployment photo -->
+              <img src="amr-agv-first-page.jpg" alt="AMR and AGV deployment equipment in a warehouse setting">
+            </figure>
             <h3>Robotics Deployment</h3> <!-- card 標題 -->
             <p>AMR / AGV setup, site testing, robot readiness, and deployment validation for warehouse automation environments.</p> <!-- card 描述 -->
           </article> <!-- Experience card 1 結束 -->
@@ -244,7 +247,7 @@
       </div> <!-- projects container 結束 -->
     </section> <!-- Projects section 結束 -->
 
-    <section id="sales-engineering" class="section sales-engineering-section"> <!-- Sales Engineering 區；補返 nav 入面 #sales-engineering 對應內容 -->
+    <section id="sales-engineering" class="section sales-engineering-section" hidden data-panel-source="sales-engineering"> <!-- Sales Engineering 原始內容保留，預設由 nav popup 顯示 -->
       <div class="container"> <!-- 控制 Sales Engineering 內容最大闊度 -->
         <p class="section-kicker">Sales Engineering</p> <!-- section 小標籤 -->
         <h2 class="section-title">Technical skills for pre-sales robotics conversations.</h2> <!-- Sales Engineering 大標題 -->
@@ -331,7 +334,7 @@
       </div> <!-- Sales Engineering container 結束 -->
     </section> <!-- Sales Engineering section 結束 -->
 
-    <section id="contact" class="section contact-section"> <!-- Contact 區；補返 nav 入面 #contact 對應內容 -->
+    <section id="contact" class="section contact-section" hidden data-panel-source="contact"> <!-- Contact 原始內容保留，預設由 nav popup 顯示 -->
       <div class="container contact-grid"> <!-- contact grid -->
         <div> <!-- contact 左邊主文案 -->
           <p class="section-kicker">Contact</p> <!-- section 小標籤 -->
@@ -341,9 +344,9 @@
         <div class="contact-card"> <!-- contact 資料卡 -->
           <p><strong>Name</strong> Justin Kwok</p> <!-- name -->
           <p><strong>Focus</strong> Robotics Deployment / Pre-Sales Engineering / Warehouse Automation</p> <!-- focus -->
-          <p><strong>Portfolio</strong> https://kwokjustinn.github.io/robotics-portfolio/</p> <!-- GitHub Pages link -->
-          <p><strong>LinkedIn</strong> Add LinkedIn URL here</p> <!-- LinkedIn placeholder -->
-          <p><strong>Email</strong> Add email address here</p> <!-- email placeholder -->
+          <p><strong>Portfolio</strong> <a href="https://kwokjustinn.github.io/robotics-portfolio/" target="_blank" rel="noopener">kwokjustinn.github.io/robotics-portfolio</a></p> <!-- GitHub Pages link -->
+          <p><strong>LinkedIn</strong> <a class="contact-action-link" href="https://www.linkedin.com/in/kwok-justin-022155259/" target="_blank" rel="noopener">LinkedIn Profile</a></p> <!-- LinkedIn link -->
+          <p><strong>Email</strong> <a class="contact-action-link" href="mailto:justinkwok2002@gmail.com">justinkwok2002@gmail.com</a></p> <!-- email link -->
         </div> <!-- contact-card 結束 -->
       </div> <!-- contact container 結束 -->
     </section> <!-- Contact section 結束 -->
@@ -457,85 +460,157 @@
       });
     });
 
-    // JavaScript 區：Project dropdown + popup modal，用原本 project cards 做內容來源
-    const projectCards = Array.from(document.querySelectorAll("[data-project-card]")); // 搵晒每一張 project card，轉成 array 方便逐張控制
-    const projectFilterControls = Array.from(document.querySelectorAll("[data-project-filter]")); // 搵晒 dropdown / hero project shortcut
-    const projectDropdown = document.getElementById("project-dropdown"); // 導覽列 project dropdown menu
-    const projectDropdownButtons = Array.from(document.querySelectorAll("[data-project-dropdown-button]")); // 會打開/關閉 dropdown 嘅 button
-    const projectModal = document.querySelector("[data-project-modal]"); // project popup
-    const projectModalContent = document.querySelector("[data-project-modal-content]"); // popup 入面放 project card 嘅位置
-    const projectCloseControls = Array.from(document.querySelectorAll("[data-project-close]")); // close button 同 backdrop
-    let activeProjectCard = null; // 記住而家被移入 modal 嘅 card
-    let activeProjectPlaceholder = null; // 記住原本位置，關閉時放返 card
+    // JavaScript 區：Nav popouts + Project dropdown，用原本 section / project cards 做內容來源
+    const panelButtons = Array.from(document.querySelectorAll("[data-panel-target]")); // About / Experience / Sales / Contact buttons
+    const projectCards = Array.from(document.querySelectorAll("[data-project-card]")); // 每一張 project card
+    const projectFilterControls = Array.from(document.querySelectorAll("[data-project-filter]")); // project dropdown options
+    const projectDropdown = document.getElementById("project-dropdown"); // Project dropdown menu
+    const projectDropdownButtons = Array.from(document.querySelectorAll("[data-project-dropdown-button]")); // Project dropdown button
+    const projectModal = document.querySelector("[data-project-modal]"); // shared popup shell
+    const projectModalContent = document.querySelector("[data-project-modal-content]"); // shared popup content
+    const projectCloseControls = Array.from(document.querySelectorAll("[data-project-close]")); // close button / backdrop
+    let activeProjectCard = null; // card moved into popup
+    let activeProjectPlaceholder = null; // project original position marker
+    let activePanelContainer = null; // section container moved into popup
+    let activePanelPlaceholder = null; // section original position marker
 
-    const setProjectDropdownOpen = (isOpen) => { // 控制 Project dropdown 開關
-      projectDropdownButtons.forEach((button) => button.setAttribute("aria-expanded", String(isOpen))); // accessibility 狀態
-      if (projectDropdown) { // 如果有 dropdown
-        projectDropdown.hidden = !isOpen; // hidden=true 收起，false 顯示
+    const setPanelButtons = (activePanel = "") => { // update nav button active states
+      panelButtons.forEach((button) => {
+        const isActive = button.dataset.panelTarget === activePanel;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-expanded", String(isActive));
+      });
+    };
+
+    const setProjectDropdownOpen = (isOpen) => { // Project dropdown open / close
+      projectDropdownButtons.forEach((button) => {
+        button.classList.toggle("is-active", isOpen);
+        button.setAttribute("aria-expanded", String(isOpen));
+      });
+      if (projectDropdown) {
+        projectDropdown.hidden = !isOpen;
       }
     };
 
-    const closeProjectModal = () => { // 關閉 project popup
-      if (!projectModal || !projectModalContent) { // 安全檢查
+    const resetSharedModal = () => { // hide modal when no content is active
+      if (!activeProjectCard && !activePanelContainer && projectModal) {
+        projectModal.hidden = true;
+        document.body.classList.remove("project-modal-open");
+        projectModalContent?.classList.remove("is-about-panel", "is-experience-panel", "is-sales-engineering-panel", "is-contact-panel");
+      }
+    };
+
+    const closeSectionPanel = () => { // restore moved section content
+      if (activePanelContainer && activePanelPlaceholder) {
+        activePanelContainer.querySelector("#project-modal-title")?.removeAttribute("id");
+        activePanelPlaceholder.replaceWith(activePanelContainer);
+      }
+      activePanelContainer = null;
+      activePanelPlaceholder = null;
+      setPanelButtons("");
+      resetSharedModal();
+    };
+
+    const closeProjectModal = () => { // restore moved project card
+      if (activeProjectCard && activeProjectPlaceholder) {
+        activeProjectCard.querySelector("#project-modal-title")?.removeAttribute("id");
+        activeProjectCard.classList.remove("project-card-focus");
+        activeProjectPlaceholder.replaceWith(activeProjectCard);
+      }
+      activeProjectCard = null;
+      activeProjectPlaceholder = null;
+      resetSharedModal();
+    };
+
+    const closeAllPopouts = () => { // close every open popout
+      closeProjectModal();
+      closeSectionPanel();
+      setProjectDropdownOpen(false);
+      if (projectModalContent) {
+        projectModalContent.textContent = "";
+      }
+    };
+
+    const openSectionPanel = (panelId) => { // open About / Experience / Sales / Contact from original markup
+      const source = document.querySelector(`[data-panel-source="${panelId}"]`);
+      const container = source?.querySelector(":scope > .container");
+      if (!source || !container || !projectModal || !projectModalContent) {
         return;
       }
 
-      if (activeProjectCard && activeProjectPlaceholder) { // 如果有移入 modal 嘅 card
-        activeProjectCard.querySelector("#project-modal-title")?.removeAttribute("id"); // 放返原位前清走 modal title id
-        activeProjectCard.classList.remove("project-card-focus"); // 關閉後移除 popup highlight 狀態
-        activeProjectPlaceholder.replaceWith(activeProjectCard); // 放返原本 hidden source list
+      closeAllPopouts();
+      activePanelPlaceholder = document.createComment(`${panelId}-panel-placeholder`);
+      container.replaceWith(activePanelPlaceholder);
+      activePanelContainer = container;
+      projectModalContent.textContent = "";
+      projectModalContent.classList.add(`is-${panelId}-panel`);
+      projectModalContent.append(container);
+
+      const title = container.querySelector("h2, h3");
+      if (title) {
+        title.id = "project-modal-title";
       }
 
-      activeProjectCard = null; // 清空狀態
-      activeProjectPlaceholder = null; // 清空狀態
-      projectModal.hidden = true; // 收起 popup
-      document.body.classList.remove("project-modal-open"); // 解除背景 scroll lock
+      projectModal.hidden = false;
+      document.body.classList.add("project-modal-open");
+      setPanelButtons(panelId);
+      projectModal.querySelector(".project-modal-close")?.focus();
     };
 
-    const openProjectModal = (category) => { // 打開指定 project
-      const selectedCard = projectCards.find((card) => card.dataset.projectCategory === category); // 用 category 搵 card
-      if (!selectedCard || !projectModal || !projectModalContent) { // 搵唔到就停止
+    const openProjectModal = (category) => { // open selected project card
+      const selectedCard = projectCards.find((card) => card.dataset.projectCategory === category);
+      if (!selectedCard || !projectModal || !projectModalContent) {
         return;
       }
 
-      closeProjectModal(); // 如果之前已經開咗另一張，先放返原位
-      activeProjectPlaceholder = document.createComment(`project-${category}-placeholder`); // 建立原位標記
-      selectedCard.replaceWith(activeProjectPlaceholder); // 用 placeholder 佔住原本位置
-      selectedCard.hidden = false; // modal 入面要顯示
-      selectedCard.classList.add("project-card-focus"); // 保留選中樣式
-      projectModalContent.append(selectedCard); // 將原本 card 移入 modal
-      activeProjectCard = selectedCard; // 記住目前 card
+      closeAllPopouts();
+      activeProjectPlaceholder = document.createComment(`project-${category}-placeholder`);
+      selectedCard.replaceWith(activeProjectPlaceholder);
+      selectedCard.hidden = false;
+      selectedCard.classList.add("project-card-focus");
+      projectModalContent.textContent = "";
+      projectModalContent.append(selectedCard);
+      activeProjectCard = selectedCard;
 
-      const title = selectedCard.querySelector("h3"); // modal title 來源
-      if (title) { // 如果有 title
-        title.id = "project-modal-title"; // 對應 aria-labelledby
+      const title = selectedCard.querySelector("h3");
+      if (title) {
+        title.id = "project-modal-title";
       }
 
-      projectModal.hidden = false; // 顯示 popup
-      document.body.classList.add("project-modal-open"); // 鎖背景 scroll
-      setProjectDropdownOpen(false); // 選完 project 後收起 dropdown
-      projectModal.querySelector(".project-modal-close")?.focus(); // focus 到 close button，鍵盤用戶可即刻關閉
+      projectModal.hidden = false;
+      document.body.classList.add("project-modal-open");
+      setProjectDropdownOpen(false);
+      projectModal.querySelector(".project-modal-close")?.focus();
     };
 
-    projectDropdownButtons.forEach((button) => { // dropdown toggle button
+    panelButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        openSectionPanel(button.dataset.panelTarget);
+        closeMenu?.();
+      });
+    });
+
+    projectDropdownButtons.forEach((button) => {
       button.addEventListener("click", (event) => {
-        event.preventDefault(); // button / hero shortcut 都由 JS 控制
-        const isOpen = projectDropdown ? projectDropdown.hidden : false; // hidden=true 代表而家未開
-        setProjectDropdownOpen(isOpen); // 切換 dropdown
+        event.preventDefault();
+        const shouldOpen = projectDropdown ? projectDropdown.hidden : false;
+        closeProjectModal();
+        closeSectionPanel();
+        setProjectDropdownOpen(shouldOpen);
       });
     });
 
-    projectFilterControls.forEach((control) => { // 每個 project 選項
+    projectFilterControls.forEach((control) => {
       control.addEventListener("click", (event) => {
-        event.preventDefault(); // 不跳去 hidden section
-        openProjectModal(control.dataset.projectFilter); // 打開對應 popup
-        closeMenu?.(); // 如果手機側邊 menu 開住，選 project 後收起
+        event.preventDefault();
+        openProjectModal(control.dataset.projectFilter);
+        closeMenu?.();
       });
     });
 
-    projectCloseControls.forEach((control) => control.addEventListener("click", closeProjectModal)); // close button / backdrop 關閉
+    projectCloseControls.forEach((control) => control.addEventListener("click", closeAllPopouts));
 
-    document.addEventListener("click", (event) => { // 點擊 dropdown 外面時收起
+    document.addEventListener("click", (event) => {
       const clickedDropdownButton = event.target.closest("[data-project-dropdown-button]");
       const clickedDropdown = event.target.closest("#project-dropdown");
       if (!clickedDropdownButton && !clickedDropdown) {
@@ -543,18 +618,15 @@
       }
     });
 
-    document.addEventListener("keydown", (event) => { // Escape key 關閉 popup 或 dropdown
+    document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        if (projectModal && !projectModal.hidden) {
-          closeProjectModal();
-        }
-        setProjectDropdownOpen(false);
+        closeAllPopouts();
       }
     });
 
-    const linkedProjectCard = projectCards.find((card) => `#${card.id}` === window.location.hash); // 保留 deep link 支援
+    const linkedProjectCard = projectCards.find((card) => `#${card.id}` === window.location.hash);
     if (linkedProjectCard) {
-      openProjectModal(linkedProjectCard.dataset.projectCategory); // 直接打開對應 project popup
+      openProjectModal(linkedProjectCard.dataset.projectCategory);
     }
 
     // JavaScript 區：控制手機 menu 開關
