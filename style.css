@@ -34,6 +34,10 @@ body.menu-open { /* 當手機 menu 打開時 body 會加呢個 class */
   overflow: hidden; /* 禁止背景頁面捲動 */
 }
 
+body.project-modal-open { /* project popup 打開時 */
+  overflow: hidden; /* 禁止背景頁面捲動 */
+}
+
 img { /* 所有圖片 */
   max-width: 100%; /* 圖片唔會超出父元素寬度 */
 }
@@ -128,8 +132,74 @@ p { /* 所有 paragraph */
   color: rgba(255, 255, 255, 0.84); /* 未 hover 時白色但少少透明 */
 }
 
-.nav-links a:hover { /* 滑鼠移上 nav link 時 */
+.nav-links a:hover,
+.nav-project-button:hover { /* 滑鼠移上 nav link 時 */
   color: #fff; /* hover 時變純白 */
+}
+
+.nav-project-item { /* Project dropdown 外層 */
+  position: relative; /* dropdown 會定位喺 Project button 下面 */
+}
+
+.nav-project-button { /* 導覽列 Project dropdown 按鈕 */
+  display: inline-flex; /* 文字同箭嘴橫排 */
+  align-items: center; /* 垂直置中 */
+  gap: 6px; /* 文字同箭嘴距離 */
+  padding: 0; /* 保持同 nav link 對齊 */
+  border: 0; /* 清走 button 預設邊框 */
+  background: transparent; /* 跟 nav 背景融合 */
+  color: rgba(255, 255, 255, 0.84); /* 同 nav link 一樣 */
+  font: inherit; /* 沿用 nav 字體 */
+  font-weight: 700; /* 同 nav link 一樣粗 */
+  cursor: pointer; /* 表示可點 */
+}
+
+.nav-project-button i { /* dropdown 箭嘴 */
+  font-size: 11px; /* 比文字細啲 */
+  transition: transform 180ms ease; /* 打開時旋轉順滑 */
+}
+
+.nav-project-button[aria-expanded="true"] i { /* dropdown 打開狀態 */
+  transform: rotate(180deg); /* 箭嘴向上 */
+}
+
+.project-dropdown { /* Project dropdown menu */
+  position: absolute; /* 桌面版浮喺 nav 下方 */
+  top: calc(100% + 16px); /* 放喺 Project button 下面 */
+  left: 50%; /* 先水平置中 */
+  z-index: 45; /* 高過 nav 背景 */
+  width: min(320px, calc(100vw - 32px)); /* 桌面固定闊度，細 screen 防爆版 */
+  padding: 8px; /* menu 內距 */
+  border: 1px solid rgba(84, 220, 255, 0.22); /* 淡科技藍邊 */
+  border-radius: var(--radius); /* 8px 圓角 */
+  background: rgba(7, 20, 18, 0.96); /* 深色 robotics theme */
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28); /* 浮層陰影 */
+  transform: translateX(-50%); /* 真正置中 */
+  backdrop-filter: blur(18px); /* 玻璃感 */
+}
+
+.project-dropdown button { /* dropdown 每個 project 選項 */
+  display: block; /* 整行可點 */
+  width: 100%; /* 填滿 menu */
+  min-height: 42px; /* 好點擊 */
+  padding: 10px 12px; /* 文字內距 */
+  border: 0; /* 清走預設 */
+  border-radius: var(--radius); /* 選項圓角 */
+  background: transparent; /* 預設透明 */
+  color: rgba(255, 255, 255, 0.86); /* 淡白字 */
+  font: inherit; /* 沿用字體 */
+  font-size: 13px; /* dropdown 文字 */
+  font-weight: 800; /* project name 加粗 */
+  line-height: 1.25; /* 兩行時易讀 */
+  text-align: left; /* 選項靠左 */
+  cursor: pointer; /* 可點 */
+}
+
+.project-dropdown button:hover,
+.project-dropdown button:focus-visible { /* dropdown hover/focus */
+  background: rgba(31, 138, 112, 0.26); /* 綠色 active 底 */
+  color: #fff; /* 白字 */
+  outline: none; /* 用背景代表 focus */
 }
 
 .menu-button,
@@ -245,8 +315,10 @@ h1 { /* 首頁最大標題 */
   border-radius: var(--radius); /* 跟全站圓角一致 */
   background: rgba(7, 20, 18, 0.5); /* 半透明深色底 */
   color: #fff; /* 白字 */
+  font: inherit; /* button 版本沿用全站字體 */
   font-size: 12px; /* 細一點，保持首頁乾淨 */
   font-weight: 900; /* 加粗，像 filter launcher */
+  cursor: pointer; /* 可點擊 */
   backdrop-filter: blur(12px); /* 玻璃感 */
 }
 
@@ -836,6 +908,74 @@ h1 { /* 首頁最大標題 */
   background: var(--surface-muted); /* 淡底色 */
 }
 
+.project-modal { /* Project popup 外層 */
+  position: fixed; /* 覆蓋整個視窗 */
+  inset: 0; /* top/right/bottom/left 全部 0 */
+  z-index: 80; /* 高過 nav 同手機 menu */
+  display: grid; /* 方便 modal panel 置中 */
+  place-items: center; /* 水平垂直置中 */
+  padding: 82px 18px 24px; /* 頂部避開 fixed nav，手機保留邊距 */
+}
+
+.project-modal[hidden] { /* hidden attribute 要真正收起 */
+  display: none; /* 關閉 popup */
+}
+
+.project-modal-backdrop { /* popup 背景遮罩 */
+  position: absolute; /* 填滿 project-modal */
+  inset: 0; /* 全屏 */
+  background: rgba(7, 20, 18, 0.72); /* 深色遮罩 */
+  backdrop-filter: blur(10px); /* 背景模糊 */
+}
+
+.project-modal-panel { /* popup 主面板 */
+  position: relative; /* close button 參考定位 */
+  z-index: 1; /* 高過 backdrop */
+  width: min(1080px, 100%); /* 桌面最大寬度 */
+  max-height: calc(100svh - 110px); /* 不超出視窗 */
+  overflow: auto; /* 內容太高時 panel 內捲動 */
+  border: 1px solid rgba(84, 220, 255, 0.22); /* 淡科技藍邊 */
+  border-radius: var(--radius); /* 8px 圓角 */
+  background: linear-gradient(145deg, rgba(16, 34, 30, 0.98), rgba(20, 52, 45, 0.98)); /* 深綠 popup */
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38); /* popup 陰影 */
+}
+
+.project-modal-close { /* popup 關閉按鈕 */
+  position: sticky; /* 捲動時仍留喺頂部 */
+  top: 14px; /* panel 內距 */
+  left: calc(100% - 58px); /* 放右上角 */
+  z-index: 3; /* 高過 project card */
+  display: grid; /* icon 置中 */
+  place-items: center; /* icon 置中 */
+  width: 42px; /* 按鈕大小 */
+  height: 42px; /* 按鈕大小 */
+  margin: 14px 14px -56px auto; /* 視覺上浮喺內容右上 */
+  border: 1px solid rgba(255, 255, 255, 0.24); /* 淡白邊 */
+  border-radius: var(--radius); /* 8px 圓角 */
+  background: rgba(7, 20, 18, 0.78); /* 深色底 */
+  color: #fff; /* 白 icon */
+  cursor: pointer; /* 可點 */
+  backdrop-filter: blur(12px); /* 玻璃感 */
+}
+
+.project-modal-close:hover { /* close hover */
+  background: rgba(31, 138, 112, 0.9); /* 綠色 hover */
+}
+
+.project-modal-content { /* project card 插入位置 */
+  padding: 18px; /* popup 內距 */
+}
+
+.project-modal-content .project-card { /* popup 入面嘅 project card */
+  border-color: rgba(255, 255, 255, 0.14); /* 深色 popup 上用淡邊 */
+  background: rgba(255, 255, 255, 0.98); /* 內容保持易讀 */
+  box-shadow: none; /* panel 已有陰影 */
+}
+
+.project-modal-content .project-copy { /* popup project 文字欄 */
+  padding-right: 34px; /* 右邊避開 close button */
+}
+
 .section-lead { /* section 大標題下面嘅簡介文字 */
   max-width: 780px; /* 限制文字闊度，保持易讀 */
   margin-bottom: 28px; /* 同下面 card grid 分隔 */
@@ -929,6 +1069,22 @@ h1 { /* 首頁最大標題 */
 
 .info-card { /* Experience card */
   padding: 24px; /* card 內距 */
+}
+
+.info-card-media { /* Experience card image */
+  margin: 0 0 18px; /* 清走 figure 預設 margin，並同 icon 分隔 */
+  overflow: hidden; /* 圖片跟住圓角裁切 */
+  border: 1px solid rgba(84, 220, 255, 0.18); /* 淡科技藍邊框 */
+  border-radius: var(--radius); /* 跟 card 一樣 8px 圓角 */
+  background: rgba(255, 255, 255, 0.08); /* 圖片載入前嘅底色 */
+}
+
+.info-card-media img { /* Experience card image file */
+  display: block; /* 移除圖片底部空隙 */
+  width: 100%; /* 填滿 card 闊度 */
+  aspect-ratio: 4 / 3; /* 固定比例，避免 card layout 跳動 */
+  object-fit: cover; /* 圖片裁切成乾淨 card thumbnail */
+  object-position: center 46%; /* 保留 laptop screen 同 AGV 背景 */
 }
 
 .card-icon { /* Experience card icon 外框 */
@@ -1236,10 +1392,28 @@ h1 { /* 首頁最大標題 */
     width: 100%; /* link 填滿 menu 闊度 */
   }
 
-  .nav-links a { /* 手機 menu link */
+  .nav-links a,
+  .nav-project-button { /* 手機 menu link */
     display: block; /* 整行可點 */
     width: 100%; /* 填滿一行 */
     padding: 8px 0; /* 上下 click area */
+    text-align: left; /* Project button 跟 links 對齊 */
+  }
+
+  .nav-project-button { /* 手機 Project dropdown button */
+    display: flex; /* 文字同箭嘴左右排 */
+    justify-content: space-between; /* 箭嘴靠右 */
+  }
+
+  .project-dropdown { /* 手機 dropdown 放喺 menu 流程入面 */
+    position: static; /* 不再 absolute，跟側邊 menu 一起排 */
+    width: 100%; /* 填滿側邊 menu */
+    margin-top: 6px; /* 同 Project button 分隔 */
+    transform: none; /* 取消桌面置中 */
+  }
+
+  .project-dropdown button { /* 手機 dropdown 選項 */
+    font-size: 12px; /* 窄 menu 文字稍細 */
   }
 
   .menu-button { /* 手機 menu button */
@@ -1432,6 +1606,32 @@ h1 { /* 首頁最大標題 */
 
   .project-media { /* 手機 project 圖片區 */
     min-height: 280px; /* 手機圖片高度減少 */
+  }
+
+  .project-modal { /* 手機 project popup */
+    padding: 74px 12px 14px; /* 避開 nav 並保留窄邊距 */
+  }
+
+  .project-modal-panel { /* 手機 popup panel */
+    max-height: calc(100svh - 88px); /* 手機不超出畫面 */
+  }
+
+  .project-modal-content { /* 手機 popup 內距 */
+    padding: 12px; /* 更緊湊 */
+  }
+
+  .project-modal-content .project-card { /* 手機 popup card */
+    grid-template-columns: 1fr; /* 圖文上下排 */
+  }
+
+  .project-modal-content .project-copy { /* 手機 popup 文字 */
+    padding: 0 18px 22px; /* 右邊不需要避 close */
+  }
+
+  .project-modal-close { /* 手機 close button */
+    width: 38px; /* 稍細 */
+    height: 38px; /* 稍細 */
+    margin: 10px 10px -50px auto; /* 貼近右上 */
   }
 
   .project-copy h3 { /* 手機 project 標題 */

@@ -29,7 +29,16 @@
       <ul id="sidemenu" class="nav-links"> <!-- 導覽連結列表；id 俾 menu button 控制 -->
         <li><a href="#about">About</a></li> <!-- 跳去 About 區 -->
         <li><a href="#experience">Experience</a></li> <!-- 跳去 Experience 區；呢個係第三頁，會用 Robotune / mapping 圖做背景 -->
-        <li><a href="#projects" data-project-filter="all">Projects</a></li> <!-- 跳去 Projects 區，並打開全部 project cards -->
+        <li class="nav-project-item"> <!-- Project dropdown：桌面同手機都用同一組選項 -->
+          <button class="nav-project-button" type="button" aria-expanded="false" aria-controls="project-dropdown" data-project-dropdown-button>
+            Project <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div id="project-dropdown" class="project-dropdown" hidden>
+            <button type="button" data-project-filter="camera">Camera Detection Safety Integration</button>
+            <button type="button" data-project-filter="lidar">SICK Safety LiDAR Configuration</button>
+            <button type="button" data-project-filter="amr">AMR RCS Deployment Validation</button>
+          </div>
+        </li>
         <li><a href="#sales-engineering">Sales Engineering</a></li> <!-- 跳去 Sales Engineering 區 -->
         <li><a href="#contact">Contact</a></li> <!-- 跳去 Contact 區 -->
         <li> <!-- 手機 menu 入面嘅關閉按鈕容器 -->
@@ -49,15 +58,15 @@
           and customer-facing solution engineering with clear business value communication.
         </p> <!-- hero summary 結束 -->
         <div class="hero-actions"> <!-- 兩個主要行動按鈕嘅容器 -->
-          <a class="btn primary" href="#projects" data-project-filter="all">View Field Work <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></a> <!-- 主按鈕，跳去 projects，同時打開全部 project cards -->
+          <a class="btn primary" href="#experience">View Field Work <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></a> <!-- 主按鈕，跳去 Experience / Field Work 區 -->
           <a class="btn secondary" href="#contact">Contact Me</a> <!-- 次按鈕，跳去 contact -->
         </div> <!-- hero actions 結束 -->
 
         <div class="hero-project-launch" aria-label="Project quick filters"> <!-- 首頁 project 快速入口：用戶可以喺第一頁直接揀想睇嘅 project -->
-          <a class="project-arrow-button" href="#projects" data-project-filter="all"> <!-- 帶箭嘴嘅 project button；按落會去 Projects 區並顯示全部 project -->
+          <button class="project-arrow-button" type="button" aria-expanded="false" aria-controls="project-dropdown" data-project-dropdown-button> <!-- 帶箭嘴嘅 project button；按落會打開 Project dropdown -->
             <span>Open Projects</span> <!-- 按鈕文字 -->
             <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i> <!-- 箭嘴 icon，令用戶知道會前往下一區 -->
-          </a> <!-- project arrow button 結束 -->
+          </button> <!-- project arrow button 結束 -->
 
           <div class="hero-project-tags"> <!-- 首頁 tags：每個 tag 係一個 filter shortcut -->
             <button type="button" data-project-filter="camera">Camera Safety</button> <!-- 按落會只顯示 Camera Detection project -->
@@ -146,6 +155,9 @@
           </article> <!-- Experience card 1 結束 -->
 
           <article class="info-card"> <!-- Experience card 2 -->
+            <figure class="info-card-media"> <!-- Field troubleshooting photo -->
+              <img src="field-troubleshooting-debug.jpg" alt="Laptop showing robot calibration and map diagnostics during field troubleshooting">
+            </figure>
             <span class="card-icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></span> <!-- troubleshooting icon -->
             <h3>Field Troubleshooting</h3> <!-- card 標題 -->
             <p>Network checks, route behavior, charging / docking validation, map issues, and customer-site problem solving.</p> <!-- card 描述 -->
@@ -160,19 +172,18 @@
       </div> <!-- Experience container 結束 -->
     </section> <!-- Experience section 結束 -->
 
-    <section id="projects" class="section project-section"> <!-- Projects 區；project-section 加白色背景 -->
+    <section id="projects" class="section project-section project-source-section" hidden> <!-- Projects 原始內容保留喺 code 入面，但預設唔顯示成長頁面 -->
       <div class="container"> <!-- 控制 Projects 內容最大闊度 -->
         <p class="section-kicker">Projects</p> <!-- Projects 小標籤 -->
         <h2 class="section-title">Field robotics projects focused on safety, validation, and deployment readiness.</h2> <!-- Projects 大標題 -->
 
-        <div class="project-filter-panel"> <!-- Project filter 面板：預設先收埋 project cards，等用戶按 tag 先打開 -->
+        <div class="project-filter-panel"> <!-- 原本 Project filter 面板保留喺 code 入面，作為原始內容備份 -->
           <div> <!-- 左邊說明文字 -->
             <h3>Choose a project path.</h3> <!-- filter panel 標題 -->
             <p data-project-status>Projects are hidden first. Pick a tag below to jump directly into the matching project.</p> <!-- JS 會更新呢句，提示而家顯示緊邊類 project -->
           </div> <!-- filter panel 左邊結束 -->
 
           <div class="project-filter-actions" aria-label="Project filters"> <!-- filter 按鈕容器 -->
-            <button class="project-filter active" type="button" data-project-filter="all" aria-pressed="true">All Projects</button> <!-- 顯示全部 projects -->
             <button class="project-filter" type="button" data-project-filter="camera" aria-pressed="false">Camera Detection</button> <!-- 只顯示 camera project -->
             <button class="project-filter" type="button" data-project-filter="lidar" aria-pressed="false">SICK LiDAR</button> <!-- 只顯示 LiDAR project -->
             <button class="project-filter" type="button" data-project-filter="amr" aria-pressed="false">AMR / RCS</button> <!-- 只顯示 AMR project -->
@@ -180,19 +191,19 @@
         </div> <!-- project-filter-panel 結束 -->
 
         <div class="project-list is-collapsed" data-project-list> <!-- 包住所有 project cards 嘅列表；is-collapsed 代表一開始先收埋 -->
-          <article id="project-camera" class="project-card" data-project-card data-project-category="camera"> <!-- article 表示一個獨立 project；data-project-category 俾 filter JS 用 -->
+          <article id="project-camera" class="project-card" data-project-card data-project-category="camera"> <!-- article 表示一個獨立 project；data-project-category 俾 modal JS 用 -->
             <div class="project-media"> <!-- project 圖片區 -->
               <img src="memo-camera-detection.jpg" alt="Memo camera detection identifying a forklift and warehouse objects"> <!-- project 圖片 -->
             </div> <!-- project media 結束 -->
 
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">Camera Detection Safety Integration</span> <!-- project 類別標籤 -->
-              <h3>Camera detection safety integration for shared warehouse zones.</h3> <!-- project 標題 -->
+              <h3>Camera Detection Safety Integration</h3> <!-- project 標題 -->
 
               <div class="project-points"> <!-- project 重點列表 -->
-                <p><strong>Problem</strong> Warehouse environments include people, forklifts, AGVs, AMRs, and objects moving in shared zones.</p> <!-- 問題 -->
-                <p><strong>Technical Work</strong> Camera-based detection identifies forklifts, AMRs, AGVs, people, and warehouse items. Detection events connect to RCS robot control logic.</p> <!-- 技術工作 -->
-                <p><strong>Result / Business Value</strong> Supports safer robot movement and gives customers more confidence in automation safety.</p> <!-- 商業價值 -->
+                <p><strong>Problem:</strong> Warehouse environments include people, forklifts, AGVs, AMRs, and objects moving in shared zones.</p> <!-- 問題 -->
+                <p><strong>Technical Work:</strong> Camera-based detection identifies forklifts, AMRs, AGVs, people, and warehouse items. Detection events connect to RCS robot control logic.</p> <!-- 技術工作 -->
+                <p><strong>Result / Business Value:</strong> Supports safer robot movement and gives customers more confidence in automation safety.</p> <!-- 商業價值 -->
               </div> <!-- project-points 結束 -->
             </div> <!-- project-copy 結束 -->
           </article> <!-- 第一個 project card 結束 -->
@@ -204,12 +215,12 @@
 
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">SICK Safety LiDAR Configuration</span> <!-- project 類別標籤 -->
-              <h3>SICK safety LiDAR configuration for AGV field readiness.</h3> <!-- project 標題 -->
+              <h3>SICK Safety LiDAR Configuration</h3> <!-- project 標題 -->
 
               <div class="project-points"> <!-- project 重點列表 -->
-                <p><strong>Problem</strong> AGVs need validated warning and protective safety zones before customer operation.</p> <!-- 問題 -->
-                <p><strong>Technical Work</strong> Configured SICK LiDAR field areas, validated scan coverage, and transferred configuration / log data to the AGV.</p> <!-- 技術工作 -->
-                <p><strong>Result / Business Value</strong> Improves route safety, reduces deployment risk, and supports field readiness.</p> <!-- 商業價值 -->
+                <p><strong>Problem:</strong> AGVs need validated warning and protective safety zones before customer operation.</p> <!-- 問題 -->
+                <p><strong>Technical Work:</strong> Configured SICK LiDAR field areas, validated scan coverage, and transferred configuration/log data to the AGV.</p> <!-- 技術工作 -->
+                <p><strong>Result / Business Value:</strong> Improves route safety, reduces deployment risk, and supports field readiness.</p> <!-- 商業價值 -->
               </div> <!-- project-points 結束 -->
             </div> <!-- project-copy 結束 -->
           </article> <!-- 第二個 project card 結束 -->
@@ -236,13 +247,13 @@
             </div> <!-- carousel 圖片區結束 -->
 
             <div class="project-copy"> <!-- project 文字區 -->
-              <span class="project-tag">AMR RCS Deployment</span> <!-- project 類別標籤 -->
-              <h3>AMR RCS deployment validation before customer-facing operation.</h3> <!-- project 標題 -->
+              <span class="project-tag">AMR RCS Deployment Validation</span> <!-- project 類別標籤 -->
+              <h3>AMR RCS Deployment Validation</h3> <!-- project 標題 -->
 
               <div class="project-points"> <!-- project 重點列表 -->
-                <p><strong>Problem</strong> AMR systems need route, docking, charging, and network validation before customer-facing operation.</p> <!-- 問題 -->
-                <p><strong>Technical Work</strong> Checked robot positioning, route readiness, charger alignment, docking access, and RCS / Robotune connection.</p> <!-- 技術工作 -->
-                <p><strong>Result / Business Value</strong> Helps confirm deployment readiness and reduces downtime during customer demos or handover.</p> <!-- 商業價值 -->
+                <p><strong>Problem:</strong> AMR systems need route, docking, charging, and network validation before customer-facing operation.</p> <!-- 問題 -->
+                <p><strong>Technical Work:</strong> Checked robot positioning, route readiness, charger alignment, docking access, and RCS / Robotune connection.</p> <!-- 技術工作 -->
+                <p><strong>Result / Business Value:</strong> Helps confirm deployment readiness and reduces downtime during customer demos or handover.</p> <!-- 商業價值 -->
               </div> <!-- project-points 結束 -->
             </div> <!-- project-copy 結束 -->
           </article> <!-- 第三個 project card 結束 -->
@@ -355,6 +366,16 @@
     </section> <!-- Contact section 結束 -->
   </main> <!-- main 結束 -->
 
+  <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" hidden data-project-modal>
+    <div class="project-modal-backdrop" data-project-close></div>
+    <div class="project-modal-panel">
+      <button class="project-modal-close" type="button" aria-label="Close project popup" data-project-close>
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="project-modal-content" data-project-modal-content></div>
+    </div>
+  </div>
+
   <script>
     // React 初學者區：建立首頁 high-tech strength cards
     // 想像 React 係一盒 Lego：
@@ -453,69 +474,104 @@
       });
     });
 
-    // JavaScript 區：Project filter，用嚟「先收埋 projects，再按 tag 顯示指定 project」
-    const projectSection = document.getElementById("projects"); // 搵 Projects section，之後 scroll 會跳去呢度
-    const projectList = document.querySelector("[data-project-list]"); // 搵包住所有 project cards 嘅容器
+    // JavaScript 區：Project dropdown + popup modal，用原本 project cards 做內容來源
     const projectCards = Array.from(document.querySelectorAll("[data-project-card]")); // 搵晒每一張 project card，轉成 array 方便逐張控制
-    const projectFilterControls = Array.from(document.querySelectorAll("[data-project-filter]")); // 搵晒有 data-project-filter 嘅按鈕/連結，包括首頁 tags 同 Projects 區 filters
-    const projectStatus = document.querySelector("[data-project-status]"); // 搵 filter panel 入面嘅提示文字
-    const projectFilterLabels = { // 呢個 object 好似字典：filter 名稱對應人類睇得明嘅文字
-      all: "all field robotics projects", // all 代表顯示全部
-      camera: "camera detection safety work", // camera 代表第一張 project
-      lidar: "SICK LiDAR safety setup", // lidar 代表第二張 project
-      amr: "AMR / RCS deployment validation" // amr 代表第三張 project
-    };
+    const projectFilterControls = Array.from(document.querySelectorAll("[data-project-filter]")); // 搵晒 dropdown / hero project shortcut
+    const projectDropdown = document.getElementById("project-dropdown"); // 導覽列 project dropdown menu
+    const projectDropdownButtons = Array.from(document.querySelectorAll("[data-project-dropdown-button]")); // 會打開/關閉 dropdown 嘅 button
+    const projectModal = document.querySelector("[data-project-modal]"); // project popup
+    const projectModalContent = document.querySelector("[data-project-modal-content]"); // popup 入面放 project card 嘅位置
+    const projectCloseControls = Array.from(document.querySelectorAll("[data-project-close]")); // close button 同 backdrop
+    let activeProjectCard = null; // 記住而家被移入 modal 嘅 card
+    let activeProjectPlaceholder = null; // 記住原本位置，關閉時放返 card
 
-    const showProjects = (filter = "all", shouldScroll = true) => { // 建立一個 function：傳入 filter 名稱，就顯示對應 project
-      if (!projectSection || !projectList || projectCards.length === 0) { // 如果頁面搵唔到 projects，就直接停止，避免 JavaScript 報錯
-        return; // return 即係離開 function
-      }
-
-      projectList.classList.remove("is-collapsed"); // 移除 is-collapsed，project list 就會由「收埋」變成「打開」
-      let firstMatchedCard = null; // 用嚟記住第一張符合 filter 嘅 card，之後可以 scroll 去佢
-
-      projectCards.forEach((card) => { // 逐張 project card 檢查
-        const isMatch = filter === "all" || card.dataset.projectCategory === filter; // 如果揀 all，全部都 match；否則要 category 一樣先 match
-        card.hidden = !isMatch; // hidden=true 代表收埋；hidden=false 代表顯示
-        card.classList.toggle("project-card-focus", isMatch && filter !== "all"); // 如果係指定 project，就加 highlight
-
-        if (isMatch && !firstMatchedCard) { // 如果呢張係第一張符合條件嘅 card
-          firstMatchedCard = card; // 記低佢，等陣可以跳去呢張 card
-        }
-      });
-
-      projectFilterControls.forEach((control) => { // 逐個 filter button / link 更新狀態
-        const isActive = control.dataset.projectFilter === filter; // 檢查呢粒 button 係咪目前選中嘅 filter
-
-        if (control.classList.contains("project-filter")) { // 只幫 Projects 區真正 filter buttons 加 active 樣式
-          control.classList.toggle("active", isActive); // active class 令按鈕變色
-          control.setAttribute("aria-pressed", String(isActive)); // aria-pressed 幫助螢幕閱讀器知道 button 是否被選中
-        }
-      });
-
-      if (projectStatus) { // 如果有提示文字
-        projectStatus.textContent = `Showing ${projectFilterLabels[filter] || projectFilterLabels.all}.`; // 更新提示，話俾用戶知而家顯示緊咩
-      }
-
-      if (shouldScroll) { // 有時載入頁面時唔想自動 scroll，所以用 shouldScroll 控制
-        const scrollTarget = filter === "all" ? projectSection : firstMatchedCard || projectSection; // all 跳去 Projects 區；單一 filter 跳去對應 card
-        if (scrollTarget.id) { // 如果目標有 id，例如 project-lidar
-          history.replaceState(null, "", `#${scrollTarget.id}`); // 更新網址 hash，方便之後 copy link 直接去同一個 project
-        }
-        requestAnimationFrame(() => scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" })); // 等畫面更新完，再平滑跳去目標
+    const setProjectDropdownOpen = (isOpen) => { // 控制 Project dropdown 開關
+      projectDropdownButtons.forEach((button) => button.setAttribute("aria-expanded", String(isOpen))); // accessibility 狀態
+      if (projectDropdown) { // 如果有 dropdown
+        projectDropdown.hidden = !isOpen; // hidden=true 收起，false 顯示
       }
     };
 
-    projectFilterControls.forEach((control) => { // 逐個 filter 控制加 click event
-      control.addEventListener("click", (event) => { // 當用戶按 filter / project link
-        event.preventDefault(); // 停止瀏覽器原本只跳 anchor 嘅動作，改由我哋自己控制顯示同 scroll
-        showProjects(control.dataset.projectFilter || "all"); // 讀取 data-project-filter，然後顯示對應 project
+    const closeProjectModal = () => { // 關閉 project popup
+      if (!projectModal || !projectModalContent) { // 安全檢查
+        return;
+      }
+
+      if (activeProjectCard && activeProjectPlaceholder) { // 如果有移入 modal 嘅 card
+        activeProjectCard.querySelector("#project-modal-title")?.removeAttribute("id"); // 放返原位前清走 modal title id
+        activeProjectCard.classList.remove("project-card-focus"); // 關閉後移除 popup highlight 狀態
+        activeProjectPlaceholder.replaceWith(activeProjectCard); // 放返原本 hidden source list
+      }
+
+      activeProjectCard = null; // 清空狀態
+      activeProjectPlaceholder = null; // 清空狀態
+      projectModal.hidden = true; // 收起 popup
+      document.body.classList.remove("project-modal-open"); // 解除背景 scroll lock
+    };
+
+    const openProjectModal = (category) => { // 打開指定 project
+      const selectedCard = projectCards.find((card) => card.dataset.projectCategory === category); // 用 category 搵 card
+      if (!selectedCard || !projectModal || !projectModalContent) { // 搵唔到就停止
+        return;
+      }
+
+      closeProjectModal(); // 如果之前已經開咗另一張，先放返原位
+      activeProjectPlaceholder = document.createComment(`project-${category}-placeholder`); // 建立原位標記
+      selectedCard.replaceWith(activeProjectPlaceholder); // 用 placeholder 佔住原本位置
+      selectedCard.hidden = false; // modal 入面要顯示
+      selectedCard.classList.add("project-card-focus"); // 保留選中樣式
+      projectModalContent.append(selectedCard); // 將原本 card 移入 modal
+      activeProjectCard = selectedCard; // 記住目前 card
+
+      const title = selectedCard.querySelector("h3"); // modal title 來源
+      if (title) { // 如果有 title
+        title.id = "project-modal-title"; // 對應 aria-labelledby
+      }
+
+      projectModal.hidden = false; // 顯示 popup
+      document.body.classList.add("project-modal-open"); // 鎖背景 scroll
+      setProjectDropdownOpen(false); // 選完 project 後收起 dropdown
+      projectModal.querySelector(".project-modal-close")?.focus(); // focus 到 close button，鍵盤用戶可即刻關閉
+    };
+
+    projectDropdownButtons.forEach((button) => { // dropdown toggle button
+      button.addEventListener("click", (event) => {
+        event.preventDefault(); // button / hero shortcut 都由 JS 控制
+        const isOpen = projectDropdown ? projectDropdown.hidden : false; // hidden=true 代表而家未開
+        setProjectDropdownOpen(isOpen); // 切換 dropdown
       });
     });
 
-    const linkedProjectCard = projectCards.find((card) => `#${card.id}` === window.location.hash); // 如果 URL 一開始係 #project-amr 呢類 deep link，就搵對應 card
-    if (linkedProjectCard) { // 如果真係搵到 deep link project
-      showProjects(linkedProjectCard.dataset.projectCategory, false); // 打開對應 project，但唔自動 scroll，因為瀏覽器已經會處理 hash 位置
+    projectFilterControls.forEach((control) => { // 每個 project 選項
+      control.addEventListener("click", (event) => {
+        event.preventDefault(); // 不跳去 hidden section
+        openProjectModal(control.dataset.projectFilter); // 打開對應 popup
+        closeMenu?.(); // 如果手機側邊 menu 開住，選 project 後收起
+      });
+    });
+
+    projectCloseControls.forEach((control) => control.addEventListener("click", closeProjectModal)); // close button / backdrop 關閉
+
+    document.addEventListener("click", (event) => { // 點擊 dropdown 外面時收起
+      const clickedDropdownButton = event.target.closest("[data-project-dropdown-button]");
+      const clickedDropdown = event.target.closest("#project-dropdown");
+      if (!clickedDropdownButton && !clickedDropdown) {
+        setProjectDropdownOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => { // Escape key 關閉 popup 或 dropdown
+      if (event.key === "Escape") {
+        if (projectModal && !projectModal.hidden) {
+          closeProjectModal();
+        }
+        setProjectDropdownOpen(false);
+      }
+    });
+
+    const linkedProjectCard = projectCards.find((card) => `#${card.id}` === window.location.hash); // 保留 deep link 支援
+    if (linkedProjectCard) {
+      openProjectModal(linkedProjectCard.dataset.projectCategory); // 直接打開對應 project popup
     }
 
     // JavaScript 區：控制手機 menu 開關
