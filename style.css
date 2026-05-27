@@ -147,21 +147,20 @@ p { /* 所有 paragraph */
   display: inline-flex; /* 文字同箭嘴橫排 */
   align-items: center; /* 垂直置中 */
   gap: 6px; /* 文字同箭嘴距離 */
-  min-height: 34px; /* 比普通文字更似 button */
-  padding: 0 10px; /* button 內距 */
-  border: 1px solid rgba(255, 255, 255, 0.12); /* 淡邊框 */
-  border-radius: var(--radius); /* 跟網站圓角一致 */
-  background: rgba(255, 255, 255, 0.06); /* 跟 nav 背景融合 */
+  min-height: 34px; /* 保留清楚 click area */
+  padding: 0; /* 取消 rectangle button 內距 */
+  border: 0; /* 取消 rectangle 邊框 */
+  border-radius: 0; /* 取消 rectangle 形狀 */
+  background: transparent; /* 只保留文字同箭嘴 */
   font: inherit; /* 沿用 nav 字體 */
   font-weight: 700; /* 同 nav link 一樣粗 */
   cursor: pointer; /* 表示可點 */
-  backdrop-filter: blur(10px); /* 玻璃感 */
+  backdrop-filter: none; /* 取消 rectangle 玻璃底 */
 }
 
 .nav-panel-button:hover,
 .nav-panel-button.is-active { /* nav button active / hover */
-  border-color: rgba(84, 220, 255, 0.34); /* 科技藍邊框 */
-  background: rgba(31, 138, 112, 0.28); /* 綠色 active 底 */
+  color: #fff; /* hover / active 只改文字色 */
 }
 
 .nav-panel-button i { /* dropdown 箭嘴 */
@@ -1034,15 +1033,15 @@ h1 { /* 首頁最大標題 */
   line-height: 1.58; /* 行距保持舒適 */
 }
 
-.experience-section { /* Experience section：第三頁，用 Robotune / mapping 相做背景 */
+.experience-section { /* Experience section：第三頁，用公司 / robotics 相做背景 */
   position: relative; /* 俾背景同內容可以穩定疊放 */
   min-height: 100svh; /* 第三頁至少一個螢幕高，感覺似完整一頁 */
   display: flex; /* 用 flex 令內容可以垂直置中 */
   align-items: center; /* 將 Experience 內容放近第三頁中間 */
   color: #fff; /* 背景較深，主要文字用白色 */
-  background: /* 先放深色遮罩，再放你嘅 Robotune / 3D SLAM mapping 圖 */
+  background: /* 先放深色遮罩，再放公司 / robotics 圖 */
     linear-gradient(115deg, rgba(4, 14, 14, 0.9), rgba(4, 14, 14, 0.56) 48%, rgba(4, 14, 14, 0.88)),
-    url("robotune-map-background.jpg"); /* 第三頁背景圖：Robotune route / 3D SLAM mapping screen */
+    url("amr-agv-first-page.jpg"); /* 第三頁到最後用公司 / AMR AGV 背景圖 */
   background-size: cover; /* 背景圖填滿整個 section */
   background-position: center; /* 背景圖置中裁切 */
 }
@@ -1085,9 +1084,9 @@ h1 { /* 首頁最大標題 */
   min-height: 100svh; /* 由第四頁開始保持 full-page 感覺 */
   display: flex; /* 內容垂直置中 */
   align-items: center; /* section 內容放近畫面中間 */
-  background: /* Sales Engineering 背景：用 sales / customer-facing 團隊相 */
+  background: /* Sales Engineering 背景：延續公司 / robotics 背景 */
     linear-gradient(115deg, rgba(4, 14, 14, 0.92), rgba(4, 14, 14, 0.62) 48%, rgba(4, 14, 14, 0.9)),
-    url("sales-fit-banking-team.jpg"); /* sales / team background */
+    url("amr-agv-first-page.jpg"); /* company / AMR AGV background */
   background-size: cover; /* 背景圖填滿 */
   background-position: center; /* 背景置中裁切 */
   color: #fff; /* 深色背景上文字用白色 */
@@ -1335,9 +1334,9 @@ h1 { /* 首頁最大標題 */
   min-height: 100svh; /* 最後一頁也有完整背景 */
   display: flex; /* 內容垂直置中 */
   align-items: center; /* Contact 內容置中 */
-  background: /* Contact 背景：用 field engineer profile 相 */
+  background: /* Contact 背景：延續公司 / robotics 背景 */
     linear-gradient(115deg, rgba(4, 14, 14, 0.92), rgba(4, 14, 14, 0.58) 48%, rgba(4, 14, 14, 0.9)),
-    url("profile-field-engineer.jpg"); /* contact / field engineer background */
+    url("amr-agv-first-page.jpg"); /* company / AMR AGV background */
   background-size: cover; /* 背景圖填滿 */
   background-position: center; /* 背景置中裁切 */
   color: #fff; /* 白字 */
