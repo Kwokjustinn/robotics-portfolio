@@ -1031,8 +1031,21 @@ h1 { /* 首頁最大標題 */
 }
 
 .sales-engineering-section { /* Sales Engineering section */
-  background: #0d1f1c; /* 深色 robotics / pre-sales 區 */
+  position: relative; /* 令背景圖同內容穩定疊放 */
+  min-height: 100svh; /* 由第四頁開始保持 full-page 感覺 */
+  display: flex; /* 內容垂直置中 */
+  align-items: center; /* section 內容放近畫面中間 */
+  background: /* Sales Engineering 背景：用 sales / customer-facing 團隊相 */
+    linear-gradient(115deg, rgba(4, 14, 14, 0.92), rgba(4, 14, 14, 0.62) 48%, rgba(4, 14, 14, 0.9)),
+    url("sales-fit-banking-team.jpg"); /* sales / team background */
+  background-size: cover; /* 背景圖填滿 */
+  background-position: center; /* 背景置中裁切 */
   color: #fff; /* 深色背景上文字用白色 */
+}
+
+.sales-engineering-section .container { /* Sales Engineering 內容 */
+  position: relative; /* 放在背景遮罩上方 */
+  z-index: 1; /* 確保文字同卡片清楚 */
 }
 
 .sales-engineering-section .section-title,
@@ -1268,8 +1281,21 @@ h1 { /* 首頁最大標題 */
 }
 
 .contact-section { /* Contact section */
-  background: var(--bg-strong); /* 深色結尾 */
+  position: relative; /* 令背景圖同內容穩定疊放 */
+  min-height: 100svh; /* 最後一頁也有完整背景 */
+  display: flex; /* 內容垂直置中 */
+  align-items: center; /* Contact 內容置中 */
+  background: /* Contact 背景：用 field engineer profile 相 */
+    linear-gradient(115deg, rgba(4, 14, 14, 0.92), rgba(4, 14, 14, 0.58) 48%, rgba(4, 14, 14, 0.9)),
+    url("profile-field-engineer.jpg"); /* contact / field engineer background */
+  background-size: cover; /* 背景圖填滿 */
+  background-position: center; /* 背景置中裁切 */
   color: #fff; /* 白字 */
+}
+
+.contact-section .container { /* Contact 內容 */
+  position: relative; /* 放在背景上方 */
+  z-index: 1; /* 確保可讀 */
 }
 
 .contact-grid { /* Contact 兩欄 */
