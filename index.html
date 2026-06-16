@@ -92,9 +92,21 @@
           <div class="media-frame portrait" data-label="Field Engineering"> <!-- 圖片外框；data-label 可俾 CSS/JS 使用 -->
             <img src="justin-kwok-profile.jpg" alt="Justin Kwok robotics field engineering experience"> <!-- About 區 profile/field 圖 -->
           </div> <!-- media frame 結束 -->
-          <div class="quick-info"> <!-- 快速資料小盒 -->
-            <p><strong>Focus</strong> Robotics deployment, troubleshooting, and solution engineering</p> <!-- strong 令 Focus 加粗 -->
-            <p><strong>Direction</strong> Sales Engineer / Field Application Engineer roles</p> <!-- 第二條快速資料 -->
+          <div class="quick-info" aria-label="Robotics career focus"> <!-- 快速資料小盒 -->
+            <article class="quick-info-card"> <!-- Focus mini card -->
+              <span class="quick-info-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></span>
+              <div>
+                <strong>Focus</strong>
+                <p>Robotics deployment, troubleshooting, and solution engineering.</p>
+              </div>
+            </article>
+            <article class="quick-info-card"> <!-- Direction mini card -->
+              <span class="quick-info-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+              <div>
+                <strong>Direction</strong>
+                <p>Sales Engineer / Field Application Engineer roles.</p>
+              </div>
+            </article>
           </div> <!-- quick-info 結束 -->
         </div> <!-- portrait-card 結束 -->
 
@@ -111,12 +123,54 @@
             network checks, map validation, safety testing, and technical communication. I enjoy translating complex
             robotics systems into practical business value for customers, project managers, operators, and engineering teams.
           </p>
+          <p class="about-tech-summary">
+            I connect hands-on robotics deployment experience with customer-facing solution communication. My work focuses
+            on AMR / AGV readiness, field troubleshooting, route validation, safety testing, and translating technical
+            details into practical business value for warehouse automation customers.
+          </p>
 
           <div class="tabs" role="tablist" aria-label="Background details"> <!-- tabs 容器；role 幫助 accessibility -->
-            <button class="tab-link active-link" type="button" role="tab" aria-selected="true" aria-controls="skills" data-tab="skills">Skills</button> <!-- 目前選中嘅 tab -->
-            <button class="tab-link" type="button" role="tab" aria-selected="false" aria-controls="tools" data-tab="tools">Tools</button> <!-- Tools tab 按鈕 -->
-            <button class="tab-link" type="button" role="tab" aria-selected="false" aria-controls="education" data-tab="education">Education</button> <!-- Education tab 按鈕 -->
+            <button id="tab-skills" class="tab-link active-link" type="button" role="tab" aria-selected="true" aria-controls="about-skills" data-tab="skills">Skills</button> <!-- 目前選中嘅 tab -->
+            <button id="tab-tools" class="tab-link" type="button" role="tab" aria-selected="false" aria-controls="about-tools" data-tab="tools">Tools</button> <!-- Tools tab 按鈕 -->
+            <button id="tab-education" class="tab-link" type="button" role="tab" aria-selected="false" aria-controls="about-education" data-tab="education">Education</button> <!-- Education tab 按鈕 -->
           </div> <!-- tabs 結束 -->
+
+          <div class="tab-panels"> <!-- About tab content -->
+            <div id="about-skills" class="tab-panel active-panel" role="tabpanel" aria-labelledby="tab-skills" data-tab-panel="skills">
+              <ul class="about-chip-grid">
+                <li>AMR / AGV deployment</li>
+                <li>Warehouse automation field testing</li>
+                <li>Robot readiness validation</li>
+                <li>Network and system troubleshooting</li>
+                <li>RCS / Robotune route validation</li>
+                <li>Customer-facing technical explanation</li>
+                <li>Pre-sales discovery and solution communication</li>
+              </ul>
+            </div>
+
+            <div id="about-tools" class="tab-panel" role="tabpanel" aria-labelledby="tab-tools" data-tab-panel="tools" hidden>
+              <ul class="about-chip-grid">
+                <li>RCS / Robotune</li>
+                <li>3D SLAM mapping workflow</li>
+                <li>SICK safety LiDAR configuration</li>
+                <li>Camera-based detection demo</li>
+                <li>GitHub Pages</li>
+                <li>HTML / CSS / JavaScript</li>
+                <li>Basic React UI cards</li>
+                <li>Excel / ROI calculation for business value explanation</li>
+              </ul>
+            </div>
+
+            <div id="about-education" class="tab-panel" role="tabpanel" aria-labelledby="tab-education" data-tab-panel="education" hidden>
+              <ul class="about-chip-grid">
+                <li>University of Washington</li>
+                <li>B.S. Marine Biology</li>
+                <li>Informatics minor / web development coursework</li>
+                <li>Robotics and technical project experience through field deployment work</li>
+                <li>Strong interest in robotics, automation, and customer-facing solution engineering</li>
+              </ul>
+            </div>
+          </div>
         </div> <!-- About 右邊文字結束 -->
       </div> <!-- about container 結束 -->
     </section> <!-- About section 結束 -->
@@ -185,6 +239,11 @@
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">Camera Detection Safety Integration</span> <!-- project 類別標籤 -->
               <h3>Camera Detection Safety Integration</h3> <!-- project 標題 -->
+              <div class="project-signal-tags" aria-label="Project tags">
+                <span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Safety</span>
+                <span><i class="fa-solid fa-camera" aria-hidden="true"></i> Detection</span>
+                <span><i class="fa-solid fa-route" aria-hidden="true"></i> RCS</span>
+              </div>
 
               <div class="project-points"> <!-- project 重點列表 -->
                 <p><strong>Problem:</strong> Warehouse environments include people, forklifts, AGVs, AMRs, and objects moving in shared zones.</p> <!-- 問題 -->
@@ -202,6 +261,11 @@
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">SICK Safety LiDAR Configuration</span> <!-- project 類別標籤 -->
               <h3>SICK Safety LiDAR Configuration</h3> <!-- project 標題 -->
+              <div class="project-signal-tags" aria-label="Project tags">
+                <span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Safety</span>
+                <span><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i> LiDAR</span>
+                <span><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Validation</span>
+              </div>
 
               <div class="project-points"> <!-- project 重點列表 -->
                 <p><strong>Problem:</strong> AGVs need validated warning and protective safety zones before customer operation.</p> <!-- 問題 -->
@@ -235,6 +299,11 @@
             <div class="project-copy"> <!-- project 文字區 -->
               <span class="project-tag">AMR RCS Deployment Validation</span> <!-- project 類別標籤 -->
               <h3>AMR RCS Deployment Validation</h3> <!-- project 標題 -->
+              <div class="project-signal-tags" aria-label="Project tags">
+                <span><i class="fa-solid fa-robot" aria-hidden="true"></i> AMR</span>
+                <span><i class="fa-solid fa-network-wired" aria-hidden="true"></i> RCS</span>
+                <span><i class="fa-solid fa-warehouse" aria-hidden="true"></i> Deployment</span>
+              </div>
 
               <div class="project-points"> <!-- project 重點列表 -->
                 <p><strong>Problem:</strong> AMR systems need route, docking, charging, and network validation before customer-facing operation.</p> <!-- 問題 -->
@@ -459,6 +528,41 @@
         dot.addEventListener("click", () => showSlide(Number(dot.dataset.carouselDot))); // 按 dot 時，讀 data-carousel-dot 數字去顯示對應 slide
       });
     });
+
+    // JavaScript 區：About popup tabs，用 vanilla JS 切換 Skills / Tools / Education
+    const aboutTabButtons = Array.from(document.querySelectorAll("[data-tab]")); // About tab buttons
+    const aboutTabPanels = Array.from(document.querySelectorAll("[data-tab-panel]")); // About tab panels
+    const setAboutTab = (activeTab) => { // 切換 About tab content
+      aboutTabButtons.forEach((button) => {
+        const isActive = button.dataset.tab === activeTab;
+        button.classList.toggle("active-link", isActive);
+        button.setAttribute("aria-selected", String(isActive));
+        button.tabIndex = isActive ? 0 : -1;
+      });
+
+      aboutTabPanels.forEach((panel) => {
+        const isActive = panel.dataset.tabPanel === activeTab;
+        panel.classList.toggle("active-panel", isActive);
+        panel.hidden = !isActive;
+      });
+    };
+
+    aboutTabButtons.forEach((button, index) => {
+      button.addEventListener("click", () => setAboutTab(button.dataset.tab));
+      button.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+          return;
+        }
+        event.preventDefault();
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const nextIndex = (index + direction + aboutTabButtons.length) % aboutTabButtons.length;
+        aboutTabButtons[nextIndex].focus();
+        setAboutTab(aboutTabButtons[nextIndex].dataset.tab);
+      });
+    });
+    if (aboutTabButtons.length) {
+      setAboutTab("skills");
+    }
 
     // JavaScript 區：Nav popouts + Project dropdown，用原本 section / project cards 做內容來源
     const panelButtons = Array.from(document.querySelectorAll("[data-panel-target]")); // About / Experience / Sales / Contact buttons

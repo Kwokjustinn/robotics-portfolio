@@ -178,23 +178,37 @@ p { /* 所有 paragraph */
   left: 50%; /* 先水平置中 */
   z-index: 45; /* 高過 nav 背景 */
   width: min(320px, calc(100vw - 32px)); /* 桌面固定闊度，細 screen 防爆版 */
-  padding: 8px; /* menu 內距 */
-  border: 1px solid rgba(84, 220, 255, 0.22); /* 淡科技藍邊 */
+  padding: 10px; /* menu 內距 */
+  border: 1px solid rgba(84, 220, 255, 0.28); /* 淡科技藍邊 */
   border-radius: var(--radius); /* 8px 圓角 */
-  background: rgba(7, 20, 18, 0.96); /* 深色 robotics theme */
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28); /* 浮層陰影 */
+  background:
+    linear-gradient(145deg, rgba(4, 16, 16, 0.98), rgba(12, 46, 40, 0.96)),
+    rgba(7, 20, 18, 0.96); /* 深色 robotics theme */
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), 0 0 34px rgba(84, 220, 255, 0.1); /* 浮層陰影 */
   transform: translateX(-50%); /* 真正置中 */
   backdrop-filter: blur(18px); /* 玻璃感 */
+  animation: dropdownPanelIn 180ms ease-out; /* dropdown pop-out */
+}
+
+.project-dropdown::before { /* dropdown accent line */
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 3px;
+  content: "";
+  background: linear-gradient(180deg, #54dcff, #24d18a);
+  box-shadow: 0 0 18px rgba(84, 220, 255, 0.72);
 }
 
 .project-dropdown button { /* dropdown 每個 project 選項 */
   display: block; /* 整行可點 */
   width: 100%; /* 填滿 menu */
   min-height: 42px; /* 好點擊 */
-  padding: 10px 12px; /* 文字內距 */
-  border: 0; /* 清走預設 */
+  padding: 11px 12px; /* 文字內距 */
+  border: 1px solid rgba(84, 220, 255, 0.12); /* 科技卡片邊 */
   border-radius: var(--radius); /* 選項圓角 */
-  background: transparent; /* 預設透明 */
+  background: rgba(255, 255, 255, 0.04); /* 預設透明 */
   color: rgba(255, 255, 255, 0.86); /* 淡白字 */
   font: inherit; /* 沿用字體 */
   font-size: 13px; /* dropdown 文字 */
@@ -206,9 +220,11 @@ p { /* 所有 paragraph */
 
 .project-dropdown button:hover,
 .project-dropdown button:focus-visible { /* dropdown hover/focus */
+  border-color: rgba(84, 220, 255, 0.34);
   background: rgba(31, 138, 112, 0.26); /* 綠色 active 底 */
   color: #fff; /* 白字 */
   outline: none; /* 用背景代表 focus */
+  transform: translateY(-1px);
 }
 
 .menu-button,
@@ -605,6 +621,37 @@ h1 { /* 首頁最大標題 */
   }
 }
 
+@keyframes popPanelIn { /* modal / dropdown 入場 */
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dropdownPanelIn { /* centered dropdown 入場 */
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes modalBackdropIn { /* overlay fade */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .section { /* 一般 section 共用上下 spacing */
   padding: 88px 0; /* 上下 88px，左右 0 */
 }
@@ -654,20 +701,74 @@ h1 { /* 首頁最大標題 */
 }
 
 .quick-info { /* About 圖下方快速資訊盒 */
+  position: relative; /* 俾發光線定位 */
   display: grid; /* 用 grid 排每一行資料 */
   gap: 12px; /* 每行距離 */
   margin: 14px; /* 同卡片邊緣距離 */
   padding: 18px; /* 內距 */
-  background: var(--surface-muted); /* 淡綠灰底 */
+  overflow: hidden; /* 保持科技線條喺卡片內 */
+  border-color: rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
+  background: linear-gradient(145deg, rgba(4, 16, 16, 0.96), rgba(8, 35, 30, 0.94)); /* 深色高對比底 */
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 28px rgba(84, 220, 255, 0.08); /* 柔和發光 */
 }
 
 .about-section .quick-info { /* 第二頁 quick info 盒 */
-  border-color: rgba(255, 255, 255, 0.18); /* 深色背景上用淺邊框 */
-  background: rgba(7, 20, 18, 0.72); /* 半透明深色底，文字會清楚 */
+  border-color: rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
+  background: linear-gradient(145deg, rgba(4, 16, 16, 0.96), rgba(8, 35, 30, 0.94)); /* 深色高對比底 */
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 28px rgba(84, 220, 255, 0.08); /* 柔和發光 */
 }
 
-.quick-info p { /* quick info 內文字 */
+.quick-info::before { /* quick info 左邊 accent line */
+  position: absolute;
+  inset: 12px auto 12px 0;
+  width: 3px;
+  content: "";
+  background: linear-gradient(180deg, #54dcff, #24d18a);
+  box-shadow: 0 0 18px rgba(84, 220, 255, 0.72);
+}
+
+.quick-info-card { /* quick info mini card */
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 11px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid rgba(84, 220, 255, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.quick-info-icon { /* quick info icon */
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(84, 220, 255, 0.32);
+  border-radius: var(--radius);
+  background: rgba(84, 220, 255, 0.1);
+  color: #9befff;
+  box-shadow: 0 0 18px rgba(84, 220, 255, 0.14);
+}
+
+.quick-info-card strong { /* quick info labels */
+  display: block;
+  margin-bottom: 3px;
+  color: #9befff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.quick-info p,
+.quick-info-card p,
+.project-modal-content .quick-info-card p { /* quick info 內文字 */
   margin-bottom: 0; /* 清走底部 margin */
+  color: rgba(255, 255, 255, 0.88); /* 提高可讀性 */
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.42;
 }
 
 .about-section p { /* 第二頁段落文字 */
@@ -676,6 +777,17 @@ h1 { /* 首頁最大標題 */
 
 .about-section .section-title { /* 第二頁標題 */
   color: #fff; /* 深色背景上用白色標題 */
+}
+
+.about-tech-summary { /* About technical positioning summary */
+  max-width: 780px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(84, 220, 255, 0.22);
+  border-left: 3px solid #24d18a;
+  border-radius: var(--radius);
+  background: rgba(7, 20, 18, 0.68);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
 }
 
 .onsite-quote { /* 第二頁小 quote */
@@ -708,19 +820,61 @@ h1 { /* 首頁最大標題 */
 .tab-link { /* 每個 tab 按鈕 */
   min-height: 42px; /* 最小高度 */
   padding: 0 14px; /* 左右內距 */
-  border: 1px solid var(--line); /* 邊框 */
+  border: 1px solid rgba(84, 220, 255, 0.22); /* 科技藍邊框 */
   border-radius: var(--radius); /* 圓角 */
-  background: var(--surface); /* 白底 */
-  color: var(--text); /* 深色文字 */
+  background: rgba(7, 20, 18, 0.76); /* 深色底 */
+  color: rgba(255, 255, 255, 0.84); /* 淺色文字 */
   font: inherit; /* 沿用 body 字體設定 */
   font-weight: 800; /* 加粗 */
   cursor: pointer; /* 滑鼠變手指，表示可點 */
 }
 
+.tab-link:hover,
+.tab-link:focus-visible { /* tab hover / focus */
+  border-color: rgba(84, 220, 255, 0.48);
+  color: #fff;
+  outline: none;
+}
+
 .tab-link.active-link { /* 當前選中嘅 tab */
-  background: var(--accent); /* 主色背景 */
-  border-color: var(--accent); /* 邊框同背景同色 */
+  background: linear-gradient(135deg, rgba(31, 138, 112, 0.95), rgba(28, 176, 189, 0.84)); /* 綠藍 active 底 */
+  border-color: rgba(155, 239, 255, 0.5); /* active 邊框 */
   color: #fff; /* 白色文字 */
+  box-shadow: 0 12px 28px rgba(31, 138, 112, 0.18);
+}
+
+.tab-panels { /* About tab panels */
+  margin-top: 14px;
+}
+
+.tab-panel { /* single About tab panel */
+  padding: 16px;
+  border: 1px solid rgba(84, 220, 255, 0.2);
+  border-radius: var(--radius);
+  background: rgba(7, 20, 18, 0.58);
+}
+
+.about-chip-grid { /* About tab content badges */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-chip-grid li { /* About badge */
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 10px;
+  border: 1px solid rgba(84, 220, 255, 0.2);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .project-section { /* Projects section */
@@ -763,6 +917,7 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-card { /* 單個 project card */
+  position: relative;
   display: grid; /* 左圖右文排版 */
   grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr); /* 圖片欄稍闊，文字欄稍窄 */
   gap: 32px; /* 圖文距離 */
@@ -772,6 +927,31 @@ h1 { /* 首頁最大標題 */
   border-radius: var(--radius); /* 卡片圓角 */
   background: var(--surface); /* 卡片白底 */
   box-shadow: 0 18px 56px rgba(17, 33, 30, 0.1); /* 卡片陰影 */
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.project-card::before { /* project card accent rail */
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 3px;
+  content: "";
+  background: linear-gradient(180deg, #54dcff, #24d18a);
+  opacity: 0;
+  box-shadow: 0 0 18px rgba(84, 220, 255, 0.68);
+  transition: opacity 180ms ease;
+}
+
+.project-card:hover { /* project hover lift */
+  border-color: rgba(84, 220, 255, 0.38);
+  box-shadow: 0 22px 70px rgba(31, 138, 112, 0.16);
+  transform: translateY(-3px);
+}
+
+.project-card:hover::before,
+.project-card.project-card-focus::before {
+  opacity: 1;
 }
 
 .project-card.project-card-focus { /* 當用戶按某個 tag 時，目標 project 會有 highlight */
@@ -896,6 +1076,32 @@ h1 { /* 首頁最大標題 */
   text-transform: uppercase; /* 全部大楷 */
 }
 
+.project-signal-tags { /* project popup small solution tags */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -2px 0 16px;
+}
+
+.project-signal-tags span { /* project tag chip */
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  padding: 6px 9px;
+  border: 1px solid rgba(84, 220, 255, 0.2);
+  border-radius: var(--radius);
+  background: rgba(84, 220, 255, 0.08);
+  color: #d9fffb;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.project-signal-tags i { /* project tag icon */
+  color: #9befff;
+}
+
 .project-copy h3 { /* project card 入面嘅 h3 標題 */
   margin-bottom: 14px; /* 同段落分隔 */
   color: var(--text); /* 深色文字 */
@@ -910,11 +1116,32 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-points p { /* 每一條 project 重點 */
+  position: relative;
   margin-bottom: 0; /* 清走 paragraph 底部 margin */
-  padding: 12px 14px; /* 重點盒內距 */
+  padding: 12px 14px 12px 42px; /* 重點盒內距 */
   border: 1px solid var(--line); /* 邊框 */
   border-radius: var(--radius); /* 圓角 */
   background: var(--surface-muted); /* 淡底色 */
+}
+
+.project-points p::before { /* project point icon */
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(31, 138, 112, 0.24);
+  border-radius: 999px;
+  color: var(--accent-strong);
+  content: "✓";
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.project-points strong { /* project point labels */
+  color: var(--accent-strong);
 }
 
 .project-modal { /* Project popup 外層 */
@@ -933,8 +1160,9 @@ h1 { /* 首頁最大標題 */
 .project-modal-backdrop { /* popup 背景遮罩 */
   position: absolute; /* 填滿 project-modal */
   inset: 0; /* 全屏 */
-  background: rgba(7, 20, 18, 0.72); /* 深色遮罩 */
+  background: rgba(4, 13, 12, 0.84); /* 深色遮罩 */
   backdrop-filter: blur(10px); /* 背景模糊 */
+  animation: modalBackdropIn 180ms ease-out;
 }
 
 .project-modal-panel { /* popup 主面板 */
@@ -945,8 +1173,11 @@ h1 { /* 首頁最大標題 */
   overflow: auto; /* 內容太高時 panel 內捲動 */
   border: 1px solid rgba(84, 220, 255, 0.22); /* 淡科技藍邊 */
   border-radius: var(--radius); /* 8px 圓角 */
-  background: linear-gradient(145deg, rgba(16, 34, 30, 0.98), rgba(20, 52, 45, 0.98)); /* 深綠 popup */
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38); /* popup 陰影 */
+  background:
+    radial-gradient(circle at 18% 0%, rgba(84, 220, 255, 0.12), transparent 30%),
+    linear-gradient(145deg, #071616, #10372f); /* 深綠 popup */
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42), 0 0 48px rgba(84, 220, 255, 0.1); /* popup 陰影 */
+  animation: popPanelIn 220ms ease-out;
 }
 
 .project-modal-close { /* popup 關閉按鈕 */
@@ -1008,17 +1239,37 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-modal-content .project-card { /* popup 入面嘅 project card */
-  border-color: rgba(255, 255, 255, 0.14); /* 深色 popup 上用淡邊 */
-  background: rgba(255, 255, 255, 0.98); /* 內容保持易讀 */
+  border-color: rgba(84, 220, 255, 0.22); /* 深色 popup 上用淡邊 */
+  background: linear-gradient(145deg, #081b1b, #113a32); /* dark case study card */
   box-shadow: none; /* panel 已有陰影 */
 }
 
 .project-modal-content .project-card h3 { /* project popup heading */
-  color: var(--text); /* project card 保持深色文字 */
+  color: #fff; /* project card 深色上白字 */
 }
 
 .project-modal-content .project-card p { /* project popup paragraph */
-  color: var(--muted); /* project card 白底上保持可讀 */
+  color: rgba(255, 255, 255, 0.78); /* project card 深色上保持可讀 */
+}
+
+.project-modal-content .project-tag { /* modal project category tag */
+  border-color: rgba(84, 220, 255, 0.3);
+  background: rgba(84, 220, 255, 0.1);
+  color: #9befff;
+}
+
+.project-modal-content .project-points p { /* modal project points */
+  border-color: rgba(84, 220, 255, 0.18);
+  background: rgba(4, 16, 16, 0.82);
+}
+
+.project-modal-content .project-points strong,
+.project-modal-content .project-points p::before { /* modal project point accents */
+  color: #9befff;
+}
+
+.project-modal-content .project-points p::before {
+  border-color: rgba(84, 220, 255, 0.34);
 }
 
 .project-modal-content .project-copy { /* popup project 文字欄 */
@@ -1127,6 +1378,16 @@ h1 { /* 首頁最大標題 */
   border-radius: var(--radius); /* 保持 8px 圓角 */
   background: var(--surface); /* 白底 */
   box-shadow: 0 18px 56px rgba(17, 33, 30, 0.08); /* 柔和陰影 */
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.info-card:hover,
+.skill-card:hover,
+.demo-column:hover,
+.contact-card:hover { /* subtle B2B hover lift */
+  border-color: rgba(84, 220, 255, 0.34);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.2), 0 0 30px rgba(84, 220, 255, 0.08);
+  transform: translateY(-3px);
 }
 
 .info-card { /* Experience card */
@@ -1492,6 +1753,7 @@ h1 { /* 首頁最大標題 */
     width: 100%; /* 填滿側邊 menu */
     margin-top: 6px; /* 同 Project button 分隔 */
     transform: none; /* 取消桌面置中 */
+    animation: popPanelIn 180ms ease-out; /* 手機不需要 translateX */
   }
 
   .project-dropdown button { /* 手機 dropdown 選項 */
