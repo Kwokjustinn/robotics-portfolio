@@ -1,14 +1,21 @@
 :root { /* 全站共用變數：之後用 var(--名字) 就可以重用顏色、尺寸等設定 */
   --bg: #f7f8f5; /* 網站主背景色 */
   --bg-strong: #10221e; /* 深色背景，適合 hero/nav */
+  --ink: #f8fbff; /* 深色背景上嘅主要文字 */
+  --ink-muted: #d4dde5; /* 深色背景上嘅次要文字 */
+  --ink-soft: #b8c6d1; /* 深色背景上嘅小字 */
+  --dark-card: #08161d; /* 深色科技卡片底 */
+  --dark-card-raised: #0d2530; /* 深色背景上較亮嘅卡片底 */
+  --dark-card-strong: #0a1e27; /* 更實淨嘅深色卡片底 */
   --surface: #ffffff; /* 卡片白色底 */
   --surface-muted: #eef3ef; /* 較淡嘅卡片/資訊底色 */
   --text: #18211f; /* 主要文字顏色 */
   --muted: #66736f; /* 次要文字顏色，例如 paragraph */
   --line: #dfe6e1; /* 邊框線顏色 */
-  --accent: #1f8a70; /* 主色，例如 primary button */
-  --accent-strong: #11614f; /* 深一點嘅主色 */
-  --signal: #d7942f; /* 橙色 highlight，用喺 eyebrow/kicker */
+  --accent: #1d9fc2; /* 主色，例如 primary button */
+  --accent-strong: #0b6f90; /* 深一點嘅主色 */
+  --accent-glow: #78e7ff; /* 深色背景上嘅 cyan accent */
+  --signal: #78e7ff; /* highlight，用喺 eyebrow/kicker */
   --shadow: 0 24px 70px rgba(17, 33, 30, 0.14); /* 共用陰影效果 */
   --radius: 8px; /* 共用圓角大小 */
   --container: 1120px; /* 內容最大寬度 */
@@ -288,7 +295,7 @@ h1 { /* 首頁最大標題 */
   max-width: 900px; /* 摘要可以橫向長啲，減少換行高度 */
   margin-right: 0; /* 取消置中 */
   margin-left: 0; /* 摘要靠左 */
-  color: rgba(255, 255, 255, 0.78); /* 白色但透明少少，層級低過 h1 */
+  color: var(--ink-muted); /* 白色但透明少少，層級低過 h1 */
   font-size: 13px; /* 摘要文字收細，第一頁可以睇到更多圖片 */
   line-height: 1.35; /* 行距收緊，減少佔用高度 */
 }
@@ -348,7 +355,7 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-arrow-button i { /* 箭嘴 icon */
-  color: #9befff; /* 用科技藍突出方向 */
+  color: var(--accent-glow); /* 用科技藍突出方向 */
 }
 
 .hero-project-tags,
@@ -447,7 +454,7 @@ h1 { /* 首頁最大標題 */
 
 .hero-panel p { /* hero card 入面嘅 paragraph */
   margin-bottom: 0; /* 清走底部 margin，卡片高度更可控 */
-  color: rgba(255, 255, 255, 0.72); /* 淡白色文字 */
+  color: var(--ink-muted); /* 淡白色文字 */
   font-size: 14px; /* card 描述文字大小 */
   line-height: 1.45; /* 描述文字行距 */
 }
@@ -529,7 +536,7 @@ h1 { /* 首頁最大標題 */
   top: 14px; /* 距離頂部 */
   left: 18px; /* 距離左邊 */
   z-index: 3; /* 放喺圖片上面 */
-  color: #9befff; /* 淺藍色 */
+  color: var(--accent-glow); /* 淺藍色 */
   font-size: 11px; /* 小字 */
   font-weight: 900; /* 粗體 */
   letter-spacing: 0.12em; /* 字距 */
@@ -587,7 +594,7 @@ h1 { /* 首頁最大標題 */
   padding: 4px 7px; /* 標籤內距 */
   border: 1px solid rgba(84, 220, 255, 0.22); /* 淡藍色邊框 */
   border-radius: 999px; /* pill 形狀 */
-  color: #9befff; /* 淺藍文字 */
+  color: var(--accent-glow); /* 淺藍文字 */
   font-size: 10px; /* 小字 */
   font-weight: 900; /* 粗體 */
   letter-spacing: 0.08em; /* 字距 */
@@ -599,13 +606,13 @@ h1 { /* 首頁最大標題 */
   gap: 5px; /* 每條 bullet 距離 */
   margin: 4px 0 0; /* 上方少少距離，其他清零 */
   padding-left: 17px; /* bullet 縮入 */
-  color: rgba(255, 255, 255, 0.78); /* bullet 文字淡白色 */
+  color: var(--ink-muted); /* bullet 文字淡白色 */
   font-size: 11.5px; /* bullet 字體細啲，第一頁仍然清楚 */
   line-height: 1.28; /* bullet 行距收緊 */
 }
 
 .tech-strength-points li::marker { /* bullet 小圓點 */
-  color: #9befff; /* 小圓點用科技藍 */
+  color: var(--accent-glow); /* 小圓點用科技藍 */
 }
 
 @keyframes techCardIn { /* high-tech cards 入場動畫 */
@@ -707,14 +714,14 @@ h1 { /* 首頁最大標題 */
   margin: 14px; /* 同卡片邊緣距離 */
   padding: 18px; /* 內距 */
   overflow: hidden; /* 保持科技線條喺卡片內 */
-  border-color: rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
-  background: linear-gradient(145deg, rgba(4, 16, 16, 0.96), rgba(8, 35, 30, 0.94)); /* 深色高對比底 */
+  border-color: rgba(120, 231, 255, 0.34); /* 科技藍邊框 */
+  background: linear-gradient(145deg, var(--dark-card-strong), rgba(8, 38, 48, 0.98)); /* 深色高對比底 */
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 28px rgba(84, 220, 255, 0.08); /* 柔和發光 */
 }
 
 .about-section .quick-info { /* 第二頁 quick info 盒 */
-  border-color: rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
-  background: linear-gradient(145deg, rgba(4, 16, 16, 0.96), rgba(8, 35, 30, 0.94)); /* 深色高對比底 */
+  border-color: rgba(120, 231, 255, 0.34); /* 科技藍邊框 */
+  background: linear-gradient(145deg, var(--dark-card-strong), rgba(8, 38, 48, 0.98)); /* 深色高對比底 */
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 28px rgba(84, 220, 255, 0.08); /* 柔和發光 */
 }
 
@@ -723,8 +730,8 @@ h1 { /* 首頁最大標題 */
   inset: 12px auto 12px 0;
   width: 3px;
   content: "";
-  background: linear-gradient(180deg, #54dcff, #24d18a);
-  box-shadow: 0 0 18px rgba(84, 220, 255, 0.72);
+  background: linear-gradient(180deg, var(--accent-glow), #2ed4a5);
+  box-shadow: 0 0 18px rgba(120, 231, 255, 0.72);
 }
 
 .quick-info-card { /* quick info mini card */
@@ -733,9 +740,10 @@ h1 { /* 首頁最大標題 */
   gap: 11px;
   align-items: start;
   padding: 12px;
-  border: 1px solid rgba(84, 220, 255, 0.18);
+  border: 1px solid rgba(120, 231, 255, 0.28);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.055);
+  background: var(--dark-card-raised);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .quick-info-icon { /* quick info icon */
@@ -743,17 +751,17 @@ h1 { /* 首頁最大標題 */
   place-items: center;
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(84, 220, 255, 0.32);
+  border: 1px solid rgba(120, 231, 255, 0.42);
   border-radius: var(--radius);
-  background: rgba(84, 220, 255, 0.1);
-  color: #9befff;
-  box-shadow: 0 0 18px rgba(84, 220, 255, 0.14);
+  background: rgba(120, 231, 255, 0.12);
+  color: var(--accent-glow);
+  box-shadow: 0 0 18px rgba(120, 231, 255, 0.14);
 }
 
 .quick-info-card strong { /* quick info labels */
   display: block;
   margin-bottom: 3px;
-  color: #9befff;
+  color: var(--accent-glow);
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -765,14 +773,14 @@ h1 { /* 首頁最大標題 */
 .quick-info-card p,
 .project-modal-content .quick-info-card p { /* quick info 內文字 */
   margin-bottom: 0; /* 清走底部 margin */
-  color: rgba(255, 255, 255, 0.88); /* 提高可讀性 */
+  color: var(--ink); /* 提高可讀性 */
   font-size: 13px;
   font-weight: 750;
   line-height: 1.42;
 }
 
 .about-section p { /* 第二頁段落文字 */
-  color: rgba(255, 255, 255, 0.82); /* 背景圖上用淡白色，保持易讀 */
+  color: var(--ink-muted); /* 背景圖上用淡白色，保持易讀 */
 }
 
 .about-section .section-title { /* 第二頁標題 */
@@ -783,11 +791,12 @@ h1 { /* 首頁最大標題 */
   max-width: 780px;
   margin-top: 18px;
   padding: 16px 18px;
-  border: 1px solid rgba(84, 220, 255, 0.22);
+  border: 1px solid rgba(120, 231, 255, 0.28);
   border-left: 3px solid #24d18a;
   border-radius: var(--radius);
-  background: rgba(7, 20, 18, 0.68);
+  background: var(--dark-card);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
+  color: var(--ink);
 }
 
 .onsite-quote { /* 第二頁小 quote */
@@ -796,8 +805,8 @@ h1 { /* 首頁最大標題 */
   padding: 7px 10px; /* quote 內距 */
   border: 1px solid rgba(255, 255, 255, 0.18); /* 淡邊框 */
   border-radius: var(--radius); /* 跟全站圓角一致 */
-  background: rgba(7, 20, 18, 0.62); /* 半透明深色底 */
-  color: rgba(255, 255, 255, 0.9); /* quote 文字白色 */
+  background: var(--dark-card); /* 半透明深色底 */
+  color: var(--ink); /* quote 文字白色 */
   font-size: 13px; /* 小 quote 字體 */
   font-weight: 800; /* 加粗，令 quote 清楚 */
 }
@@ -820,10 +829,10 @@ h1 { /* 首頁最大標題 */
 .tab-link { /* 每個 tab 按鈕 */
   min-height: 42px; /* 最小高度 */
   padding: 0 14px; /* 左右內距 */
-  border: 1px solid rgba(84, 220, 255, 0.22); /* 科技藍邊框 */
+  border: 1px solid rgba(120, 231, 255, 0.32); /* 科技藍邊框 */
   border-radius: var(--radius); /* 圓角 */
-  background: rgba(7, 20, 18, 0.76); /* 深色底 */
-  color: rgba(255, 255, 255, 0.84); /* 淺色文字 */
+  background: var(--dark-card); /* 深色底 */
+  color: var(--ink-muted); /* 淺色文字 */
   font: inherit; /* 沿用 body 字體設定 */
   font-weight: 800; /* 加粗 */
   cursor: pointer; /* 滑鼠變手指，表示可點 */
@@ -832,13 +841,14 @@ h1 { /* 首頁最大標題 */
 .tab-link:hover,
 .tab-link:focus-visible { /* tab hover / focus */
   border-color: rgba(84, 220, 255, 0.48);
-  color: #fff;
+  background: var(--dark-card-raised);
+  color: var(--ink);
   outline: none;
 }
 
 .tab-link.active-link { /* 當前選中嘅 tab */
-  background: linear-gradient(135deg, rgba(31, 138, 112, 0.95), rgba(28, 176, 189, 0.84)); /* 綠藍 active 底 */
-  border-color: rgba(155, 239, 255, 0.5); /* active 邊框 */
+  background: #0b789a linear-gradient(135deg, #0b789a, #168f98); /* 綠藍 active 底 */
+  border-color: rgba(120, 231, 255, 0.62); /* active 邊框 */
   color: #fff; /* 白色文字 */
   box-shadow: 0 12px 28px rgba(31, 138, 112, 0.18);
 }
@@ -848,10 +858,11 @@ h1 { /* 首頁最大標題 */
 }
 
 .tab-panel { /* single About tab panel */
-  padding: 16px;
-  border: 1px solid rgba(84, 220, 255, 0.2);
+  padding: 18px;
+  border: 1px solid rgba(120, 231, 255, 0.28);
   border-radius: var(--radius);
-  background: rgba(7, 20, 18, 0.58);
+  background: var(--dark-card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .about-chip-grid { /* About tab content badges */
@@ -866,15 +877,21 @@ h1 { /* 首頁最大標題 */
 .about-chip-grid li { /* About badge */
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 8px 10px;
-  border: 1px solid rgba(84, 220, 255, 0.2);
+  min-height: 38px;
+  padding: 9px 11px;
+  border: 1px solid rgba(120, 231, 255, 0.3);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.88);
+  background: var(--dark-card-raised);
+  color: var(--ink);
   font-size: 13px;
   font-weight: 800;
   line-height: 1.25;
+}
+
+.about-chip-grid li:hover { /* About badge hover */
+  border-color: rgba(120, 231, 255, 0.52);
+  background: #123746;
+  color: #fff;
 }
 
 .project-section { /* Projects section */
@@ -903,7 +920,7 @@ h1 { /* 首頁最大標題 */
 
 .project-filter-panel p { /* filter panel 說明 */
   margin-bottom: 0; /* 清走 paragraph 底部 margin */
-  color: rgba(255, 255, 255, 0.78); /* 淡白文字 */
+  color: var(--ink-muted); /* 淡白文字 */
   font-size: 14px; /* 說明文字大小 */
 }
 
@@ -1089,17 +1106,17 @@ h1 { /* 首頁最大標題 */
   gap: 7px;
   min-height: 30px;
   padding: 6px 9px;
-  border: 1px solid rgba(84, 220, 255, 0.2);
+  border: 1px solid rgba(11, 111, 144, 0.2);
   border-radius: var(--radius);
-  background: rgba(84, 220, 255, 0.08);
-  color: #d9fffb;
+  background: rgba(11, 111, 144, 0.08);
+  color: #14404c;
   font-size: 12px;
   font-weight: 850;
   line-height: 1.1;
 }
 
 .project-signal-tags i { /* project tag icon */
-  color: #9befff;
+  color: var(--accent-strong);
 }
 
 .project-copy h3 { /* project card 入面嘅 h3 標題 */
@@ -1174,8 +1191,8 @@ h1 { /* 首頁最大標題 */
   border: 1px solid rgba(84, 220, 255, 0.22); /* 淡科技藍邊 */
   border-radius: var(--radius); /* 8px 圓角 */
   background:
-    radial-gradient(circle at 18% 0%, rgba(84, 220, 255, 0.12), transparent 30%),
-    linear-gradient(145deg, #071616, #10372f); /* 深綠 popup */
+    radial-gradient(circle at 18% 0%, rgba(120, 231, 255, 0.12), transparent 30%),
+    linear-gradient(145deg, #07131a, #0b2630); /* 深色 robotics popup */
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42), 0 0 48px rgba(84, 220, 255, 0.1); /* popup 陰影 */
   animation: popPanelIn 220ms ease-out;
 }
@@ -1212,7 +1229,7 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-modal-content p { /* modal section paragraph */
-  color: rgba(255, 255, 255, 0.78); /* 深色 modal 上易讀 */
+  color: var(--ink-muted); /* 深色 modal 上易讀 */
 }
 
 .project-modal-content .section-title,
@@ -1221,16 +1238,41 @@ h1 { /* 首頁最大標題 */
   color: #fff; /* 深色 modal 上用白字 */
 }
 
+.project-modal-content .section-kicker,
+.project-modal-content .onsite-quote,
+.project-modal-content .quick-info-card strong,
+.project-modal-content .demo-column h4 { /* modal labels */
+  color: var(--accent-glow);
+}
+
 .project-modal-content .info-card,
 .project-modal-content .contact-card { /* modal 入面一般 card */
-  border-color: rgba(84, 220, 255, 0.2); /* 科技藍邊框 */
-  background: rgba(7, 20, 18, 0.72); /* 深色玻璃底 */
+  border-color: rgba(120, 231, 255, 0.28); /* 科技藍邊框 */
+  background: var(--dark-card); /* 深色玻璃底 */
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18); /* 深色區陰影 */
+}
+
+.project-modal-content .about-section p,
+.project-modal-content .section-lead,
+.project-modal-content .skill-card p,
+.project-modal-content .demo-column li,
+.project-modal-content .contact-card p,
+.project-modal-content .roi-copy p { /* modal nested text */
+  color: var(--ink-muted);
+}
+
+.project-modal-content .about-tech-summary {
+  background: var(--dark-card);
+}
+
+.project-modal-content .quick-info,
+.project-modal-content .tab-panel {
+  background: var(--dark-card-strong);
 }
 
 .project-modal-content .card-icon { /* modal Experience icon */
   background: rgba(84, 220, 255, 0.12); /* 淡藍背景 */
-  color: #9befff; /* 科技藍 icon */
+  color: var(--accent-glow); /* 科技藍 icon */
 }
 
 .project-modal-content .about-grid,
@@ -1240,7 +1282,7 @@ h1 { /* 首頁最大標題 */
 
 .project-modal-content .project-card { /* popup 入面嘅 project card */
   border-color: rgba(84, 220, 255, 0.22); /* 深色 popup 上用淡邊 */
-  background: linear-gradient(145deg, #081b1b, #113a32); /* dark case study card */
+  background: linear-gradient(145deg, #08161d, #0d2f3a); /* dark case study card */
   box-shadow: none; /* panel 已有陰影 */
 }
 
@@ -1249,13 +1291,23 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-modal-content .project-card p { /* project popup paragraph */
-  color: rgba(255, 255, 255, 0.78); /* project card 深色上保持可讀 */
+  color: var(--ink-muted); /* project card 深色上保持可讀 */
 }
 
 .project-modal-content .project-tag { /* modal project category tag */
   border-color: rgba(84, 220, 255, 0.3);
   background: rgba(84, 220, 255, 0.1);
-  color: #9befff;
+  color: var(--accent-glow);
+}
+
+.project-modal-content .project-signal-tags span { /* modal project chips */
+  border-color: rgba(120, 231, 255, 0.28);
+  background: rgba(120, 231, 255, 0.1);
+  color: var(--ink);
+}
+
+.project-modal-content .project-signal-tags i { /* modal project chip icon */
+  color: var(--accent-glow);
 }
 
 .project-modal-content .project-points p { /* modal project points */
@@ -1265,7 +1317,7 @@ h1 { /* 首頁最大標題 */
 
 .project-modal-content .project-points strong,
 .project-modal-content .project-points p::before { /* modal project point accents */
-  color: #9befff;
+  color: var(--accent-glow);
 }
 
 .project-modal-content .project-points p::before {
@@ -1307,12 +1359,12 @@ h1 { /* 首頁最大標題 */
 }
 
 .experience-section .section-lead { /* 第三頁簡介 */
-  color: rgba(255, 255, 255, 0.78); /* 淡白色，易讀但唔搶標題 */
+  color: var(--ink-muted); /* 淡白色，易讀但唔搶標題 */
 }
 
 .experience-section .info-card { /* 第三頁三張 Experience cards */
-  border-color: rgba(84, 220, 255, 0.22); /* 科技藍邊框，配合背景圖 */
-  background: rgba(7, 20, 18, 0.72); /* 玻璃感深色底，文字唔會俾背景干擾 */
+  border-color: rgba(120, 231, 255, 0.28); /* 科技藍邊框，配合背景圖 */
+  background: var(--dark-card); /* 深色底，文字唔會俾背景干擾 */
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24); /* 深色背景上用較明顯陰影 */
   backdrop-filter: blur(12px); /* 背景模糊少少，card 更清楚 */
 }
@@ -1322,12 +1374,12 @@ h1 { /* 首頁最大標題 */
 }
 
 .experience-section .info-card p { /* 第三頁 card 內文 */
-  color: rgba(255, 255, 255, 0.76); /* card paragraph 用淡白色 */
+  color: var(--ink-muted); /* card paragraph 用淡白色 */
 }
 
 .experience-section .card-icon { /* 第三頁 icon 外框 */
   background: rgba(84, 220, 255, 0.12); /* 淡藍背景 */
-  color: #9befff; /* icon 用科技藍 */
+  color: var(--accent-glow); /* icon 用科技藍 */
 }
 
 .sales-engineering-section { /* Sales Engineering section */
@@ -1354,7 +1406,7 @@ h1 { /* 首頁最大標題 */
 }
 
 .sales-engineering-section .section-lead { /* 深色 section 簡介 */
-  color: rgba(255, 255, 255, 0.74); /* 淡白色 */
+  color: var(--ink-muted); /* 淡白色 */
 }
 
 .card-grid,
@@ -1446,8 +1498,8 @@ h1 { /* 首頁最大標題 */
 
 .skill-card { /* Technical skill card */
   padding: 18px; /* card 內距 */
-  border-color: rgba(84, 220, 255, 0.22); /* 科技藍邊框 */
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(31, 138, 112, 0.12)); /* 深色透明科技底 */
+  border-color: rgba(120, 231, 255, 0.28); /* 科技藍邊框 */
+  background: linear-gradient(145deg, rgba(10, 30, 39, 0.96), rgba(12, 55, 67, 0.92)); /* 深色透明科技底 */
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18); /* 深色區陰影 */
 }
 
@@ -1457,7 +1509,7 @@ h1 { /* 首頁最大標題 */
 }
 
 .skill-card p { /* skill card 文字 */
-  color: rgba(255, 255, 255, 0.72); /* 淡白文字 */
+  color: var(--ink-muted); /* 淡白文字 */
   font-size: 14px; /* skill 描述細啲 */
   line-height: 1.5; /* 描述行距 */
 }
@@ -1467,7 +1519,7 @@ h1 { /* 首頁最大標題 */
   padding: 26px; /* demo 外框內距 */
   border: 1px solid rgba(255, 255, 255, 0.12); /* 深色區淡邊框 */
   border-radius: var(--radius); /* 圓角 */
-  background: rgba(255, 255, 255, 0.06); /* 半透明底 */
+  background: rgba(8, 22, 29, 0.82); /* 半透明底 */
 }
 
 .solution-demo-header { /* demo header */
@@ -1486,13 +1538,13 @@ h1 { /* 首頁最大標題 */
 
 .demo-column { /* demo 單欄 */
   padding: 20px; /* 內距 */
-  border-color: rgba(84, 220, 255, 0.2); /* 淡科技藍邊框 */
-  background: rgba(7, 20, 18, 0.72); /* 深色卡片底 */
+  border-color: rgba(120, 231, 255, 0.26); /* 淡科技藍邊框 */
+  background: var(--dark-card); /* 深色卡片底 */
 }
 
 .demo-column h4 { /* demo 欄標題 */
   margin: 0 0 12px; /* 清上方 margin，下方分隔 */
-  color: #9befff; /* 科技藍文字 */
+  color: var(--accent-glow); /* 科技藍文字 */
   font-size: 15px; /* 欄標題大小 */
   text-transform: uppercase; /* 全部大楷 */
 }
@@ -1502,11 +1554,11 @@ h1 { /* 首頁最大標題 */
   gap: 8px; /* 每項距離 */
   margin: 0; /* 清 margin */
   padding-left: 18px; /* bullet 縮入 */
-  color: rgba(255, 255, 255, 0.76); /* 淡白文字 */
+  color: var(--ink-muted); /* 淡白文字 */
 }
 
 .demo-column li::marker { /* demo bullet */
-  color: #9befff; /* bullet 藍色 */
+  color: var(--accent-glow); /* bullet 藍色 */
 }
 
 .roi-calculator { /* ROI calculator 外框 */
@@ -1516,8 +1568,8 @@ h1 { /* 首頁最大標題 */
   align-items: start; /* 頂部對齊 */
   margin-top: 34px; /* 同 demo 區分隔 */
   padding: 26px; /* 內距 */
-  border-color: rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(31, 138, 112, 0.16)); /* 深色透明底 */
+  border-color: rgba(120, 231, 255, 0.28); /* 科技藍邊框 */
+  background: linear-gradient(145deg, #08161d, #0d2f3a); /* 深色科技底 */
 }
 
 .roi-copy h3 { /* ROI 標題 */
@@ -1529,8 +1581,8 @@ h1 { /* 首頁最大標題 */
   padding: 12px 14px; /* note 內距 */
   border: 1px solid rgba(255, 255, 255, 0.14); /* 淡邊框 */
   border-radius: var(--radius); /* 圓角 */
-  background: rgba(7, 20, 18, 0.58); /* 深色 note 底 */
-  color: rgba(255, 255, 255, 0.82); /* note 文字 */
+  background: var(--dark-card); /* 深色 note 底 */
+  color: var(--ink-muted); /* note 文字 */
   font-size: 13px; /* note 文字較細 */
   font-weight: 800; /* 加粗 */
 }
@@ -1544,7 +1596,7 @@ h1 { /* 首頁最大標題 */
 .roi-form label { /* ROI input label */
   display: grid; /* label 同 input 垂直排列 */
   gap: 6px; /* 文字同 input 距離 */
-  color: rgba(255, 255, 255, 0.76); /* label 淡白色 */
+  color: var(--ink-muted); /* label 淡白色 */
   font-size: 13px; /* label 字體 */
   font-weight: 800; /* label 加粗 */
 }
@@ -1555,7 +1607,7 @@ h1 { /* 首頁最大標題 */
   padding: 0 12px; /* 左右內距 */
   border: 1px solid rgba(255, 255, 255, 0.18); /* 淡邊框 */
   border-radius: var(--radius); /* 圓角 */
-  background: rgba(7, 20, 18, 0.68); /* 深色 input 底 */
+  background: var(--dark-card); /* 深色 input 底 */
   color: #fff; /* input 文字白色 */
   font: inherit; /* 沿用全站字體 */
 }
@@ -1576,11 +1628,11 @@ h1 { /* 首頁最大標題 */
   padding: 14px; /* 內距 */
   border: 1px solid rgba(84, 220, 255, 0.24); /* 科技藍邊框 */
   border-radius: var(--radius); /* 圓角 */
-  background: rgba(84, 220, 255, 0.08); /* 淡藍透明底 */
+  background: var(--dark-card-raised); /* 淡藍透明底 */
 }
 
 .roi-results span { /* ROI result label */
-  color: rgba(255, 255, 255, 0.72); /* 淡白 */
+  color: var(--ink-muted); /* 淡白 */
   font-size: 13px; /* 細字 */
   font-weight: 800; /* 加粗 */
 }
@@ -1615,12 +1667,12 @@ h1 { /* 首頁最大標題 */
 
 .contact-card { /* Contact 資料卡 */
   padding: 24px; /* 內距 */
-  border-color: rgba(255, 255, 255, 0.16); /* 深色區淡邊框 */
-  background: rgba(255, 255, 255, 0.08); /* 半透明白底 */
+  border-color: rgba(120, 231, 255, 0.28); /* 深色區淡邊框 */
+  background: var(--dark-card); /* 深色底 */
 }
 
 .contact-card p { /* Contact 每行 */
-  color: rgba(255, 255, 255, 0.8); /* 淡白 */
+  color: var(--ink-muted); /* 淡白 */
 }
 
 .contact-card p + p { /* Contact 第二行之後 */
@@ -1635,7 +1687,7 @@ h1 { /* 首頁最大標題 */
 
 .contact-card a,
 .contact-action-link { /* Contact clickable links */
-  color: #9befff; /* 科技藍 link */
+  color: var(--accent-glow); /* 科技藍 link */
   font-weight: 850; /* link 加粗 */
 }
 
@@ -2023,5 +2075,54 @@ h1 { /* 首頁最大標題 */
 
   .contact-grid { /* 手機 contact */
     gap: 20px; /* contact 左右變上下時距離 */
+  }
+}
+
+@media (max-width: 520px) { /* 窄手機：避免 hero 文字同 cards 被右邊截走 */
+  .hero {
+    overflow-x: hidden;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "copy"
+      "photo"
+      "panel";
+    align-content: start;
+    gap: 14px;
+    padding-top: 92px;
+  }
+
+  .eyebrow,
+  .hero-summary {
+    max-width: min(100%, 35ch);
+    overflow-wrap: anywhere;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+  }
+
+  .hero-photo {
+    justify-self: center;
+    width: min(100%, 240px);
+  }
+
+  .hero-panel,
+  .hero-panel-react {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tech-strength-card,
+  .tech-strength-featured {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tech-strength-copy {
+    min-width: 0;
   }
 }
