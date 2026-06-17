@@ -667,36 +667,46 @@ h1 { /* 首頁最大標題 */
   position: relative; /* 俾背景遮罩同內容可以正常疊放 */
   min-height: 100svh; /* 令第二頁至少有一個螢幕高度，背景相更似獨立 page */
   display: flex; /* 方便內容垂直置中 */
-  align-items: center; /* About 內容放近第二頁中間 */
+  align-items: flex-start; /* About 內容靠上，headline 更快出現 */
   color: #fff; /* About 背景變深後，主要文字用白色 */
   background: /* 用深色遮罩壓低相片亮度，避免文字睇唔清 */
-    linear-gradient(110deg, rgba(6, 16, 15, 0.88), rgba(6, 16, 15, 0.58) 48%, rgba(6, 16, 15, 0.84)),
-    url("onsite-gm-ohio.jpg"); /* General Motors Ohio onsite 背景相 */
+    linear-gradient(110deg, rgba(4, 13, 14, 0.94), rgba(5, 18, 22, 0.9) 48%, rgba(4, 13, 14, 0.96)),
+    url("enterprise-robotics-team.jpg"); /* enterprise robotics team 背景相 */
   background-size: cover; /* 背景相填滿整個 section */
-  background-position: center; /* 背景相置中裁切 */
+  background-position: center 30%; /* 背景相置中裁切，保留倉庫團隊視覺 */
+}
+
+.about-section::before { /* soften busy warehouse background */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 12, 14, 0.36);
+  backdrop-filter: blur(3px);
 }
 
 .about-grid { /* About 區兩欄排版 */
   position: relative; /* 確保內容喺背景上面 */
   z-index: 1; /* 內容層級高過背景 */
   display: grid; /* 用 grid 排左右欄 */
-  grid-template-columns: minmax(220px, 0.64fr) minmax(0, 1.4fr); /* 左欄縮窄，令 selfie/profile card 細啲 */
-  gap: 48px; /* 左右欄距離 */
-  align-items: center; /* 背景頁入面圖文垂直對齊更穩 */
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); /* 左欄固定、右欄主內容 */
+  gap: clamp(28px, 5vw, 64px); /* 左右欄距離 */
+  align-items: start; /* profile card and headline align cleanly */
+  padding-top: clamp(26px, 5svh, 56px);
+  padding-bottom: clamp(26px, 5svh, 56px);
 }
 
 .portrait-card { /* About 左邊圖片卡 */
-  width: min(100%, 250px); /* 將第二頁 selfie/profile card 再縮細，令背景更突出 */
+  width: min(100%, 260px); /* compact profile card */
   justify-self: start; /* 令細卡靠左，而唔係拉滿成欄 */
   overflow: hidden; /* 超出卡片圓角嘅內容隱藏 */
   box-shadow: 0 16px 48px rgba(17, 33, 30, 0.1); /* 較柔和陰影 */
 }
 
 .about-section .portrait-card { /* 第二頁背景上嘅 profile card */
-  border-color: rgba(255, 255, 255, 0.2); /* 深色背景上用半透明白邊 */
-  background: rgba(255, 255, 255, 0.12); /* 半透明卡片底 */
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28); /* 背景相上加深陰影 */
-  backdrop-filter: blur(12px); /* 玻璃效果，令相片卡更高級 */
+  border: 1px solid rgba(120, 231, 255, 0.2); /* 深色背景上用科技藍邊 */
+  background: rgba(5, 19, 24, 0.84); /* calmer dark card */
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.26); /* 背景相上加深陰影 */
+  backdrop-filter: blur(14px); /* 玻璃效果，令相片卡更高級 */
 }
 
 .media-frame img { /* About 圖片 */
@@ -783,14 +793,102 @@ h1 { /* 首頁最大標題 */
   color: var(--ink-muted); /* 背景圖上用淡白色，保持易讀 */
 }
 
+.about-copy { /* About main content column */
+  max-width: 820px;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid rgba(120, 231, 255, 0.16);
+  border-radius: var(--radius);
+  background: rgba(5, 18, 23, 0.74);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+}
+
 .about-section .section-title { /* 第二頁標題 */
+  max-width: 760px;
+  margin-bottom: 12px;
   color: #fff; /* 深色背景上用白色標題 */
+  font-size: clamp(34px, 4.1vw, 56px);
+  line-height: 1.02;
+}
+
+.about-subtitle { /* About value proposition subtitle */
+  max-width: 760px;
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: clamp(16px, 1.45vw, 20px);
+  font-weight: 760;
+  line-height: 1.45;
+}
+
+.about-value-grid { /* Copy and proof photo row */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.48fr);
+  gap: 18px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.about-main-copy { /* Main About paragraphs */
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.about-main-copy p {
+  margin-bottom: 0;
+}
+
+.about-field-photo { /* About popup wide field photo */
+  position: relative; /* allow overlay */
+  align-self: start; /* keep image secondary instead of matching copy height */
+  overflow: hidden; /* crop image cleanly */
+  width: 100%; /* fill About text column */
+  max-height: 230px;
+  aspect-ratio: 4 / 3; /* compact supporting card */
+  margin: 0; /* grid handles spacing */
+  border: 1px solid rgba(120, 231, 255, 0.22); /* subtle technical border */
+  border-radius: var(--radius); /* consistent 8px radius */
+  background: var(--dark-card); /* stable load background */
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22); /* lift from dark panel */
+}
+
+.about-field-photo::after { /* keep photo from competing with text */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 16, 15, 0.04), rgba(6, 16, 15, 0.2));
+  pointer-events: none;
+}
+
+.about-field-photo img { /* About field photo image */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.about-field-photo figcaption { /* Supporting image caption */
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  background: rgba(4, 13, 15, 0.72);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.25;
+  backdrop-filter: blur(8px);
 }
 
 .about-tech-summary { /* About technical positioning summary */
   max-width: 780px;
-  margin-top: 18px;
-  padding: 16px 18px;
+  margin-top: 16px;
+  padding: 13px 15px;
   border: 1px solid rgba(120, 231, 255, 0.28);
   border-left: 3px solid #24d18a;
   border-radius: var(--radius);
@@ -799,16 +897,18 @@ h1 { /* 首頁最大標題 */
   color: var(--ink);
 }
 
-.onsite-quote { /* 第二頁小 quote */
+.field-support-quote { /* 第二頁小 quote */
   width: fit-content; /* quote 盒闊度跟文字 */
-  margin-bottom: 14px; /* 同下面 h2 分隔 */
-  padding: 7px 10px; /* quote 內距 */
+  max-width: 640px;
+  margin-bottom: 0; /* sits near subtitle */
+  padding: 6px 9px; /* quote 內距 */
   border: 1px solid rgba(255, 255, 255, 0.18); /* 淡邊框 */
   border-radius: var(--radius); /* 跟全站圓角一致 */
-  background: var(--dark-card); /* 半透明深色底 */
+  background: rgba(7, 20, 24, 0.64); /* 半透明深色底 */
   color: var(--ink); /* quote 文字白色 */
-  font-size: 13px; /* 小 quote 字體 */
-  font-weight: 800; /* 加粗，令 quote 清楚 */
+  font-size: 12px; /* 小 quote 字體 */
+  font-weight: 720; /* subtle confidentiality note */
+  line-height: 1.45;
 }
 
 .section-title { /* section 大標題 */
@@ -1239,7 +1339,7 @@ h1 { /* 首頁最大標題 */
 }
 
 .project-modal-content .section-kicker,
-.project-modal-content .onsite-quote,
+.project-modal-content .field-support-quote,
 .project-modal-content .quick-info-card strong,
 .project-modal-content .demo-column h4 { /* modal labels */
   color: var(--accent-glow);
@@ -1715,6 +1815,25 @@ h1 { /* 首頁最大標題 */
     justify-self: center; /* 單欄時置中 */
   }
 
+  .about-copy { /* tablet About content should lead */
+    order: -1;
+    max-width: 100%;
+  }
+
+  .about-grid { /* tablet About panel */
+    gap: 24px;
+    padding-top: 18px;
+  }
+
+  .about-value-grid { /* tablet About copy/photo */
+    grid-template-columns: 1fr;
+  }
+
+  .about-field-photo { /* tablet supporting photo */
+    max-height: 260px;
+    aspect-ratio: 16 / 7;
+  }
+
   .hero-grid { /* tablet hero 排版 */
     grid-template-areas: /* 改成由上至下排 */
       "copy" /* 文字先出現 */
@@ -1835,6 +1954,46 @@ h1 { /* 首頁最大標題 */
     border-radius: var(--radius); /* 圓角 */
     background: rgba(255, 255, 255, 0.1); /* 半透明底 */
     color: #fff; /* icon 白色 */
+  }
+
+  .about-section { /* mobile About section */
+    min-height: auto;
+  }
+
+  .about-grid { /* mobile About layout */
+    gap: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .about-copy { /* mobile About content */
+    padding: 16px;
+  }
+
+  .about-section .section-title { /* mobile About headline */
+    font-size: clamp(28px, 9vw, 38px);
+  }
+
+  .about-subtitle { /* mobile About subtitle */
+    font-size: 15px;
+    line-height: 1.42;
+  }
+
+  .about-field-photo { /* mobile supporting photo */
+    max-height: 190px;
+    aspect-ratio: 16 / 8;
+  }
+
+  .about-tech-summary { /* mobile summary */
+    padding: 12px;
+  }
+
+  .field-support-quote { /* mobile confidentiality note */
+    font-size: 11.5px;
+  }
+
+  .about-section .portrait-card { /* mobile profile card */
+    width: min(100%, 280px);
   }
 
   .hero-grid { /* 手機 hero：保留桌面「左相右卡」感覺 */
